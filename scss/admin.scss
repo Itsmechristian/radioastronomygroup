@@ -1,0 +1,270 @@
+$primary-color: #2a5bb8;
+$secondary-color: #4972BF;
+$main-text-color: #4A4747;
+$secondary-text-color: #5B5959;
+$white-color: #fff;
+$border-color: 1px inset #ababab;
+$web-view: 60%;
+$table-view: 80%;
+$phone-view: 90%;
+$primary-side-color: #1A2124;
+$secondary-side-color: #222D33;
+@font-face {
+    font-family: OS-Bold;
+    src: url('/fonts/OpenSans-Bold.ttf');
+}
+
+@font-face {
+    font-family: OS-BoldItalic;
+    src: url('/fonts/OpenSans-BoldItalic.ttf');
+}
+
+@font-face {
+    font-family: OS-ExtraBold;
+    src: url('/fonts/OpenSans-ExtraBold.ttf');
+}
+
+@font-face {
+    font-family: OS-ExtraBoldItalic;
+    src: url('/fonts/OpenSans-ExtraBoldItalic.ttf');
+}
+
+@font-face {
+    font-family: OS-Italic;
+    src: url('/fonts/OpenSans-Italic.ttf');
+}
+
+@font-face {
+    font-family: OS-LightItalic;
+    src: url('/fonts/OpenSans-LightItalic.ttf');
+}
+
+@font-face {
+    font-family: OS-Regular;
+    src: url('/fonts/OpenSans-Regular.ttf');
+}
+
+@font-face {
+    font-family: OS-Semibold;
+    src: url('/fonts/OpenSans-Semibold.ttf');
+}
+
+@font-face {
+    font-family: OS-SemiboldItalic;
+    src: url('/fonts/OpenSans-SemiboldItalic.ttf');
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: $main-text-color;
+    padding: 0;
+    margin: 0;
+    /* Change if later*/
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: #f1f1f1;
+    box-sizing: border-box;
+}
+
+
+.p-body{
+  .row{
+      .col-lg-2{
+          padding: 0;
+          margin: 0;
+          height: 100vh;
+          background: $primary-side-color;
+          .head-side{
+              margin: 0;
+              height: 80px;
+              width: 100%;
+              background: $secondary-color;
+              h1{
+                  font-family: OS-Regular;
+                  text-align: center;
+                  color: #fff;
+                  font-weight: 300;
+                  position: relative;
+                  top: 15px;
+              }
+             
+          }
+          .dash-name {
+            width: 100%;
+            height: 50px;
+            padding: 7px 12px;
+            background: $secondary-side-color;
+            i{
+            font-size: 1.5rem;
+              display: inline;
+              color: #fff;
+            }
+            h2{
+                margin: 0px 10px;
+                font-family: OS-Regular;
+                font-weight: 200;
+                color: #fff;
+                display: inline;
+            }
+
+        }
+        .post-drop-show{
+            padding: 5px 15px;
+            i{
+                font-size: 1.5rem;
+                color: #fff;
+                display: inline;
+            }
+            h2{
+                color: #fff;
+                display: inline;
+                font-family: OS-Regular;
+                font-weight: 200;
+                margin: 0px 10px;
+            }
+            .fa-angle-down{
+                float: right;
+                transform: rotate(90deg);
+                animation-fill-mode: none;
+            }
+            .fa-angle-down.rotate{
+                animation: rotateCaret 1s both;              
+            }
+        }
+        .drop-hide{
+            animation: downAnimate 1s;
+            display: none;
+            width: 100%;
+            height: 100px;
+            background: $secondary-side-color;
+          
+        }
+        .drop-hide.showHide{
+            display: block;
+            animation: hideAnimate 1s;
+            
+        }
+        
+        @keyframes rotateCaret{
+            from{
+                transform: rotate(90deg);
+                
+            }
+            to{
+                transform: rotate(0deg);
+                
+            }
+        }
+        @keyframes downAnimate{
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }   
+        @keyframes hideAnimate{
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }        
+          ul{
+              margin: 0;
+              padding: 0px 15px;
+              li{
+                  padding: 10px 0px;
+                  list-style: none;
+                  font-size: 1.3rem;
+                  a{
+                      padding-left: 10px;
+                      text-decoration: none;
+                      color: #fff;
+                  }
+                  i{
+                      color: #fff;
+                  }
+              }
+          }
+      }
+  }
+}
+.b-create{
+    h1{
+        font-family: OS-bold;
+        margin: 20px 0px;
+        color: $main-text-color;
+        span{
+            font-size: 1.5rem;
+            color: $secondary-text-color;
+        }
+    }
+
+  form{
+    background:#fff;
+    height: 600px;
+    width: 100%;
+    padding: 10px 30px;
+    position: relative;
+    top: 15px;
+      #title{
+          margin-top: 10px;
+          width: 100%;
+          border: 1px solid rgb(206, 206, 206);
+          height: 30px;
+          border-radius: 2px;
+          outline: none;
+          padding: 0px 10px;
+
+      }
+      label{
+          font-family: OS-Bold;
+          font-size: 1.2rem;
+          margin: 20px 0px;
+      }
+    //   textarea{
+    //       margin-top: 10px;
+    //   }
+    //   #uploads{
+    //       margin-top: 10px;
+    //       display: block;
+    //       background: $primary-color;
+    //       color: #fff;
+    //   }
+    //   button{
+    //       margin-top: 10px;
+    //       height: 30px;
+    //       width: 200px;
+    //       background: $primary-color;
+    //       border: none;
+    //       color: #fff;
+    //       font-size: 1.3rem;
+    //       border-radius: 10px;
+    //   }
+  }
+}
+#edit{
+  .post-wrapper{
+    padding: 15px;
+    background: #fff;
+      h1{
+        color: #313131;
+      }
+      p{
+        color: $secondary-text-color;
+      }
+      img{
+        height: 600px;
+        widows: 600px;
+      }
+  }
+}

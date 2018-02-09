@@ -1,0 +1,182 @@
+@font-face {
+  font-family: OS-Bold;
+  src: url("/fonts/OpenSans-Bold.ttf"); }
+
+@font-face {
+  font-family: OS-BoldItalic;
+  src: url("/fonts/OpenSans-BoldItalic.ttf"); }
+
+@font-face {
+  font-family: OS-ExtraBold;
+  src: url("/fonts/OpenSans-ExtraBold.ttf"); }
+
+@font-face {
+  font-family: OS-ExtraBoldItalic;
+  src: url("/fonts/OpenSans-ExtraBoldItalic.ttf"); }
+
+@font-face {
+  font-family: OS-Italic;
+  src: url("/fonts/OpenSans-Italic.ttf"); }
+
+@font-face {
+  font-family: OS-LightItalic;
+  src: url("/fonts/OpenSans-LightItalic.ttf"); }
+
+@font-face {
+  font-family: OS-Regular;
+  src: url("/fonts/OpenSans-Regular.ttf"); }
+
+@font-face {
+  font-family: OS-Semibold;
+  src: url("/fonts/OpenSans-Semibold.ttf"); }
+
+@font-face {
+  font-family: OS-SemiboldItalic;
+  src: url("/fonts/OpenSans-SemiboldItalic.ttf"); }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #4A4747;
+  padding: 0;
+  margin: 0;
+  /* Change if later*/ }
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #f1f1f1;
+  box-sizing: border-box; }
+
+.p-body .row .col-lg-2 {
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  background: #1A2124; }
+  .p-body .row .col-lg-2 .head-side {
+    margin: 0;
+    height: 80px;
+    width: 100%;
+    background: #4972BF; }
+    .p-body .row .col-lg-2 .head-side h1 {
+      font-family: OS-Regular;
+      text-align: center;
+      color: #fff;
+      font-weight: 300;
+      position: relative;
+      top: 15px; }
+  .p-body .row .col-lg-2 .dash-name {
+    width: 100%;
+    height: 50px;
+    padding: 7px 12px;
+    background: #222D33; }
+    .p-body .row .col-lg-2 .dash-name i {
+      font-size: 1.5rem;
+      display: inline;
+      color: #fff; }
+    .p-body .row .col-lg-2 .dash-name h2 {
+      margin: 0px 10px;
+      font-family: OS-Regular;
+      font-weight: 200;
+      color: #fff;
+      display: inline; }
+  .p-body .row .col-lg-2 .post-drop-show {
+    padding: 5px 15px; }
+    .p-body .row .col-lg-2 .post-drop-show i {
+      font-size: 1.5rem;
+      color: #fff;
+      display: inline; }
+    .p-body .row .col-lg-2 .post-drop-show h2 {
+      color: #fff;
+      display: inline;
+      font-family: OS-Regular;
+      font-weight: 200;
+      margin: 0px 10px; }
+    .p-body .row .col-lg-2 .post-drop-show .fa-angle-down {
+      float: right;
+      transform: rotate(90deg);
+      animation-fill-mode: none; }
+    .p-body .row .col-lg-2 .post-drop-show .fa-angle-down.rotate {
+      animation: rotateCaret 1s both; }
+  .p-body .row .col-lg-2 .drop-hide {
+    animation: downAnimate 1s;
+    display: none;
+    width: 100%;
+    height: 100px;
+    background: #222D33; }
+  .p-body .row .col-lg-2 .drop-hide.showHide {
+    display: block;
+    animation: hideAnimate 1s; }
+
+@keyframes rotateCaret {
+  from {
+    transform: rotate(90deg); }
+  to {
+    transform: rotate(0deg); } }
+
+@keyframes downAnimate {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+
+@keyframes hideAnimate {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
+  .p-body .row .col-lg-2 ul {
+    margin: 0;
+    padding: 0px 15px; }
+    .p-body .row .col-lg-2 ul li {
+      padding: 10px 0px;
+      list-style: none;
+      font-size: 1.3rem; }
+      .p-body .row .col-lg-2 ul li a {
+        padding-left: 10px;
+        text-decoration: none;
+        color: #fff; }
+      .p-body .row .col-lg-2 ul li i {
+        color: #fff; }
+
+.b-create h1 {
+  font-family: OS-bold;
+  margin: 20px 0px;
+  color: #4A4747; }
+  .b-create h1 span {
+    font-size: 1.5rem;
+    color: #5B5959; }
+
+.b-create form {
+  background: #fff;
+  height: 600px;
+  width: 100%;
+  padding: 10px 30px;
+  position: relative;
+  top: 15px; }
+  .b-create form #title {
+    margin-top: 10px;
+    width: 100%;
+    border: 1px solid #cecece;
+    height: 30px;
+    border-radius: 2px;
+    outline: none;
+    padding: 0px 10px; }
+  .b-create form label {
+    font-family: OS-Bold;
+    font-size: 1.2rem;
+    margin: 20px 0px; }
+
+#edit .post-wrapper {
+  padding: 15px;
+  background: #fff; }
+  #edit .post-wrapper h1 {
+    color: #313131; }
+  #edit .post-wrapper p {
+    color: #5B5959; }
+  #edit .post-wrapper img {
+    height: 600px;
+    widows: 600px; }
