@@ -250,3 +250,60 @@ body {
     text-align: center; }
   .b-post img {
     width: 100%; }
+
+.b-login {
+  height: 500px; }
+  .b-login .b-form {
+    border-radius: 2px;
+    border-top: 2px solid #2a5bb8;
+    border-bottom: 45px solid #dadada;
+    position: relative;
+    top: 50px;
+    margin: 0 auto;
+    height: 350px;
+    width: 450px;
+    background: white;
+    padding: 50px; }
+    .b-login .b-form h2 {
+      text-align: center;
+      color: #2a5bb8; }
+    .b-login .b-form input {
+      font-size: 1.2rem;
+      padding: 0px 5px;
+      height: 40px;
+      width: 100%;
+      margin: 15px 0px;
+      border: 1px solid #b3b3b3;
+      outline: none; }
+      .b-login .b-form input:-webkit-autofill {
+        -webkit-box-shadow: 0 0 0 30px white inset; }
+    .b-login .b-form button {
+      background: #2a5bb8;
+      border: none;
+      width: 100%;
+      height: 40px;
+      color: #fff;
+      text-align: center;
+      display: block; }
+    .b-login .b-form a {
+      position: relative;
+      top: 55px;
+      text-decoration: none;
+      display: block;
+      text-align: center;
+      font-size: 1.2rem;
+      color: #313131; }
+  .b-login .b-warning {
+    border-radius: 3px;
+    margin: 15px auto;
+    height: 40px;
+    width: 450px;
+    border: 1px solid #ce3232;
+    background: #dfb7b7;
+    padding: 4px; }
+    .b-login .b-warning h3 {
+      font-weight: 200;
+      font-family: OS-Regular;
+      color: #313131; }
+  .b-login .b-warning.fade {
+    display: none; }

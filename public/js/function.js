@@ -1,8 +1,3 @@
-// $(document).ready(function() {
-//     $('.b-categories').click(function() {
-//         alert('1')
-//     })
-// })
 $('#search-bar').focus(function() {
     $('#search-bar').addClass('focus')
 })
@@ -13,4 +8,7 @@ $(document).ready(function() {
     $('.b-categories').on('click', function() {
         $('.b-dropnav').toggleClass('reveal')
     })
+})
+$('#username, #password ').focus(function() {
+    $('#warning').addClass('fade')
 })

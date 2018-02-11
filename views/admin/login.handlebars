@@ -1,10 +1,14 @@
-<h1>Log in</h1>
-<div class="container">
-<form action="/admin/login" method="post">
-  <label for="username">Username</label>
-  <input type="text" name="username">
-      <label for="password">Password</label>
-  <input type="password" name="password">
-  <button type="submit">Submit</button>
+<div class="container b-login">
+  {{#if error}}
+  <div class="b-warning" id="warning">
+    <h3>{{error}}</h3>
+  </div>
+  {{/if}}
+<form class="b-form" action="/admin/login" method="post">
+  <h2>Login To Your Account</h2>
+  <input type="text" name="username" placeholder="Username*" id="username">
+  <input type="password" name="password" placeholder="Password*" id="password">
+  <button type="submit">Login</button>
+  <a href="#">Forgot Password?</a>
 </form>
 </div>

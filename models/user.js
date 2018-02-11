@@ -1,22 +1,56 @@
 const mongoose = require('mongoose')
 , Schema = mongoose.Schema
 , bcrypt = require('bcryptjs')
+
+/**
+ * Generates Mongoose uniqueness validator
+ * 
+ * @param string modelName
+ * @param string field
+ * @param boolean caseSensitive
+ * 
+ * @return function
+ **/
+
+function unique(modelName, field, caseSensitive) {
+  return function(value, respond) {
+    if(value && value.length) {
+      var query = mongoose.model(modelName).where(field, new RegExp('^'+value+'$', caseSensitive ? 'i' : undefined));
+      if(!this.isNew)
+        query = query.where('_id').ne(this._id);
+      query.count(function(err, n) {
+        respond(n<1);
+      });
+    }
+    else
+      respond(false);
+  };
+}
+
 const userSchema = new Schema ({
     username: {
         type: String,
-        required: true
+        required: true,
+        trim: true,
+        lowercase: true,
+        caseSensitive: false
     },
-    firstname: {
+      firstname: {
         type: String,
         required: true,
+        lowercase: true
     },
     lastname: {
       type: String,
       required: true,
+      lowercase: true
     },
     email: {
       type: String,
       required: true,
+      trim: true,
+      lowercase: true,
+      caseSensitive: false
     },
     password: {
       type: String,

@@ -1,8 +1,14 @@
 <div class="container" id="edit">
-
-    {{#each docs}}
-  {{#each this.imgPath}}
-  <h1>{{path}}</h1>
-  {{/each}}
+  {{#each results}}
+  <div class="box">
+    <h3>{{title}}</h3>
+    <div class="button-edit">
+      <a href="/admin/edit/{{_id}}">Edit</a>
+    </div>
+    <form class="button-delete" action="/admin/edit/delete/{{_id}}?_method=DELETE"  method="POST" >
+    <input type="hidden" name="_method" value="DELETE">
+      <button type="submit" value="DELETE">Delete</button>
+    </form>
+  </div>
   {{/each}}
 </div>

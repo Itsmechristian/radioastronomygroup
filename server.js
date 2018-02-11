@@ -18,13 +18,16 @@ const express = require('express')
     ,  expressValidator = require('express-validator')
     ,  mongoose = require('mongoose')
     ,  mongo = require('mongodb')
+    ,  methodOverride = require('method-override')
     ,  app = express()
 
 
     const home = require('./routes/home'),
     admin = require('./routes/admin')
 
-mongoose.connect(`${process.env.DB_HOST}/testOnlyDbs`)
+    const User = require('./models/user')
+
+mongoose.connect(`${process.env.DB_HOST}/test1`)
 .then((result => console.log('Connected to mongoDB')))
 .catch((error => console.log(`Error: ${error}`)))
 // Passport
@@ -46,6 +49,34 @@ app.use(session({
   saveUninitialized: true,
 }))
 app.use(expressValidator({
+  customValidators: {
+    isUsernameAvailable: (username) => {
+      return new Promise((resolve, reject) => {
+        User.findOne({ username : username }, (err, res) => {
+          if(err) throw err
+          if(res == null) {
+              resolve(err)
+          }
+          else{
+            reject(res)
+          }
+        })
+      })
+    },
+    isEmailAvailable: (email) => {
+      return new Promise((resolve, reject) => {
+        User.findOne({ email : email }, (err, res) => {
+          if(err) throw err
+          if(res == null) {
+              resolve(err)
+          }
+          else{
+            reject(res)
+          }
+        })
+      })
+    }
+  },
   errorFormatter: (param, msg, value) => {
     const namespace = param.split('.'),
           root = namespace.shift(),
@@ -60,12 +91,17 @@ app.use(expressValidator({
     }      
   }
 }))
+
 // Express Message || Connect-FLash
 app.use(require('connect-flash')());
 app.use(function (req, res, next) {
   res.locals.messages = require('express-messages')(req, res);
   next();
 });
+
+// Method override
+app.use(methodOverride('_method'))
+
 
 app.get('/', (req, res) => {
   res.redirect('/home')

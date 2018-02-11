@@ -180,3 +180,21 @@ body {
   #edit .post-wrapper img {
     height: 600px;
     widows: 600px; }
+
+.box {
+  height: 40px;
+  width: 100%;
+  box-shadow: #1A2124;
+  background: #fff;
+  margin: 15px;
+  -webkit-box-shadow: 10px 10px 51px -21px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 51px -21px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 51px -21px rgba(0, 0, 0, 0.75); }
+  .box h3 {
+    float: left; }
+  .box .button-edit, .box .button-delete {
+    float: right; }
+  .box .button-edit {
+    height: 30px;
+    width: 30px;
+    color: #599785; }

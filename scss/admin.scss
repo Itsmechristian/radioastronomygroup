@@ -231,25 +231,6 @@ body {
           font-size: 1.2rem;
           margin: 20px 0px;
       }
-    //   textarea{
-    //       margin-top: 10px;
-    //   }
-    //   #uploads{
-    //       margin-top: 10px;
-    //       display: block;
-    //       background: $primary-color;
-    //       color: #fff;
-    //   }
-    //   button{
-    //       margin-top: 10px;
-    //       height: 30px;
-    //       width: 200px;
-    //       background: $primary-color;
-    //       border: none;
-    //       color: #fff;
-    //       font-size: 1.3rem;
-    //       border-radius: 10px;
-    //   }
   }
 }
 #edit{
@@ -267,4 +248,26 @@ body {
         widows: 600px;
       }
   }
+}
+
+.box{
+    height: 40px;
+    width: 100%;
+    box-shadow: #1A2124;
+    background: #fff;
+    margin: 15px;
+    -webkit-box-shadow: 10px 10px 51px -21px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 51px -21px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 51px -21px rgba(0,0,0,0.75);
+    h3{
+        float: left;
+    }
+    .button-edit, .button-delete{
+        float: right;
+    }
+    .button-edit {
+        height: 30px;
+        width: 30px;
+        color: rgb(89, 151, 133);
+    }
 }
