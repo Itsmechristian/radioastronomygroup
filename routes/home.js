@@ -10,12 +10,15 @@ const Post = require('../models/post')
 /*
 * Routing
 */
+
 router.all('/*', (req, res, next) => {
-    req.app.locals.layout = 'admin.handlebars'
+    req.app.locals.layout = 'main.handlebars'
     next()
   })
 router.get('/', (req, res) => {
-    Post.find({}, null, {sort: {dateCreate: -1}})
+    Post.find({})
+    .sort({dateCreate: -1})
+    .limit(6)
     .then(results => {
         let result = []
         for(var i = 0; i < results.length; i++) {
@@ -30,7 +33,8 @@ router.get('/', (req, res) => {
         res.status(200).render('assets/home',
         {
         layout: 'main.handlebars',
-        results: result
+        results: result,
+        user: req.user
         })
     })
     .catch(err => {error: err })
@@ -43,7 +47,7 @@ router.get('/post/:id', (req, res) => {
     .then(results => {
        res.render('assets/post', {
            layout: 'main.handlebars',
-           result: results
+           post: results
        })
     })
     .catch(err => {
@@ -55,4 +59,13 @@ router.get('/post/:id', (req, res) => {
     })
 })
 
+router.get('/login', (req, res) => {
+    if(req.user) {
+        req.flash('isLogin', 'You Already Logged in')
+        res.redirect('/admin')
+    }
+    else{
+        res.render('admin/login', {layout: 'main.handlebars', error: req.flash('error'), user: req.user})
+    }
+  })
 module.exports = router

@@ -1,30 +1,44 @@
 <nav class="b-nav-main">
-    <div class="container">
+    <div class="container-fluid">
         <div class="b-categories">
+            <div class="b-menu">
             <span></span>
             <span></span>
             <span></span>
             <a href="#">Categories</a>
+            </div>
+            <a class="sub-links" href="/home">Home</a>
+            <a class="sub-links"  href="#">Community</a>
+            {{#if user}}
+            <div class="b-user-dropdown">
+                <li>{{user.firstname}} <i class="fa fa-caret-down"></i></li>
+            </div>
+            <div class="user-down">
+                <a href="/admin">Dashboard</a>
+                <a href="/admin/logout">Logout</a>
+            </div>
+            {{else}}
+                <a class="b-login-link" href="/home/login">Login</a>
+                {{/if}}
         </div>
-        <a class="top-link" href="#">News</a>
-        <a class="top-link" href="#">Community</a>
-        <div class="b-search">
-            <input id="search-bar" type="text" placeholder="Search...">
-           <i class="fa fa-search" ></i>
+    </div>
+    <div class="container-fluid" id="drop-item-container">
+    <div class="drop-item">
+        <div class="drop-left">
+            <li class="radioastronomy"><a href="#">Radio Astronomy</a></li>
+            <li class="projects"><a href="#">Projects</a></li>
+            <li class="observations"><a href="#">Observations</a></li>
+            <li class="resources"><a href="#">Resources</a></li>
+            <li class="about"><a href="#">About</a></li>
         </div>
-        <div class="b-dropnav">
-            <ul>
-                <li><a href="#">Radio Astronomy</a></li>
-                <li><a href="#">Projects</a></li>
-                <li><a href="#">Observations</a></li>
-                <li><a href="#">Resources</a></li>
-                <li><a href="#">About</a></li>
-            </ul>
+        <div class="drop-right">
+            <li><a href="#">Radio</a></li>
         </div>
+    </div>
     </div>
 </nav>
 <header class="b-nav-header">
-    <div class="container">
+    <div class="container-fluid">
         <h1>British Astronomical Association</h1>
         <h2>British Astronomy Group</h2>
         <img src="/img/main-logo.png" alt="BAG Logo">

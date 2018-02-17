@@ -56,6 +56,10 @@ const userSchema = new Schema ({
       type: String,
       required: true,
       },
+    admin: {
+      type: Boolean,
+      default: false
+    }
 })
 
 module.exports = mongoose.model('user', userSchema)
@@ -71,6 +75,7 @@ module.exports.getUserbyUsername = (username, cb) => {
 
 module.exports.comparePassword = (candidatePassword, hash, cb) => {
   bcrypt.compare(candidatePassword, hash, (err, isMatch) => {
+    if(err) throw err;
     cb(null, isMatch)
   })
 }
@@ -78,7 +83,7 @@ module.exports.comparePassword = (candidatePassword, hash, cb) => {
 /* Encrypt Password */
 module.exports.createUser = (newUser, cb) => {
   bcrypt.genSalt(10, (err, salt) => {
-    bcrypt.hash("B4c0/\/", salt, (err, hash) => {
+    bcrypt.hash(newUser.password, salt, (err, hash) => {
       newUser.password = hash
       newUser.save(cb)
     }) 

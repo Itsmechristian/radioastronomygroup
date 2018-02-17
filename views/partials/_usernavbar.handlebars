@@ -1,0 +1,19 @@
+<nav class="b-nav-main">
+    <div class="container">
+        <a class="top-link" href="/home">Home</a>
+        <a class="top-link" href="#">Community</a>
+        <a class="top-link" href="/admin/create">Create Post</a>
+        {{#if user}}
+        <a class="login-link">{{firstname}}</a>
+        {{else}}
+        <a class="login-link" href="/home/login">Login</a>
+        {{/if}}
+    </div>
+</nav>
+<header class="b-nav-header">
+    <div class="container">
+        <h1>British Astronomical Association</h1>
+        <h2>British Astronomy Group</h2>
+        <img src="/img/main-logo.png" alt="BAG Logo">
+    </div>
+</header>

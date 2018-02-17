@@ -3,37 +3,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <meta charset="UTF-8"> <meta name="description" content="This is britastro radio website"> <meta name="keywords" content="Britastro, Blog, Radio Astronomical Association, Radio Astronomy GROUP, BAG"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <meta http-equiv="X-UA-Compatible" content="ie=edge"> <link rel="stylesheet" href="/css/style.css"> <link rel="stylesheet" href="/css/bootstrap.grid.css"> <link rel="stylesheet" href="/css/fontawesome.css">
+ <meta charset="UTF-8"> <meta name="description" content="This is britastro radio website"> <meta name="keywords" content="Britastro, Blog, Radio Astronomical Association, Radio Astronomy GROUP, BAG"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <meta http-equiv="X-UA-Compatible" content="ie=edge"> <link rel="stylesheet" href="/css/bootstrap.grid.css"> <link rel="stylesheet" href="/css/fontawesome.css">
  <link rel="stylesheet" href="/css/media-style.css"> <link rel="stylesheet" href="/css/admin.css"> <title>Welcome to Britastro | Radio</title>
  
 </head>
-<body>
-  <div class="p-body container-fluid">
-  <div class="row">
-<div class="pl-side col-lg-2">
-  <div class="head-side">
-    <h1>Admin Panel</h1>
-  </div>
-  <div class="dash-name">
-    <i class="fa fa-dashboard"></i><h2>Dashboard</h2>
-  </div>
-  <div class="post-drop-show">
-    <i class="fa fa-pencil"></i><h2>Post</h2><i class="fa fa-angle-down"></i>
-  </div>
-     <div class="drop-hide">
-      <ul>
-        <li><i class="fa fa-plus"></i><a href="/admin/create">New</a></li>
-        <li><i class="fa fa-edit"></i><a href="/admin/edit">Delete/Edit</a></li>
-        
-      </ul>
-    </div>
-</div>
-<div class="pr-side col-lg-10">
+  <body>
+    {{> _usernavbar}}
     {{{body}}}
-</div>
-  </div>
-</div>
-    
+
     <script src="/js/jquery.js"></script>
     <script src="/ckeditor/ckeditor.js"></script>
     <script src="/js/function.js"></script>

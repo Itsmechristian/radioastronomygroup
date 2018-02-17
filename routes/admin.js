@@ -1,18 +1,19 @@
 const express = require('express')
-  , router = express.Router()
-  , mongoose = require('mongoose')
-  , multer = require('multer')
-  , path = require('path')
-  , fs = require('fs')
-  , passport = require('passport')
-  , LocalStrategy = require('passport-local').Strategy
-  , expressValidator = require('express-validator')
-  , flash = require('connect-flash')
+    , router = express.Router()
+    , mongoose = require('mongoose')
+    , multer = require('multer')
+    , path = require('path')
+    , fs = require('fs')
+    , passport = require('passport')
+    , LocalStrategy = require('passport-local').Strategy
+    , expressValidator = require('express-validator')
+    , flash = require('connect-flash')
+    , exphbs = require('express-handlebars')
+
 
 /*
-* Set Storage Engine
+* Multer Configuration
 */
-
 const storage = multer.diskStorage({
   destination: './public/uploads',
   filename: (req, file, cb) => {
@@ -24,20 +25,29 @@ const upload = multer({
   storage: storage
 }).any()
 
-const Post = require('../models/post')
-      User = require('../models/user')
+    // Models
+    Post = require('../models/post')
+    User = require('../models/user')
+    TempPost = require('../models/temppost')
 
+/*
+* Global Var
+*/ 
 router.all('/*', (req, res, next) => {
-  req.app.locals.layout = 'admin.handlebars'
+  req.app.locals.layout = 'admin.handlebars' 
+  req.app.locals.user = req.user
   next()
 })
+
 router.use((req, res, next) => {
   res.locals.success = req.flash('success')
-  res.locals.success = req.flash('errors')
+  res.locals.errors = req.flash('errors')
+  res.locals.user = req.user
   next()
 })
+
 /* Auth Routing */
-router.get('/register', (req, res) => {
+router.get('/register', isAuth, (req, res) => {
   res.render('admin/register')
 })
 router.post('/register', (req, res) => {
@@ -114,7 +124,7 @@ passport.use(new LocalStrategy((username, password, done) => {
     User.comparePassword(password, user.password, (err, isMatch) => {
       if(err) return done(err);
       if(isMatch) {
-        return done(null. user)
+        return done(null, user)
       }
       else {
         return done(null, false, { message: 'Invalid Password'})
@@ -123,45 +133,131 @@ passport.use(new LocalStrategy((username, password, done) => {
   })
 }))
 
-router.get('/login', (req, res) => {
-  res.render('admin/login', {layout: 'main.handlebars', error: req.flash('error')})
+router.post('/request/post/:id', (req, res) => {
+  
+  TempPost.findById({
+    _id: req.params.id
+  })
+  .then(result => {
+    const newPost = new Post({
+        _id: new mongoose.Types.ObjectId(),
+        title: result.title,
+        body: result.body,
+        createdBy: result.createdBy,
+        dateCreate: result.dateCreate
+    })
+    newPost
+    .save()
+    .then(saved => {
+      req.flash('success', 'Post Published')
+      res.redirect('/admin')
+      console.log('Success')
+      TempPost.remove({
+        _id: req.params.id
+      }).catch(err => console.log(err))
+    })
+  })
+  .then(err => console.log(err))
 })
 
 router.post('/login', passport.authenticate('local', {successRedirect: '/admin', failureRedirect: '/admin/login', failureMessage: 'Invalid username or password', failureFlash: true}), (req, res) => {
     req.flash('success', 'You are now logged in')
+    req.session.authenticate = true;
     res.redirect('/admin')
   }
 )
 
-/* Admin Routing */
+router.get('/logout', (req, res) => {
+  req.logout()
+  req.flash('success', 'asdsadasdsa')
+  res.redirect('/home/login')
+})
 
-
+/* User Routing */
 router.get('/', (req, res) => {
-  res.render('admin/panel')
+  TempPost.find()
+  .select('title body createdBy dateCreate')
+  .then(results => {
+    const response = {
+      count: results.length,
+      post: results.map(result => {
+        return {
+          title: result.title,
+          body: result.body,
+          createdBy: result.createdBy,
+          dateCreate: result.dateCreate
+        }
+      })
+    }
+    res.render('admin/panel', { posts: response.post, firstname: req.user.firstname })
+  })
 })
 
 router.get('/create', (req, res) => {
-  res.render('admin/create', {
-  })
+  res.render('admin/create')
 })
 
 router.post('/create', upload,(req, res) => {
-    const newPost = new Post({
+    const newPost = new TempPost({
     _id: new mongoose.Types.ObjectId(),
     title: req.body.title,
-    body: req.body.body
+    body: req.body.body,
+    createdBy: 'John Doe'
   })
   newPost.save()
-.then(result => {
-  res.status(201).json({
-    message: 'Created Succesfully',
-    createdPost: {
-      _id: result._id,
-      title: result.title,
-      body: result.body,
+  .then(results => {
+    const response = {
+      message: 'Created successfully you need wait adminstrator to approve it thanks',
+      postReq: {
+            title: results.title,
+            body: results.body,
+            createdBy: results.createdBy,
+            dateCreate: results.dateCreate     
+      }
     }
-  })
+    req.flash('success', response.message)
+    res.redirect('/admin')
 })
+.catch(err => {
+  console.log(err)
+})
+})
+
+router.get('/requests', (req, res) => {
+  if(req.user.admin === true) {
+    TempPost.find()
+    .then(results => {
+      const response = {
+        count: results.length,
+        posts: results.map(result => {
+          return {
+            id: result._id,
+            title: result.title.slice(0, 60) + '...',
+            body: result.body,
+            createdBy: result.createdBy,
+            dateCreate: result.dateCreate
+          }
+        })
+      }
+      res.render('admin/request', {
+        posts: response.posts
+      })
+    })
+  }
+  else{
+    req.flash('Error', 'Forbidden')
+    res.status(403)
+    res.redirect('/admin')
+  }
+})
+router.get('/request/post/:id', (req, res) => {
+  TempPost.findById({
+    _id: req.params.id
+  })
+  .select('_id dateCreate title body createBy')
+  .then(result => {
+    res.render('admin/reqpost', { post: result })
+  })
 })
 
 router.get('/edit', (req, res) => {
@@ -194,4 +290,18 @@ router.delete('/edit/delete/:id', (req, res) => {
     res.redirect('/admin/edit')
   })
 })
+
+/**
+*
+* Checking if it is authenticate
+* 
+**/
+
+function isAuth(req, res, next) {
+  if (req.isAuthenticated()) 
+  { return next();
+
+  }
+  res.redirect('/')
+}
 module.exports = router

@@ -1,0 +1,13 @@
+<div class="container b-requests">
+    <div class="row">
+      {{#each posts}}
+      <div class="col-lg-10 box">
+      <h2><a href="/admin/request/post/{{id}}">{{title}}</a></h2>
+      <a class="edit" href="#"><i class="fa fa-pencil"></i></a>
+      <form action="#">
+        <button type="submit"><i class="fa fa-trash"></i></button>
+      </form>
+    </div>
+    {{/each}}
+    </div>
+</div>

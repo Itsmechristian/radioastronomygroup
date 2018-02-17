@@ -1,0 +1,9 @@
+  <div class="container b-reqpost-container">
+  <div class="b-reqpost">
+  <h1>{{post.title}}</h1>
+  <p>{{{post.body}}}</p>
+  </div>
+  <form action="/admin/request/post/{{post._id}}" method="POST">
+    <button type="submit" id="btn">Post</button>
+  </form>
+</div>

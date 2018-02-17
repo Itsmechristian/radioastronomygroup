@@ -7,11 +7,22 @@
 
 require('dotenv').config()
 
+/**
+Dear maintainer:
+ 
+Once you are done trying to 'optimize' this routine,
+and have realized what a terrible mistake that was,
+please increment the following counter as a warning
+to the next guy:
+ 
+**/
+
 const express = require('express')
     ,  path = require('path')
     ,  exphbs = require('express-handlebars')
     ,  bodyParser = require('body-parser')
     ,  session = require('express-session')
+    ,  MongoStore = require('connect-mongo')(session)
     ,  passport = require('passport')
     ,  LocalStrategy = require('passport-local').Strategy
     ,  flash = require('connect-flash')
@@ -27,16 +38,18 @@ const express = require('express')
 
     const User = require('./models/user')
 
+/**
+* Connect to the database
+* After change database name
+*
+**/
 mongoose.connect(`${process.env.DB_HOST}/test1`)
 .then((result => console.log('Connected to mongoDB')))
 .catch((error => console.log(`Error: ${error}`)))
-// Passport
-app.use(passport.initialize())
-app.use(passport.session())
+
 // Handlebars middleware
 app.engine('handlebars', exphbs({layoutsDir: __dirname + '/views/layouts'}))
 app.set('view engine', 'handlebars')
-
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -46,8 +59,15 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(session({
   secret: 'mysecret',
   resave: true,
+  store: new MongoStore({
+    url: `${process.env.DB_HOST}/test1`
+  }),
   saveUninitialized: true,
 }))
+// Passport
+app.use(passport.initialize())
+app.use(passport.session())
+
 app.use(expressValidator({
   customValidators: {
     isUsernameAvailable: (username) => {
@@ -99,7 +119,7 @@ app.use(function (req, res, next) {
   next();
 });
 
-// Method override
+// Method override Middleware
 app.use(methodOverride('_method'))
 
 

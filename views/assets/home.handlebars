@@ -1,31 +1,15 @@
-<div class="b-body container">
+<div class="b-body container-fluid">
     <div class="row home-row">
         <div class="col-lg-9">
-            <div class="row">
-                {{#each results}}
-                <article class="box">
-                    <a href="post/{{_id}}">
-                    {{{img}}}
-                    </a>
-                    <h1><a href="post/{{_id}}">{{title}}</a>
-                    </h1>
-                    <small>Create by <a href="">John Doe</a> on
-                     <span>December 25, 2018</span></small>
-                </article>
-                {{/each}}
+            {{#each results}}
+            <div class="box">
+                <a href="/home/post/{{_id}}"><div class="img"></div></a>
+                <h4><a href="/home/post/{{_id}}">{{title}}</a></h4>
             </div>
+            {{/each}}
+            <a href="#" class="see-more-link">See More</a>
         </div>
-             <div class="col-lg-3">
-                 <div class="banner">
-                     <h2>Categories</h2>
-                 </div>
-                 <ul>
-                     <li><a href="#">Radio Astronomy</a></li>
-                     <li><a href="#">Observation</a></li>
-                     <li><a href="#">Resources</a></li>
-                     <li><a href="#">Projects</a></li>
-                     <li><a href="#">About</a></li>
-            </ul>
+        <div class="col-lg-3">
         </div>
     </div>
 </div>

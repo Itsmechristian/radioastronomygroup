@@ -11,10 +11,11 @@ const postSchema = new Schema ({
         type: String,
         required: true,
     },
-    imgPath: String,
-    dateCreate:{ 
-        type: Date,
-        default: Date.now,
+    createdBy: {
+        type: String,
+    },
+    dateCreate:{
+        type: String,
         required: true
     }
 })

@@ -51,150 +51,96 @@ body {
   background: #f1f1f1;
   box-sizing: border-box; }
 
-.p-body .row .col-lg-2 {
-  padding: 0;
-  margin: 0;
-  height: 100vh;
-  background: #1A2124; }
-  .p-body .row .col-lg-2 .head-side {
-    margin: 0;
-    height: 80px;
-    width: 100%;
-    background: #4972BF; }
-    .p-body .row .col-lg-2 .head-side h1 {
+.b-nav-main {
+  width: 100%;
+  height: 50px;
+  background: #2a5bb8; }
+  .b-nav-main .container {
+    padding: 15px 0px; }
+    .b-nav-main .container .b-categories {
+      display: inline-block; }
+      .b-nav-main .container .b-categories a {
+        border-left: rgba(255, 255, 255, 0.5) solid 1px;
+        padding: 16px 2px 15px 30px;
+        color: #fff;
+        text-decoration: none; }
+    .b-nav-main .container .top-link {
+      font-size: 0.9rem;
+      margin: 0;
       font-family: OS-Regular;
-      text-align: center;
+      border-left: rgba(255, 255, 255, 0.5) solid 1px;
       color: #fff;
-      font-weight: 300;
-      position: relative;
-      top: 15px; }
-  .p-body .row .col-lg-2 .dash-name {
-    width: 100%;
-    height: 50px;
-    padding: 7px 12px;
-    background: #222D33; }
-    .p-body .row .col-lg-2 .dash-name i {
-      font-size: 1.5rem;
-      display: inline;
-      color: #fff; }
-    .p-body .row .col-lg-2 .dash-name h2 {
-      margin: 0px 10px;
-      font-family: OS-Regular;
-      font-weight: 200;
-      color: #fff;
-      display: inline; }
-  .p-body .row .col-lg-2 .post-drop-show {
-    padding: 5px 15px; }
-    .p-body .row .col-lg-2 .post-drop-show i {
-      font-size: 1.5rem;
-      color: #fff;
-      display: inline; }
-    .p-body .row .col-lg-2 .post-drop-show h2 {
-      color: #fff;
-      display: inline;
-      font-family: OS-Regular;
-      font-weight: 200;
-      margin: 0px 10px; }
-    .p-body .row .col-lg-2 .post-drop-show .fa-angle-down {
+      padding: 16px 10px 15px 10px;
+      text-decoration: none; }
+    .b-nav-main .container .login-link {
       float: right;
-      transform: rotate(90deg);
-      animation-fill-mode: none; }
-    .p-body .row .col-lg-2 .post-drop-show .fa-angle-down.rotate {
-      animation: rotateCaret 1s both; }
-  .p-body .row .col-lg-2 .drop-hide {
-    animation: downAnimate 1s;
-    display: none;
-    width: 100%;
-    height: 100px;
-    background: #222D33; }
-  .p-body .row .col-lg-2 .drop-hide.showHide {
-    display: block;
-    animation: hideAnimate 1s; }
+      text-decoration: none;
+      color: #fff;
+      text-transform: capitalize; }
 
-@keyframes rotateCaret {
-  from {
-    transform: rotate(90deg); }
-  to {
-    transform: rotate(0deg); } }
-
-@keyframes downAnimate {
-  from {
-    opacity: 0; }
-  to {
-    opacity: 1; } }
-
-@keyframes hideAnimate {
-  from {
-    opacity: 0; }
-  to {
-    opacity: 1; } }
-  .p-body .row .col-lg-2 ul {
-    margin: 0;
-    padding: 0px 15px; }
-    .p-body .row .col-lg-2 ul li {
-      padding: 10px 0px;
-      list-style: none;
-      font-size: 1.3rem; }
-      .p-body .row .col-lg-2 ul li a {
-        padding-left: 10px;
-        text-decoration: none;
-        color: #fff; }
-      .p-body .row .col-lg-2 ul li i {
-        color: #fff; }
-
-.b-create h1 {
-  font-family: OS-bold;
-  margin: 20px 0px;
-  color: #4A4747; }
-  .b-create h1 span {
-    font-size: 1.5rem;
-    color: #5B5959; }
-
-.b-create form {
-  background: #fff;
-  height: 600px;
+.b-nav-header {
+  height: auto;
   width: 100%;
-  padding: 10px 30px;
-  position: relative;
-  top: 15px; }
-  .b-create form #title {
-    margin-top: 10px;
-    width: 100%;
-    border: 1px solid #cecece;
-    height: 30px;
+  background: linear-gradient(black, #2a5bb8); }
+  .b-nav-header .container {
+    height: auto;
+    padding: 0px; }
+    .b-nav-header .container h1,
+    .b-nav-header .container h2 {
+      position: relative;
+      top: 15px;
+      font-family: OS-Bold;
+      color: #fff; }
+    .b-nav-header .container img {
+      margin-top: 30px; }
+
+.b-requests {
+  background: #fff;
+  height: 500px; }
+  .b-requests .row .box {
+    margin: 15px auto;
+    height: 50px;
     border-radius: 2px;
-    outline: none;
-    padding: 0px 10px; }
-  .b-create form label {
-    font-family: OS-Bold;
-    font-size: 1.2rem;
-    margin: 20px 0px; }
+    border: 1px solid #ababab; }
+    .b-requests .row .box h2 {
+      padding: 10px 0px;
+      display: inline-block; }
+      .b-requests .row .box h2 a {
+        color: #313131;
+        text-decoration: none; }
+        .b-requests .row .box h2 a:hover {
+          text-decoration-line: underline; }
+    .b-requests .row .box i {
+      color: #fff; }
+    .b-requests .row .box .edit {
+      border-radius: 2px;
+      padding: 10px 20px;
+      background: #2a5bb8;
+      float: right;
+      position: relative;
+      left: -55px;
+      top: 5px; }
+    .b-requests .row .box button {
+      border-radius: 2px;
+      height: 38px;
+      width: 50px;
+      border: none;
+      background: red;
+      top: -42px;
+      position: relative;
+      float: right; }
 
-#edit .post-wrapper {
-  padding: 15px;
-  background: #fff; }
-  #edit .post-wrapper h1 {
-    color: #313131; }
-  #edit .post-wrapper p {
-    color: #5B5959; }
-  #edit .post-wrapper img {
-    height: 600px;
-    widows: 600px; }
-
-.box {
-  height: 40px;
-  width: 100%;
-  box-shadow: #1A2124;
-  background: #fff;
-  margin: 15px;
-  -webkit-box-shadow: 10px 10px 51px -21px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 10px 10px 51px -21px rgba(0, 0, 0, 0.75);
-  box-shadow: 10px 10px 51px -21px rgba(0, 0, 0, 0.75); }
-  .box h3 {
-    float: left; }
-  .box .button-edit, .box .button-delete {
-    float: right; }
-  .box .button-edit {
-    height: 30px;
-    width: 30px;
-    color: #599785; }
+.b-reqpost-container {
+  margin: 15px auto;
+  background: white;
+  height: 100vh; }
+  .b-reqpost-container .b-reqpost {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px 15px; }
+    .b-reqpost-container .b-reqpost h1 {
+      font-family: OS-Bold;
+      font-size: 2rem; }
+    .b-reqpost-container .b-reqpost p {
+      font-size: 1.2rem;
+      font-family: OS-Regular; }
