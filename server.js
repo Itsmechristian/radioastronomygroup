@@ -7,15 +7,6 @@
 
 require('dotenv').config()
 
-/**
-Dear maintainer:
- 
-Once you are done trying to 'optimize' this routine,
-and have realized what a terrible mistake that was,
-please increment the following counter as a warning
-to the next guy:
- 
-**/
 
 const express = require('express')
     ,  path = require('path')
@@ -43,9 +34,9 @@ const express = require('express')
 * After change database name
 *
 **/
-mongoose.connect(`${process.env.DB_HOST}/test1`)
+mongoose.connect(`${process.env.DB_HOST}/${process.env.DB_NAME}`)
 .then((result => console.log('Connected to mongoDB')))
-.catch((error => console.log(`Error: ${error}`)))
+.catch((error => console.log(error)))
 
 // Handlebars middleware
 app.engine('handlebars', exphbs({layoutsDir: __dirname + '/views/layouts'}))
@@ -55,15 +46,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 app.use(express.static(path.join(__dirname, 'public')))
-// Express session
-app.use(session({
-  secret: 'mysecret',
-  resave: true,
-  store: new MongoStore({
-    url: `${process.env.DB_HOST}/test1`
-  }),
-  saveUninitialized: true,
-}))
+
 // Passport
 app.use(passport.initialize())
 app.use(passport.session())
@@ -110,6 +93,16 @@ app.use(expressValidator({
       value: value
     }      
   }
+}))
+// Express session
+app.use(session({
+  secret: 'mysecret',
+  resave: false,
+  store: new MongoStore({
+    url: `${process.env.DB_HOST}/test1`
+  }),
+  cookie: { secure:true },
+  saveUninitialized: false,
 }))
 
 // Express Message || Connect-FLash

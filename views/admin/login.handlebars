@@ -4,6 +4,16 @@
     <h3>{{error}}</h3>
   </div>
   {{/if}}
+  {{#if notauth}}
+  <div class="b-warning" id="warning">
+    <h3>{{notauth}}</h3>
+  </div>
+  {{/if}}
+  {{#if success}}
+  {{#each success}}
+  <h1>{{msg}}</h1>
+  {{/each}}
+  {{/if}}
 <form class="b-form" action="/admin/login" method="post">
   <h2>Login To Your Account</h2>
   <input type="text" name="username" placeholder="Username*" id="username">

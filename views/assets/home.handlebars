@@ -2,10 +2,10 @@
     <div class="row home-row">
         <div class="col-lg-9">
             {{#each results}}
-            <div class="box">
+            <article class="box">
                 <a href="/home/post/{{_id}}"><div class="img"></div></a>
                 <h4><a href="/home/post/{{_id}}">{{title}}</a></h4>
-            </div>
+            </article>
             {{/each}}
             <a href="#" class="see-more-link">See More</a>
         </div>

@@ -261,21 +261,21 @@ body {
         padding: 10px;
         height: auto;
         .box{
-            border: 1px solid #707070;
             margin: 5px 10px 10px 25px;
-            border: 1px solid;
             height: 190px;
             background: transparent;
+            -webkit-box-shadow: 11px 9px 21px -12px rgba(71,69,71,1);
+            -moz-box-shadow: 11px 9px 21px -12px rgba(71,69,71,1);
+            box-shadow: 11px 9px 21px -12px rgba(71,69,71,1);
             .img{
                 float: left;
                 height: 190px;
                 width: 150px;
                 background: url('https://cdn.pixabay.com/photo/2017/01/06/19/15/soap-bubble-1958650_960_720.jpg') no-repeat 50% 50%;
                 background-size: 200px;
+                margin-right: 5px;
             }
             h4{
-                margin: 3px;
-                max-width: 60%;
                 position: relative;
                 display: inline;
                 a{

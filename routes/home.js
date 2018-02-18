@@ -13,6 +13,7 @@ const Post = require('../models/post')
 
 router.all('/*', (req, res, next) => {
     req.app.locals.layout = 'main.handlebars'
+    req.app.locals.isLogin = req.flash('isLogin')
     next()
   })
 router.get('/', (req, res) => {
@@ -60,12 +61,20 @@ router.get('/post/:id', (req, res) => {
 })
 
 router.get('/login', (req, res) => {
-    if(req.user) {
-        req.flash('isLogin', 'You Already Logged in')
+    if(!req.user) {
+        
+        res.render('admin/login', 
+        {
+        layout: 'main.handlebars',
+        success: req.flash('success'),
+        notauth: req.flash('notauth'),
+        error: req.flash('error'),
+        user: req.user
+    })
+    } 
+    else{
+        req.flash('isLogin', 'Already logged in')
         res.redirect('/admin')
     }
-    else{
-        res.render('admin/login', {layout: 'main.handlebars', error: req.flash('error'), user: req.user})
-    }
-  })
+})
 module.exports = router

@@ -63,7 +63,6 @@ h6 {
     color: $main-text-color;
     padding: 0;
     margin: 0;
-    /* Change if later*/
 }
 
 body {
@@ -73,45 +72,155 @@ body {
     box-sizing: border-box;
 }
 .b-nav-main {
+    a{
+        position: relative;
+        font-family: OS-Regular;
+        color: #fff;
+        font-size: 1.2rem;
+        text-decoration: none;
+    }
+    li{
+        list-style: none;
+    }
     width: 100%;
     height: 50px;
     background: $primary-color;
-    .container {
-        padding: 15px 0px;
+    .container-fluid {
+        width: 80%;
         .b-categories {
-            display: inline-block;
-            a {
-                border-left: rgba(255, 255, 255, 0.500) solid 1px;
-                padding: 16px 2px 15px 30px;
-                color: #fff;
-                text-decoration: none;
+            width: 100%;
+                .b-menu{
+                    cursor: pointer;
+                    border-left: 1px solid rgb(196, 196, 196);
+                    display: inline-block;
+                    width: 125px;
+                    height: 50px;
+                    margin: 0px -3px;
+                    padding: 15px 4px;
+                    span{
+                        background: #fff;
+                        position: absolute;
+                        height: 3px;
+                        &:nth-child(1){
+                        top: 17px;
+                        width: 10px;
+                        }
+                        &:nth-child(2){
+                        top: 22px;
+                        width: 15px;
+                        }
+                        &:nth-child(3){
+                        top: 27px;
+                        width: 10px;
+                        }
+                    }
+                    a{
+                        left: 20px;
+                        top: -5px;
+                    }
+                }
+       .sub-links{
+            padding: 13px 8px;
+            display: inline;
+            margin: 0px -2px;
+            top: -5px;
+            border-left: 1px solid rgb(196, 196, 196);
+        }
+        .b-user-dropdown{
+            cursor: pointer;
+            height: 50px;
+            width: auto;
+            padding: 10px 0px;
+            float: right;
+            color: #fff;
+            li{
+                text-transform: capitalize;
+                font-family: OS-Regular;
+                font-size: 1.2rem;
+               text-align: center;
             }
         }
-        .top-link {
-            font-size: 0.9rem;
-            margin: 0;
-            font-family: OS-Regular;
-            border-left: rgba(255, 255, 255, 0.500) solid 1px;
-            color: #fff;
-            padding: 16px 10px 15px 10px;
-            text-decoration: none;
-        }
-        .login-link{
+        .b-login-link{
+            height: 50px;
+            width: 50px;
+            padding: 10px 0px;
             float: right;
-            text-decoration: none;
-            color: #fff;
-            text-transform: capitalize;
         }
     }
-}
+  }
 
+.user-down.clicked{
+    display: block;
+}
+.user-down{
+    z-index: 20;
+    display: none;
+    border-radius: 5px;
+    background: #fff;
+    height: auto;
+    width: 135px;
+    top: 38px;
+    left: 63px;
+    float: right;
+    position: relative;
+    a{
+        padding: 5px;
+        margin: 0;
+        color: #4A4747;
+    }
+}
+#drop-item-container{
+    max-width: 80%;
+    z-index: -2;
+    display: none;
+}
+#drop-item-container.clicked{
+    display: block;
+}
+  .drop-item{
+      position: relative;
+      z-index: 20;
+      height: 200px;
+      width: 600px;
+      display: inline-block;
+      background: transparent;
+      .drop-left{
+          
+          li{
+                margin: 10px;
+              cursor: pointer;
+          }
+          a{
+            color: #4A4747;
+
+          }
+         float: left;
+        height: 200px;
+        width: 200px;
+        background: #fff;
+      }
+      .drop-right{
+        float: right;
+        height: 200px;
+        width: 400px;
+        background: $primary-color;
+        li{
+            display: inline-block;
+            font-size: 0.8rem;
+            margin: 10px; 
+        }
+      }
+  }
+}
 .b-nav-header {
+    position: relative;
+    z-index: 10;
     height: auto;
     width: 100%;
     background: linear-gradient(black, $primary-color);
-    .container {
+    .container-fluid {
+        width: 80%;
         height: auto;
-        padding: 0px;
         h1,
         h2 {
             position: relative;
@@ -124,6 +233,64 @@ body {
         }
     }
 }
+.container.panel{
+    font-family: OS-Regular;
+    height: 500px;
+    background: #fff;
+    margin: 20px auto;
+    .post-box{
+        position: relative;
+        top: 30px;
+        height: 150px;
+        width: 320px;
+        border: 1px solid #ababab;
+    }
+}
+
+.b-create{
+    h1{
+        font-family: OS-Bold;
+        span{
+            font-size: 1.2rem;
+        }
+    }
+    form{
+    height: auto;
+    padding: 35px;
+    background: #fff;
+    position: relative;
+    top: 10px;
+       input{
+        font-size: 1.2rem;
+        outline: #fff;
+        display: block;
+        height: 35px;
+        width: 100%;
+        padding: 0px 10px;
+        border-radius: 2px;
+        border: 1px solid #d1d1d1;
+        &:-webkit-autofill{
+            -webkit-text-fill-color: #fff;
+        }
+       }
+    }
+    textarea{
+        border: 1px solid #d1d1d1 !important;
+    }
+    button{
+        position: relative;
+        top: 10px;
+        font-size: 1.2rem;
+        font-family: OS-Regular;
+        margin: 10px 0px;
+        padding: 5px 20px;
+        background: $primary-color;
+        border-radius: 2px;
+        border: none;
+        color: #fff;
+    }
+}
+
 .b-requests {
     background: #fff;
     height: 500px;

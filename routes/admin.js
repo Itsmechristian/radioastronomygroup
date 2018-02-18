@@ -24,7 +24,6 @@ const storage = multer.diskStorage({
 const upload = multer({
   storage: storage
 }).any()
-
     // Models
     Post = require('../models/post')
     User = require('../models/user')
@@ -35,13 +34,14 @@ const upload = multer({
 */ 
 router.all('/*', (req, res, next) => {
   req.app.locals.layout = 'admin.handlebars' 
-  req.app.locals.user = req.user
+  req.app.locals.user = req.session.user
   next()
 })
 
 router.use((req, res, next) => {
   res.locals.success = req.flash('success')
   res.locals.errors = req.flash('errors')
+  res.locals.notAuth = req.flash('notauth')
   res.locals.user = req.user
   next()
 })
@@ -160,7 +160,7 @@ router.post('/request/post/:id', (req, res) => {
   .then(err => console.log(err))
 })
 
-router.post('/login', passport.authenticate('local', {successRedirect: '/admin', failureRedirect: '/admin/login', failureMessage: 'Invalid username or password', failureFlash: true}), (req, res) => {
+router.post('/login', passport.authenticate('local', {successRedirect: '/admin', failureRedirect: '/home/login', failureMessage: 'Invalid username or password', failureFlash: true}), (req, res) => {
     req.flash('success', 'You are now logged in')
     req.session.authenticate = true;
     res.redirect('/admin')
@@ -170,6 +170,7 @@ router.post('/login', passport.authenticate('local', {successRedirect: '/admin',
 router.get('/logout', (req, res) => {
   req.logout()
   req.flash('success', 'asdsadasdsa')
+  console.log(req.flash('success', ' test'))
   res.redirect('/home/login')
 })
 
@@ -189,8 +190,14 @@ router.get('/', (req, res) => {
         }
       })
     }
-    res.render('admin/panel', { posts: response.post, firstname: req.user.firstname })
-  })
+    if(!req.user) {
+      req.flash('notauth', 'Unauthorized Log in first')
+      res.redirect('/home/login')
+    }
+    else{
+      res.render('admin/panel', { posts: response.post, firstname: req.user.firstname })
+    }
+  }).catch(err => console.log(err))
 })
 
 router.get('/create', (req, res) => {
@@ -277,7 +284,7 @@ router.get('/edit/:id', (req, res) => {
     res.json(result)
   })
   .catch(err => {
-    console.log(err)
+    console.erorr(err)
   })
 })
 
