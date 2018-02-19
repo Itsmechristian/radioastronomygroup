@@ -62,7 +62,6 @@ router.get('/post/:id', (req, res) => {
 
 router.get('/login', (req, res) => {
     if(!req.user) {
-        
         res.render('admin/login', 
         {
         layout: 'main.handlebars',

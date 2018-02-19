@@ -11,6 +11,7 @@ CKEDITOR.editorConfig = function( config ) {
 
 
 	config.extraPlugins = 'uploadcare';
+	// config.filebrowserBrowseUrl = '/home'
 
 
 	config.toolbarGroups = [

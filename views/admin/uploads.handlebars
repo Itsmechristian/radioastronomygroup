@@ -1,0 +1,8 @@
+<form action="/admin/upload?CKEditor=editor&CKEditorFuncNum=1&langCode=en-gb" method="POST" enctype="multipart/form-data">
+  <label for="image">Image</label>
+  <input name="imageuploader" type="file">
+  <button type="submit">Submit</button>
+</form>
+<div class="container">
+  <img onclick="returnFileUrl()" src="../uploads/{{imgfile}}" alt="test" id="img" height="200" width="200">
+</div>

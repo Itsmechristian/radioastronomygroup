@@ -16,14 +16,42 @@
     <script src="/js/function.js"></script>
     <script src="/js/panelfunc.js"></script>
      <script>
-       UPLOADCARE_PUBLIC_KEY = '698724f78d8d5366060f';
+      UPLOADCARE_PUBLIC_KEY = '698724f78d8d5366060f';
       CKEDITOR.replace( 'editor', {
         contentsCss: "body {font-size: 1rem; font-family: 'Open-Sans'; margin:10px;}",
-        extraPlugins: 'uploadcare',
-            uploadcare: {
-                multiple: true
-            }
+        filebrowserBrowseUrl : '/admin/upload',
       });
+     
+    </script>
+    <script>
+      // Helper function to get parameters from the query string.
+        function getUrlParam( paramName ) {
+            var reParam = new RegExp( '(?:[\?&]|&)' + paramName + '=([^&]+)', 'i' );
+            var match = window.location.search.match( reParam );
+
+            return ( match && match.length > 1 ) ? match[1] : null;
+        }
+        // Simulate user action of selecting a file to be returned to CKEditor.
+        function returnFileUrl() {
+            var imgSrc = document.getElementById('img').src
+            var funcNum = getUrlParam( 'CKEditorFuncNum' );
+            window.opener.CKEDITOR.tools.callFunction( funcNum, imgSrc, function() {
+                // Get the reference to a dialog window.
+                var dialog = this.getDialog();
+                // Check if this is the Image Properties dialog window.
+                if ( dialog.getName() == 'image' ) {
+                    // Get the reference to a text field that stores the "alt" attribute.
+                    var element = dialog.getContentElement( 'info', 'txtAlt' );
+                    // Assign the new value.
+                    if ( element )
+                        element.setValue( 'alt text' );
+                }
+                // Return "false" to stop further execution. In such case CKEditor will ignore the second argument ("fileUrl")
+                // and the "onSelect" function assigned to the button that called the file manager (if defined).
+                // return false;
+            } );
+            window.close();
+        }
     </script>
 </body>
 </html>

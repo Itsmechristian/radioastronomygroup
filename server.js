@@ -47,9 +47,22 @@ app.use(bodyParser.json())
 
 app.use(express.static(path.join(__dirname, 'public')))
 
+
+// Express session
+app.use(session({
+  secret: 'mysecret',
+  resave: true,
+  store: new MongoStore({
+    url: `${process.env.DB_HOST}/test1`
+  }),
+  cookie: { secure:true },
+  saveUninitialized: true,
+}))
+
 // Passport
 app.use(passport.initialize())
 app.use(passport.session())
+
 
 app.use(expressValidator({
   customValidators: {
@@ -94,16 +107,6 @@ app.use(expressValidator({
     }      
   }
 }))
-// Express session
-app.use(session({
-  secret: 'mysecret',
-  resave: false,
-  store: new MongoStore({
-    url: `${process.env.DB_HOST}/test1`
-  }),
-  cookie: { secure:true },
-  saveUninitialized: false,
-}))
 
 // Express Message || Connect-FLash
 app.use(require('connect-flash')());
@@ -119,6 +122,10 @@ app.use(methodOverride('_method'))
 app.get('/', (req, res) => {
   res.redirect('/home')
 })
+app.get('/admin/upload', (req, res) => {
+  res.render('admin/uploads', {layout: 'admin.handlebars'})
+})
+
 app.use('/admin', admin)
 app.use('/home', home)
 app.use(function (req, res, next){

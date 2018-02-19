@@ -23,7 +23,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({
   storage: storage
-}).any()
+}).single('imageuploader')
     // Models
     Post = require('../models/post')
     User = require('../models/user')
@@ -31,10 +31,10 @@ const upload = multer({
 
 /*
 * Global Var
-*/ 
+*/
 router.all('/*', (req, res, next) => {
   req.app.locals.layout = 'admin.handlebars' 
-  req.app.locals.user = req.session.user
+  req.app.locals.user = req.user
   next()
 })
 
@@ -42,9 +42,20 @@ router.use((req, res, next) => {
   res.locals.success = req.flash('success')
   res.locals.errors = req.flash('errors')
   res.locals.notAuth = req.flash('notauth')
-  res.locals.user = req.user
   next()
 })
+router.post('/upload', (req, res) => {
+  upload(req, res, (err) => {
+    if(err) {
+      res.send(err)
+    }
+    console.log(req.file.filename)
+    res.render('admin/uploads', {layout: 'admin.handlebars' , imgfile: req.file.filename})
+  })
+})
+// router.get('/upload?Type=Images&CKEditor=editor&CKEditorFuncNum=1&langCode=en-gb' ,(req, res) =>
+// res.send('success')
+// )
 
 /* Auth Routing */
 router.get('/register', isAuth, (req, res) => {
@@ -103,15 +114,6 @@ router.post('/register', (req, res) => {
     })
 })
 
-passport.serializeUser((user, done) => {
-  done(null, user.id)
-})
-
-passport.deserializeUser((id, done) => {
-  User.getUserById(id, (err, user) => {
-    done(err, user)
-  })
-})
 
 passport.use(new LocalStrategy((username, password, done) => {
   User.getUserbyUsername(username.toLowerCase(), (err, user) => {
@@ -133,8 +135,26 @@ passport.use(new LocalStrategy((username, password, done) => {
   })
 }))
 
+passport.serializeUser((user, done) => {
+  done(null, user.id)
+})
+
+passport.deserializeUser((id, done) => {
+  User.getUserById(id, (err, user) => {
+    done(err, user)
+  })
+})
+
+
+router.post('/login', passport.authenticate('local', {successRedirect: '/admin', failureRedirect: '/home/login', failureMessage: 'Invalid username or password', failureFlash: true}), (req, res) => {
+  req.flash('success', 'You are now logged in')
+  req.session.authenticate = true;
+  res.redirect('/admin')
+}
+)
+
+
 router.post('/request/post/:id', (req, res) => {
-  
   TempPost.findById({
     _id: req.params.id
   })
@@ -159,13 +179,6 @@ router.post('/request/post/:id', (req, res) => {
   })
   .then(err => console.log(err))
 })
-
-router.post('/login', passport.authenticate('local', {successRedirect: '/admin', failureRedirect: '/home/login', failureMessage: 'Invalid username or password', failureFlash: true}), (req, res) => {
-    req.flash('success', 'You are now logged in')
-    req.session.authenticate = true;
-    res.redirect('/admin')
-  }
-)
 
 router.get('/logout', (req, res) => {
   req.logout()
