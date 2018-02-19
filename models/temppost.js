@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const mongoose = require('mongoose')
 , Schema = mongoose.Schema
 , moment = require('moment')
@@ -30,4 +31,31 @@ const tempPostSchema = new Schema ({
     }
 })
 
+=======
+const mongoose = require('mongoose')
+, Schema = mongoose.Schema
+, getdate = require('../config/getdate')
+
+const tempPostSchema = new Schema ({
+    _id: mongoose.Schema.Types.ObjectId,
+    title: {
+        type: String,
+        required: true
+    },
+    body: {
+        type: String,
+        required: true,
+    },
+    createdBy: {
+        type: String,
+        required: true
+    },
+    dateRequested:{ 
+        type: String,
+        default: getdate.getdate,
+        required: true
+    }
+})
+
+>>>>>>> 8f83c5f5f46b58c18d1463749d84121efec767b3
 module.exports = mongoose.model('TempPost', tempPostSchema)

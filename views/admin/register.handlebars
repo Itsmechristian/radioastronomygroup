@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h1>Register</h1>
 <ul class="errors">
   {{#if errors}}
@@ -38,3 +39,48 @@
     {{/if}}
 
 </ul>
+=======
+{{!-- <h1>Register</h1>
+<ul class="errors">
+  {{#if errors}}
+      {{#each errors}}
+      <li>{{msg}}</li>
+      {{/each}}
+    <form action="/admin/register" method="post" id="registerform">
+      <label for="username" >Username</label>
+      <input type="text" name="username" value="{{form.username}}">
+      <label for="firstname">First Name</label>
+      <input type="text" name="firstname" value="{{form.firstname}}">
+        <label for="lastname">Last Name</label>
+      <input type="text" name="lastname" value="{{form.lastname}}">
+        <label for="email">Email</label>
+      <input type="email" name="email" value="{{form.email}}">
+          <label for="password">Password</label>
+      <input type="password" name="password">
+          <label for="password2">Confirm Password</label>
+      <input type="password" name="password2">
+      <button type="submit" id="submit">Submit</button>
+    </form>
+        {{else}}
+<form action="/admin/register" method="post" id="registerform">
+  <label for="username" value="test">Username</label>
+  <input type="text" name="username">
+  <label for="firstname">First Name</label>
+  <input type="text" name="firstname">
+    <label for="lastname">Last Name</label>
+  <input type="text" name="lastname">
+     <label for="email">Email</label>
+  <input type="email" name="email">
+      <label for="password">Password</label>
+  <input type="password" name="password">
+      <label for="password2">Confirm Password</label>
+  <input type="password" name="password2">
+  <button type="submit" id="submit">Submit</button>
+</form>
+    {{/if}}
+
+</ul> --}}
+<div class="container b-register">
+  
+</div>
+>>>>>>> 8f83c5f5f46b58c18d1463749d84121efec767b3
