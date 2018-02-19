@@ -77,4 +77,8 @@ router.get('/login', (req, res) => {
         res.redirect('/admin')
     }
 })
+router.get('/register', /* isAuth = Uncomment after editing ,*/ (req, res) => {
+    res.render('admin/register')
+  })
+  
 module.exports = router

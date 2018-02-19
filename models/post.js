@@ -14,7 +14,7 @@ const postSchema = new Schema ({
     createdBy: {
         type: String,
     },
-    dateCreate:{
+    dateCreated:{
         type: String,
         required: true
     }

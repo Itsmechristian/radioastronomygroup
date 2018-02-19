@@ -15,7 +15,7 @@ const mongoose = require('mongoose')
 function unique(modelName, field, caseSensitive) {
   return function(value, respond) {
     if(value && value.length) {
-      var query = mongoose.model(modelName).where(field, new RegExp('^'+value+'$', caseSensitive ? 'i' : undefined));
+      let query = mongoose.model(modelName).where(field, new RegExp('^'+value+'$', caseSensitive ? 'i' : undefined));
       if(!this.isNew)
         query = query.where('_id').ne(this._id);
       query.count(function(err, n) {

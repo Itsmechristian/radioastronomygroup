@@ -3,7 +3,6 @@ const express = require('express')
     , mongoose = require('mongoose')
     , multer = require('multer')
     , path = require('path')
-    , fs = require('fs')
     , passport = require('passport')
     , LocalStrategy = require('passport-local').Strategy
     , expressValidator = require('express-validator')
@@ -28,7 +27,7 @@ const upload = multer({
     Post = require('../models/post')
     User = require('../models/user')
     TempPost = require('../models/temppost')
-
+    Bugs = require('../models/error')
 /*
 * Global Var
 */ 
@@ -47,9 +46,10 @@ router.use((req, res, next) => {
 })
 
 /* Auth Routing */
-router.get('/register', isAuth, (req, res) => {
-  res.render('admin/register')
-})
+// router.get('/register', /* isAuth = Uncomment after editing */, (req, res) => {
+//   res.render('admin/register')
+// })
+
 router.post('/register', (req, res) => {
   let username = req.body.username.toLowerCase()
     , firstname = req.body.firstname.toLowerCase()
@@ -68,6 +68,7 @@ router.post('/register', (req, res) => {
     req.checkBody('email', 'Email address must be between 4-100 characters long, please try again').len(4, 100)
     req.checkBody('email', 'Email is already exists').isEmailAvailable()
     req.checkBody('password', 'Password is required').notEmpty()
+    req.checkBody('password', 'Password should be atleast 8 characters').len(8, 100)
     req.checkBody('password2', 'Confirm your password').notEmpty()
     req.checkBody('password2', 'Password do not match').equals(password)
     
@@ -134,7 +135,6 @@ passport.use(new LocalStrategy((username, password, done) => {
 }))
 
 router.post('/request/post/:id', (req, res) => {
-  
   TempPost.findById({
     _id: req.params.id
   })
@@ -197,7 +197,8 @@ router.get('/', (req, res) => {
     else{
       res.render('admin/panel', { posts: response.post, firstname: req.user.firstname })
     }
-  }).catch(err => console.log(err))
+  })
+  .catch(err => console.log(err))
 })
 
 router.get('/create', (req, res) => {
@@ -294,6 +295,7 @@ router.delete('/edit/delete/:id', (req, res) => {
     _id: id
   })
   .then(() => {
+    req.flash('success', 'Succesfully deleted')
     res.redirect('/admin/edit')
   })
 })

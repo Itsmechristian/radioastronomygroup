@@ -101,6 +101,7 @@ app.use(session({
   store: new MongoStore({
     url: `${process.env.DB_HOST}/test1`
   }),
+  maxAge: 10000,
   cookie: { secure:true },
   saveUninitialized: false,
 }))

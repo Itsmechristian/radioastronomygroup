@@ -1,13 +1,6 @@
 const mongoose = require('mongoose')
 , Schema = mongoose.Schema
-, moment = require('moment')
-
-Date.prototype.getFormatDate = function() {
-    const monthNames = ['January', 'February', 'March', 'April','May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-    return this.getDate()+' '+monthNames[this.getMonth()]+', '+this.getFullYear()
-}
-
-var getFormat = new Date().getFormatDate()
+, getdate = require('../config/getdate')
 
 const tempPostSchema = new Schema ({
     _id: mongoose.Schema.Types.ObjectId,
@@ -23,9 +16,9 @@ const tempPostSchema = new Schema ({
         type: String,
         required: true
     },
-    dateCreate:{ 
+    dateRequested:{ 
         type: String,
-        default: getFormat,
+        default: getdate.getdate,
         required: true
     }
 })
