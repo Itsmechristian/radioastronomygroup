@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 , Schema = mongoose.Schema
 , getdate = require('../config/getdate')
 
-const errorSchema = new Schema({
+const bugsSchema = new Schema({
     _id: mongoose.Schema.Types.ObjectId,
     error: {
         type: String
@@ -10,7 +10,10 @@ const errorSchema = new Schema({
     dateOccur: {
         type: Date,
         default: getdate.getdate
+    },
+    whosLoggedin: {
+        type: String
     }
 })
 
-module.exports = mongoose.model('error', errorSchema)
+module.exports = mongoose.model('bugs', bugsSchema)

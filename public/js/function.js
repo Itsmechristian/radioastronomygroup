@@ -6,7 +6,7 @@ $('.drop-left li').hover(function() {
     var liClass = $(this).attr('class')
     if(liClass.toString() === 'radioastronomy') {
         var resources =  `
-        <li><a href="/radioastronomy/getting-started">
+        <li><a href="/pages/radioastronomy/getting-started">
         Getting Started</a></li>
         <li><a href="#">
         Radio Spectrum</a></li>
@@ -66,6 +66,6 @@ $('.b-user-dropdown').click(function() {
     $('#drop-item-container').removeClass('clicked')
     
 })
-$('#username, #password ').focus(function() {
-    $('#warning').addClass('fade')
+$('#username, #password').focus(function() {
+    $('#warning, #success').addClass('fade')
 })
