@@ -89,7 +89,7 @@ router.get('/register', (req, res) => {
     res.render('admin/register')
   })
 router.post('/register', (req, res) => {
-let username = req.body.username.toLowerCase()
+  let username = req.body.username.toLowerCase()
     , firstname = req.body.firstname.toLowerCase()
     , lastname = req.body.lastname.toLowerCase()
     , email = req.body.email.toLowerCase()
@@ -97,7 +97,7 @@ let username = req.body.username.toLowerCase()
     , password2 = req.body.password2
 
     // Form Validator
-    req.checkBody('username', 'Username field is cannot be empty').notEmpty()
+    req.checkBody('username', 'Username field cannot be empty').notEmpty()
     req.checkBody('username', 'Username is already taken').isUsernameAvailable()
     req.checkBody('username', 'Username must be between 4-15 characters long').len(4, 30)
     req.checkBody('firstname', 'Your first name is required').notEmpty()
@@ -129,19 +129,30 @@ let username = req.body.username.toLowerCase()
             }
         })
     })
-    .catch(error => {
-            res.render('admin/register', {
-        form: {
+    .catch(errors => {
+    const usernameError = errors.filter(error => (error.from === 'username'))
+    , firstnameError = errors.filter(error => (error.from === 'firstname'))
+    , lastnameError = errors.filter(error => (error.from === 'lastname')) 
+    , emailError = errors.filter(error => (error.from === 'email'))  
+    , passwordError = errors.filter(error => (error.from === 'password'))
+    , password2Error = errors.filter(error => (error.from === 'password2'))
+       res.render('admin/register', {
+        errorforms: {
             username: req.body.username,
             firstname: req.body.firstname,
             lastname: req.body.lastname,
             email: req.body.email
         },
-        errors: error
+        usernameError,
+        firstnameError,
+        lastnameError,
+        emailError,
+        passwordError,
+        password2Error
         })
+    console.log(usernameError)
     })
 })
-//   
 
 
 module.exports = router

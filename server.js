@@ -93,7 +93,7 @@ app.use(expressValidator({
       })
     }
   },
-  errorFormatter: (param, msg, value) => {
+  errorFormatter: (param, msg) => {
     const namespace = param.split('.'),
           root = namespace.shift(),
           formParam = root;
@@ -101,9 +101,8 @@ app.use(expressValidator({
       formParam += `[${namespace.shift()}]`
     }
     return{
-      param: formParam,
+      from: formParam,
       msg: msg,
-      value: value
     }      
   }
 }))

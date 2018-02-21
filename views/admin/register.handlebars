@@ -1,34 +1,44 @@
 <div class="container b-register">
-  <ul class="errors">
-  {{#if errors}}
-      {{#each errors}}
-      <li>{{msg}}</li>
-  {{/each}}
-  </ul>
+  {{#if errorforms}}
+    <form action="/home/register" method="post" id="registerform" class="errorForms">
+      <h2>Register</h2>
+      <label for="Username" id="usernamelabel">Username</label>
+      <input class="input" id="username" type="text" name="username" placeholder="Username*" value="{{errorforms.username}}">
+      <div class="usernameErrors">
+      {{#each usernameError}}
+        <small>{{{msg}}}</small>
+      {{/each}}
+      </div>
+      <label for="firstname" id="firstnamelabel">Firstname</label>
+      <input class="input" id="firstname" type="text" name="firstname" placeholder="Firstname*">
+      <label for="firstname" id="lastnamelabel">Lastname</label>
+      <input class="input" id="lastname" type="text" name="lastname" placeholder="Lastname*">
+      <label for="firstname" id="emaillabel">Email</label>
+      <input class="input" id="email" type="email" name="email" placeholder="Email*">
+      <label for="firstname" id="passwordlabel">Password</label>
+      <input class="input" id="password" type="password" name="password" placeholder="Password*">
+      <label for="firstname" id="password2label">Confirm Password</label>
+      <input class="input" id="password2" type="password" name="password2" placeholder="Confirm Password*">
+      <button type="submit" id="submit">Submit</button>
+      <a href="#">Already Have An Account?</a>
+</form>
+    {{else}}
       <form action="/home/register" method="post" id="registerform">
       <h2>Register</h2>
-      <input type="text" name="username" value="{{form.username}}" placeholder="Username*" >
-      <input type="text" name="firstname" value="{{form.firstname}}" placeholder="Firstname*" >
-      <input type="text" name="lastname" value="{{form.lastname}}" placeholder="Lastname*" >
-      <input type="email" name="email" value="{{form.email}}" placeholder="Email*" >
-      <input type="password" name="password" placeholder="Password*">
-      <input type="password" name="password2" placeholder="Confirm Password*">
+      <label for="Username" id="usernamelabel">Username</label>
+      <input class="input" id="username" type="text" name="username" placeholder="Username*">
+      <label for="firstname" id="firstnamelabel">Firstname</label>
+      <input class="input" id="firstname" type="text" name="firstname" placeholder="Firstname*">
+      <label for="firstname" id="lastnamelabel">Lastname</label>
+      <input class="input" id="lastname" type="text" name="lastname" placeholder="Lastname*">
+      <label for="firstname" id="emaillabel">Email</label>
+      <input class="input" id="email" type="email" name="email" placeholder="Email*">
+      <label for="firstname" id="passwordlabel">Password</label>
+      <input class="input" id="password" type="password" name="password" placeholder="Password*">
+      <label for="firstname" id="password2label">Confirm Password</label>
+      <input class="input" id="password2" type="password" name="password2" placeholder="Confirm Password*">
       <button type="submit" id="submit">Submit</button>
-  <a href="#">Already Have An Account?</a>
-    </form>
-</div>
-        {{else}}
-        <div class="container b-register">
-          <form action="/home/register" method="post" id="registerform">
-                    <h2>Register</h2>
-  <input type="text" name="username" placeholder="Username*">
-  <input type="text" name="firstname" placeholder="Firstname*">
-  <input type="text" name="lastname" placeholder="Lastname*">
-  <input type="email" name="email" placeholder="Email*">
-  <input type="password" name="password" placeholder="Password*">
-  <input type="password" name="password2" placeholder="Confirm Password*">
-  <button type="submit" id="submit">Submit</button>
-  <a href="#">Already Have An Account?</a>
+      <a href="#">Already Have An Account?</a>
 </form>
-  </div>
     {{/if}}
+  </div>

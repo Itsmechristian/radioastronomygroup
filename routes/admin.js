@@ -46,61 +46,6 @@ const newBugs = function(error, whosLoggedin) {
 
 /* Auth Routing */
 
-// router.post('/register', (req, res) => {
-//   let username = req.body.username.toLowerCase()
-//     , firstname = req.body.firstname.toLowerCase()
-//     , lastname = req.body.lastname.toLowerCase()
-//     , email = req.body.email.toLowerCase()
-//     , password = req.body.password
-//     , password2 = req.body.password2
-  
-//     // Form Validator
-//     req.checkBody('username', 'Username field is cannot be empty').notEmpty()
-//     req.checkBody('username', 'Username is already taken').isUsernameAvailable()
-//     req.checkBody('username', 'Username must be between 4-15 characters long').len(4, 15)
-//     req.checkBody('firstname', 'Your first name is required').notEmpty()
-//     req.checkBody('lastname', 'Your last name is required').notEmpty()
-//     req.checkBody('email', 'Email field is required').notEmpty()
-//     req.checkBody('email', 'Email address must be between 4-100 characters long, please try again').len(4, 100)
-//     req.checkBody('email', 'Email is already exists').isEmailAvailable()
-//     req.checkBody('password', 'Password is required').notEmpty()
-//     req.checkBody('password', 'Password should be at least 8 characters').len(8)
-//     req.checkBody('password2', 'Confirm your password').notEmpty()
-//     req.checkBody('password2', 'Password do not match').equals(password)
-    
-//     // Check Errors
-//     req.asyncValidationErrors()
-//     .then(result => {
-//       let newUser = new User({
-//             username: username,
-//             firstname: firstname,
-//             lastname: lastname,
-//             email: email,
-//             password: password,
-//           })
-//           User.createUser(newUser, (err, user) => {
-//             if(err) throw err;
-//             else{
-//               req.flash('success', 'Succesfully create')
-//               res.location('/')
-//               res.redirect('/admin')
-//             }
-//           })
-//         })
-//     .catch(error => {
-//             res.render('admin/register', {
-//           form: {
-//             username: req.body.username,
-//             firstname: req.body.firstname,
-//             lastname: req.body.lastname,
-//             email: req.body.email
-//           },
-//           errors: error
-//         })
-//     })
-// })
-
-
 passport.use(new LocalStrategy((username, password, done) => {
   User.getUserbyUsername(username.toLowerCase(), (err, user) => {
     if(err) throw err;
