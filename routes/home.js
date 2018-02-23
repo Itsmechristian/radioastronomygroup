@@ -6,6 +6,7 @@ const express = require('express')
 , LocalStrategy = require('passport-local').Strategy
 , expressValidator = require('express-validator')
 , flash = require('connect-flash')
+
 /*
 * Database Model
 */
@@ -99,14 +100,15 @@ router.post('/register', (req, res) => {
     // Form Validator
     req.checkBody('username', 'Username field cannot be empty').notEmpty()
     req.checkBody('username', 'Username is already taken').isUsernameAvailable()
-    req.checkBody('username', 'Username must be between 4-15 characters long').len(4, 30)
+    req.checkBody('username', 'Username must be at least 4 characters long').len(4)
     req.checkBody('firstname', 'Your first name is required').notEmpty()
     req.checkBody('lastname', 'Your last name is required').notEmpty()
     req.checkBody('email', 'Email field is required').notEmpty()
-    req.checkBody('email', 'Email address must be between 4-100 characters long, please try again').len(4, 100)
+    req.checkBody('email', 'Invalid Email').isEmail()
+    req.checkBody('email', 'Email address must be at least 3 characters long').len(3)
     req.checkBody('email', 'Email is already exists').isEmailAvailable()
     req.checkBody('password', 'Password is required').notEmpty()
-    // req.checkBody('password', 'Password should be at least 8 characters').len(8)
+    req.checkBody('password', 'Password should be at least 8 characters').len(8)
     req.checkBody('password2', 'Confirm your password').notEmpty()
     req.checkBody('password2', 'Password do not match').equals(password)
     
@@ -150,7 +152,6 @@ router.post('/register', (req, res) => {
         passwordError,
         password2Error
         })
-    console.log(usernameError)
     })
 })
 

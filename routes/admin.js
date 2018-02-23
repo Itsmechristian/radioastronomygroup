@@ -8,6 +8,8 @@ const express = require('express')
     , expressValidator = require('express-validator')
     , flash = require('connect-flash')
 
+
+
 /*
 * Multer Configuration
 */
@@ -123,6 +125,7 @@ router.get('/logout', (req, res) => {
 
 /* User Routing */
 router.get('/', (req, res) => {
+  console.log(req.isAuthenticated())
   userArticle.find()
   .select('title body createdBy dateCreate')
   .then(results => {

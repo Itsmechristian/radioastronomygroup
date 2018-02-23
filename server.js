@@ -9,19 +9,19 @@ require('dotenv').config()
 
 
 const express = require('express')
-    ,  path = require('path')
-    ,  exphbs = require('express-handlebars')
-    ,  bodyParser = require('body-parser')
-    ,  session = require('express-session')
-    ,  MongoStore = require('connect-mongo')(session)
-    ,  passport = require('passport')
-    ,  LocalStrategy = require('passport-local').Strategy
-    ,  flash = require('connect-flash')
-    ,  expressValidator = require('express-validator')
-    ,  mongoose = require('mongoose')
-    ,  mongo = require('mongodb')
-    ,  methodOverride = require('method-override')
-    ,  app = express()
+    , path = require('path')
+    , exphbs = require('express-handlebars')
+    , bodyParser = require('body-parser')
+    , session = require('express-session')
+    , MongoStore = require('connect-mongo')(session)
+    , passport = require('passport')
+    , LocalStrategy = require('passport-local').Strategy
+    , flash = require('connect-flash')
+    , expressValidator = require('express-validator')
+    , mongoose = require('mongoose')
+    , mongo = require('mongodb')
+    , methodOverride = require('method-override')
+    , app = express()
 
     const home = require('./routes/home')
         , admin = require('./routes/admin')
@@ -38,6 +38,7 @@ mongoose.connect(`${process.env.DB_HOST}/${process.env.DB_NAME}`)
 .then((result => console.log('Connected to mongoDB')))
 .catch((error => console.log(error)))
 
+
 // Handlebars middleware
 app.engine('handlebars', exphbs({layoutsDir: __dirname + '/views/layouts'}))
 app.set('view engine', 'handlebars')
@@ -50,18 +51,22 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 // Express session
 app.use(session({
-  secret: 'mysecret',
-  resave: true,
-  store: new MongoStore({
-    url: `${process.env.DB_HOST}/test1`
-  }),
-  cookie: { secure:true },
+  secret: 'askdmaskdkasndksa',
+  resave: false,
   saveUninitialized: true,
+  cookie: {
+    maxAge: 5000
+  },
+  // store: new MongoStore({
+  //   url: `${process.env.DB_HOST}/test1`
+  // }),
+  // cookie: { secure:true },
 }))
 
 // Passport
 app.use(passport.initialize())
 app.use(passport.session())
+
 
 
 app.use(expressValidator({
