@@ -1,5 +1,5 @@
 {
-  "name": "Britastro",
+  "name": "radioastronomygroup",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -8,8 +8,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-css": "node-sass --include-path scss scss/style.scss public/css/style.css",
     "build-admin": "node-sass --include-path scss scss/admin.scss public/css/admin.css",
+    "build-media-query": "node-sass --include-path scss scss/media-query.scss public/css/media-query.css",
     "watch-client": "nodemon -e scss -x \"npm run build-css\" ",
-    "watch-admin": "nodemon -e scss -x \"npm run build-admin\" "
+    "watch-admin": "nodemon -e scss -x \"npm run build-admin\" ",
+    "watch-media": "nodemon -e scss -x \"npm run build-media-query\""
   },
   "keywords": [],
   "author": "Sijey",
@@ -34,7 +36,7 @@
   },
   "devDependencies": {
     "dotenv": "5.0.0",
-    "node-sass": "4.7.2",
+    "node-sass": "^4.7.2",
     "nodemon": "1.14.11"
   }
 }

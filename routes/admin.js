@@ -7,27 +7,45 @@ const express = require('express')
     , LocalStrategy = require('passport-local').Strategy
     , expressValidator = require('express-validator')
     , flash = require('connect-flash')
-
-
-
+    , fs = require('fs')
+    , url = require('url')
 /*
 * Multer Configuration
 */
 const storage = multer.diskStorage({
-  destination: './public/uploads',
+  destination: './public/temp',
   filename: (req, file, cb) => {
-    cb(null, file.originalname+Date.now()+path.extname(file.originalname))
+    cb(null, Date.now()+path.extname(file.originalname).toLowerCase())
   }
 })
 
 const upload = multer({
-  storage: storage
+  storage: storage,
+  fileFilter: function(req, file, cb) {
+    checkFileType(file, cb);
+  }
 }).single('imageuploader')
-    // Models
+
+function checkFileType(file, cb) {
+  const filetypes = /jpeg|jpg|png|gif/
+  const extname = filetypes.test(path.extname(file.originalname).toLowerCase())
+  const mimetype = filetypes.test(file.mimetype)
+  if(mimetype && extname) {
+    return cb(null, true)
+  }
+  else{
+    cb('Error: Images Only')
+  }
+}
+// Models
 const Article = require('../models/article')
     ,  User = require('../models/user')
     ,  userArticle = require('../models/userarticle')
     ,  Bugs = require('../models/bugs')
+
+// Own Configuration
+const changeArticlePath = require('../config/changeArticlePath')
+    
 
 /*
 * Global Var
@@ -85,38 +103,6 @@ router.post('/login', passport.authenticate('local', {successRedirect: '/admin',
   }
 )
 
-
-router.post('/request/post/:id', (req, res) => {
-  userArticle.findById({
-    _id: req.params.id
-  })
-  .then(result => {
-    const newArticle = new Article({
-        _id: new mongoose.Types.ObjectId(),
-        title: result.title,
-        body: result.body,
-        createdBy: result.createdBy,
-        dateCreate: result.dateRequested
-    })
-    newArticle
-    .save()
-    .then(saved => {
-      req.flash('success', 'Article Published')
-      res.redirect('/admin')
-      userArticle.remove({
-        _id: req.params.id
-      })
-      .catch(err => {
-        console.log(err)
-      })
-    })
-  })
-  .catch(err => {
-    newBugs(err, req.user.firstname + '' + req.user.lastname)
-  })
-})
-
-
 router.get('/logout', (req, res) => {
   req.flash('success', 'Succesfully logged you out')
   req.logout()
@@ -125,7 +111,6 @@ router.get('/logout', (req, res) => {
 
 /* User Routing */
 router.get('/', (req, res) => {
-  console.log(req.isAuthenticated())
   userArticle.find()
   .select('title body createdBy dateCreate')
   .then(results => {
@@ -182,9 +167,14 @@ router.post('/create', upload, (req, res) => {
 router.post('/upload', (req, res) => {
   upload(req, res, (err) => {
     if(err) {
-      res.send(err)
+      res.render('admin/uploads', {
+        error: err
+      })
     }
-    res.render('admin/uploads', {layout: 'admin.handlebars' , imgfile: req.file.filename})
+    else{
+      console.log(req.file)
+      res.render('admin/uploads', {layout: 'admin.handlebars' , imgfile: req.file.filename})
+    }
   })
 })
 
@@ -223,10 +213,44 @@ router.get('/request/post/:id', (req, res) => {
     _id: req.params.id
   })
   .select('_id dateCreate title body createBy')
-  .then(result => {
+    .then(result => {
     res.render('admin/reqpost', { post: result })
   })
-  .catch(err => newBugs(err, req.user.firstname + ' ' + req.user.lastname))})
+  .catch(err => console.log(err))
+})
+
+router.post('/request/post/:id', (req, res) => {
+  userArticle.findById({
+    _id: req.params.id
+  })
+  .then(result => {
+
+    const newArticle = new Article({
+        _id: new mongoose.Types.ObjectId(),
+        title: result.title,
+        // body: changeArticlePath(result),
+        createdBy: result.createdBy,
+        dateCreate: result.dateRequested
+    })
+    newArticle
+    .save()
+    .then(saved => {
+      req.flash('success', 'Article Published')
+      res.redirect('/admin')
+      userArticle.remove({
+        _id: req.params.id
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    })
+  })
+  .catch(err => {
+    newBugs(err, req.user.firstname + '' + req.user.lastname)
+  })
+})
+
+
 
 router.get('/edit', (req, res) => {
   Article.find()

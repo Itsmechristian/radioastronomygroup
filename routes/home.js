@@ -6,7 +6,6 @@ const express = require('express')
 , LocalStrategy = require('passport-local').Strategy
 , expressValidator = require('express-validator')
 , flash = require('connect-flash')
-
 /*
 * Database Model
 */
@@ -29,20 +28,38 @@ router.get('/', (req, res) => {
     .sort({dateCreate: -1})
     .limit(6)
     .then(results => {
-        let result = []
-        for(var i = 0; i < results.length; i++) {
-            let imgOpenTag = results[i].body.toString().search('<img')
-            let imgCloseTag = results[i].body.toString().search('/>')
-            result.push({
-             _id: results[i]._id,
-             title: results[i].title,
-            img: results[i].body.toString().slice(imgOpenTag, imgCloseTag +2)
+        articles = []
+        results.forEach((result) => {
+            let imgOpenTag = result.body.search('<img')
+              , imgCloseTag = result.body.search('/>')
+              , img = result.body.toString().slice(imgOpenTag, imgCloseTag + 2)
+              , src = img.match(/([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))/i)
+              function trancateTitle(title) {
+                if(title.length > 100) {
+                    return title = title.substring(0, 100)+'...'
+                }
+                return title
+              }  
+              
+              if(src) {
+                   articles.push({
+                       _id: result._id,
+                       title: trancateTitle(result.title),
+                       src: src[0] || src[1]
+                   })
+                }
+                else{
+                    articles.push({
+                        _id: result._id,
+                        title: result.title.substring(0, 100),
+                        src: 'https://www.drbrownstein.com/wp-content/uploads/2017/03/500x500.png'
+                    })
+                }
             })
-        }
         res.status(200).render('assets/home',
         {
+        articles: articles,
         layout: 'main.handlebars',
-        results: result,
         user: req.user,
         date: getDate.getdate
         })
@@ -65,7 +82,6 @@ router.get('/post/:id', (req, res) => {
             layout: 'main.handlebars',
             error: err
         })
-        console.log(err)
     })
 })
 

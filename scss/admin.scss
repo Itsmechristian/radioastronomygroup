@@ -1,3 +1,6 @@
+@import url('/css/fonts.css');
+@import url("/css/default.css");
+
 $primary-color: #2a5bb8;
 $secondary-color: #4972BF;
 $main-text-color: #4A4747;
@@ -9,68 +12,8 @@ $table-view: 80%;
 $phone-view: 90%;
 $primary-side-color: #1A2124;
 $secondary-side-color: #222D33;
-@font-face {
-    font-family: OS-Bold;
-    src: url('/fonts/OpenSans-Bold.ttf');
-}
 
-@font-face {
-    font-family: OS-BoldItalic;
-    src: url('/fonts/OpenSans-BoldItalic.ttf');
-}
 
-@font-face {
-    font-family: OS-ExtraBold;
-    src: url('/fonts/OpenSans-ExtraBold.ttf');
-}
-
-@font-face {
-    font-family: OS-ExtraBoldItalic;
-    src: url('/fonts/OpenSans-ExtraBoldItalic.ttf');
-}
-
-@font-face {
-    font-family: OS-Italic;
-    src: url('/fonts/OpenSans-Italic.ttf');
-}
-
-@font-face {
-    font-family: OS-LightItalic;
-    src: url('/fonts/OpenSans-LightItalic.ttf');
-}
-
-@font-face {
-    font-family: OS-Regular;
-    src: url('/fonts/OpenSans-Regular.ttf');
-}
-
-@font-face {
-    font-family: OS-Semibold;
-    src: url('/fonts/OpenSans-Semibold.ttf');
-}
-
-@font-face {
-    font-family: OS-SemiboldItalic;
-    src: url('/fonts/OpenSans-SemiboldItalic.ttf');
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    color: $main-text-color;
-    padding: 0;
-    margin: 0;
-}
-
-body {
-    margin: 0;
-    padding: 0;
-    background: #f1f1f1;
-    box-sizing: border-box;
-}
 .b-nav-main {
     a{
         position: relative;
@@ -300,16 +243,13 @@ body {
             height: 50px;
             border-radius: 2px;
             border: 1px solid #ababab;
-            h2{
-                padding: 10px 0px;
-                display: inline-block;
                 a{
+                    font-size: 1rem;
                     color: #313131;
                     text-decoration: none;
                     &:hover{
                         text-decoration-line: underline;
                     }
-                }
             }
             i{
                 color: #fff;

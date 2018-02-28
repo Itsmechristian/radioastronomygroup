@@ -54,13 +54,9 @@ app.use(session({
   secret: 'askdmaskdkasndksa',
   resave: false,
   saveUninitialized: true,
-  cookie: {
-    maxAge: 5000
-  },
-  // store: new MongoStore({
-  //   url: `${process.env.DB_HOST}/test1`
-  // }),
-  // cookie: { secure:true },
+  store: new MongoStore({
+    url: `${process.env.DB_HOST}/test1`
+  }),
 }))
 
 // Passport

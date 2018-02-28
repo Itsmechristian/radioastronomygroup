@@ -1,18 +1,17 @@
 <div class="b-body container-fluid">
     <div class="row home-row">
         <div class="col-lg-9">
-            {{#each results}}
+            {{#each articles}}
             <article class="box">
-                <a href="/home/post/{{_id}}"><div class="img"></div></a>
-                <a href="/home/post/{{_id}}">{{title}}</a>
+          <img src="{{src}}">
+                <div class="link-side">
+              <a href="#">{{title}}</a>
+                </div>
             </article>
-            {{/each}}
+        {{/each}}
             <a href="#" class="see-more-link">See More</a>
         </div>
         <div class="col-lg-3">
-            <div class="date">
-                <i class="fa fa-clock-o"></i> <small>Date Today: {{date}}</small>
-            </div>
             <div class="events">
             <i class="fa fa-calendar"></i>  <h4>Radio Astronomy Talks</h4>
             <p>Birmingham AS</p>

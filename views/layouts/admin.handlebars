@@ -4,6 +4,7 @@
 <html lang="en">
 <head>
  <meta charset="UTF-8"> <meta name="description" content="This is britastro radio website"> <meta name="keywords" content="Britastro, Blog, Radio Astronomical Association, Radio Astronomy GROUP, BAG"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <meta http-equiv="X-UA-Compatible" content="ie=edge"> <link rel="stylesheet" href="/css/bootstrap.grid.css"> <link rel="stylesheet" href="/css/fontawesome.css">
+ <link rel="stylesheet" href="/css/ckeditor.css">
  <link rel="stylesheet" href="/css/media-style.css"> <link rel="stylesheet" href="/css/admin.css"> <title>Welcome to Britastro | Radio</title>
  
 </head>
@@ -16,6 +17,30 @@
     <script src="/js/function.js"></script>
     <script src="/js/panelfunc.js"></script>
     <script>
+        window.onload = function() {
+            CKEDITOR.replace( 'editor',{
+            /* contentsCss: "body {font-size: 1re,; font-family: 'Open-Sans'; margin 10px;}", */
+            resize_dir: 'both',
+			height: 400,
+			resize_dir: 'both',
+			resize_minWidth: 200,
+			resize_minHeight: 300,
+			resize_maxWidth: 800,
+            filebrowserBrowseUrl : '/admin/upload',
+            
+        })
+        CKEDITOR.on( 'dialogDefinition', function( ev ) {                
+                    var dialogName = ev.data.name;
+                    var dialogDefinition = ev.data.definition;                    
+
+                    if ( dialogName == 'image' ) {
+                        dialogDefinition.removeContents( 'advanced' );                        
+                        dialogDefinition.removeContents( 'Link' );
+                    }
+                });
+
+ 
+        }
       // Helper function to get parameters from the query string.
         function getUrlParam( paramName ) {
             var reParam = new RegExp( '(?:[\?&]|&)' + paramName + '=([^&]+)', 'i' );
@@ -36,11 +61,8 @@
                     var element = dialog.getContentElement( 'info', 'txtAlt' );
                     // Assign the new value.
                     if ( element )
-                        element.setValue( 'alt text' );
+                        element.setValue( 'alt' );
                 }
-                // Return "false" to stop further execution. In such case CKEditor will ignore the second argument ("fileUrl")
-                // and the "onSelect" function assigned to the button that called the file manager (if defined).
-                // return false;
             } );
             window.close();
         }

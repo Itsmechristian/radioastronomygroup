@@ -4,3 +4,6 @@ $(document).ready(function() {
     $('.fa-angle-down').toggleClass('rotate')
   })
 })
+$('#file').on('change', (function() {
+  $('#form').submit()
+}))

@@ -2,12 +2,15 @@
 Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.md or https://ckeditor.com/legal/terms-of-use/#open-source-licences
 */
-
+@font-face {
+	font-family: OS-Regular;
+	src: url('/fonts/OpenSans-Regular.ttf');
+}
 body
 {
 	/* Font */
-	font-family: sans-serif, Arial, Verdana, "Trebuchet MS";
-	font-size: 12px;
+	font-family: OS-Regular;
+	font-size: 16px;
 
 	/* Text color */
 	color: #333;
@@ -20,7 +23,7 @@ body
 
 .cke_editable
 {
-	font-size: 13px;
+	font-size: 1.2rem;
 	line-height: 1.6;
 
 	/* Fix for missing scrollbars with RTL texts. (#10488) */

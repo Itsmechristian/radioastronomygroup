@@ -9,11 +9,6 @@ CKEDITOR.editorConfig = function( config ) {
 	// http://docs.ckeditor.com/#!/api/CKEDITOR.config
 	// The toolbar groups arrangement, optimized for two toolbar rows.
 
-
-	config.extraPlugins = 'uploadcare';
-	// config.filebrowserBrowseUrl = '/home'
-
-
 	config.toolbarGroups = [
 		{ name: 'clipboard',   groups: [ 'clipboard', 'undo' ] },
 		{ name: 'editing',     groups: [ 'find', 'selection', 'spellchecker' ] },
@@ -29,8 +24,8 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'styles' },
 		{ name: 'colors' },
 	];
-
-	config.height = 400;
+	config.contensCss = '/css/ckeditor.css'
+	config.height = 600;
 	// Remove some buttons provided by the standard plugins, which are
 	// not needed in the Standard(s) toolbar.
 	config.removeButtons = 'Underline,Subscript,Superscript';

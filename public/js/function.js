@@ -3,7 +3,7 @@ $('.b-menu').click(function() {
     $('#drop-item-container').toggleClass('clicked')
     $('.user-down').removeClass('clicked')
 })
-$('.drop-left li').hover(function() {
+$('.drop-left li').click(function() {
     var liClass = $(this).attr('class')
 
     if(liClass.toString() === 'radioastronomy') {
@@ -80,14 +80,14 @@ $('#username, #password').focus(function() {
 })
 
 
-$(document).ready(function(e) {
+$(document).ready(function() {
     var success = '#2a5bb8';
     var danger = '#e33545';
     /* Username Validation */
     if(!$('.usernameErrors').children().length){
         
         $('#username').on('change keyup', usernameValidation)
-        
+        console.log($('#username').val().length)
         if($('#username').val().length > 3) {
             $('#usernamelabel').addClass('show')
             $('#username').css('border', `1px solid ${success}`)

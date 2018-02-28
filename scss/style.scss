@@ -1,77 +1,16 @@
+@import url('/css/fonts.css');
+@import url('/css/default.css');
+
+
 $primary-color: #2a5bb8;
-$main-text-color: #4A4747;
-$secondary-text-color: rgb(59, 59, 59);
+$text-color: #333;
+$secondary-text-color: #4A4747;
 $white-color: #fff;
 $border-color: 1px inset #ababab;
-$web-view: 80%;
-$table-view: 90%;
-$phone-view: 100%;
-$primary-fade-color: hsla(219, 63%, 44%, 0.706);
-@font-face {
-    font-family: OS-Bold;
-    src: url('/fonts/OpenSans-Bold.ttf');
-}
 
-@font-face {
-    font-family: OS-BoldItalic;
-    src: url('/fonts/OpenSans-BoldItalic.ttf');
-}
 
-@font-face {
-    font-family: OS-ExtraBold;
-    src: url('/fonts/OpenSans-ExtraBold.ttf');
-}
-
-@font-face {
-    font-family: OS-ExtraBoldItalic;
-    src: url('/fonts/OpenSans-ExtraBoldItalic.ttf');
-}
-
-@font-face {
-    font-family: OS-Italic;
-    src: url('/fonts/OpenSans-Italic.ttf');
-}
-
-@font-face {
-    font-family: OS-LightItalic;
-    src: url('/fonts/OpenSans-LightItalic.ttf');
-}
-
-@font-face {
-    font-family: OS-Regular;
-    src: url('/fonts/OpenSans-Regular.ttf');
-}
-
-@font-face {
-    font-family: OS-Semibold;
-    src: url('/fonts/OpenSans-Semibold.ttf');
-}
-
-@font-face {
-    font-family: OS-SemiboldItalic;
-    src: url('/fonts/OpenSans-SemiboldItalic.ttf');
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    color: $main-text-color;
-    padding: 0;
-    margin: 0;
-}
-body, body{
-    width:100%;
-    margin: 0;
-    padding: 0;
-    background: #f1f1f1;
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-}
 .container-fluid{
+    max-width: 1400px;
     margin: 0 auto;
     padding: 0 !important;
 }
@@ -90,7 +29,6 @@ body, body{
     height: 50px;
     background: $primary-color;
     .container-fluid {
-        width: 80%;
         .b-categories {
             width: 100%;
                 .b-menu{
@@ -181,7 +119,6 @@ body, body{
     }
 }
 #drop-item-container{
-    max-width: 80%;
     z-index: -2;
     display: none;
 }
@@ -200,6 +137,9 @@ body, body{
           li{
                 margin: 10px;
               cursor: pointer;
+              &:nth-child(1){
+                  display: none;
+              }
           }
           a{
             color: #4A4747;
@@ -231,8 +171,6 @@ body, body{
     width: 100%;
     background: linear-gradient(black, $primary-color);
     .container-fluid {
-        width: 80%;
-        height: auto;
         h1,
         h2 {
             position: relative;
@@ -247,19 +185,9 @@ body, body{
 }
 
 .b-body.container-fluid {
-    width: 80%;
     padding: 0px;
     margin-top: 20px;
     border-radius: 5px 5px 0px 0px;
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6 {
-        font-family: OS-Bold;
-        color: #313131;
-    }
 .home-row{
     margin: 0px;
     height: auto;
@@ -271,29 +199,32 @@ body, body{
         height: auto;
         border-right: 1px inset #999999;
         .box{
-            height: 190px;
+            width: 250px;
+            height: 320px;
+            float: left;
+            margin: 5px 10px 10px 15px !important;
             background: transparent;
             -webkit-box-shadow: 2px 1px 18px -5px rgba(0,0,0,0.75);
             -moz-box-shadow: 2px 1px 18px -5px rgba(0,0,0,0.75);
             box-shadow: 2px 1px 18px -5px rgba(0,0,0,0.75);
-            .img{
-                float: left;
-                height: 190px;
-                width: 150px;
-                background: #949494;
-                // background: url('https://cdn.pixabay.com/photo/2017/01/06/19/15/soap-bubble-1958650_960_720.jpg') no-repeat 50% 50%;
-                background-size: 200px;
-                margin-right: 5px;
-            }
+            img{
+                height: 200px;
+                width: 250px;
+            }     
+            .link-side{
+                width: 100%;
+                padding: 5px;
                 a{
-                    font-family: OS-Bold;
-                    color: $main-text-color;
+                    overflow: hidden;
+                    width: 100%;
+                    display: inline-block;
+                    text-overflow: ellipsis;
                     text-decoration: none;
-                    font-size: 0.8rem;
-                    &:hover{
-                        text-decoration-line: underline;
-                    }
+                    font-family: OS-Bold;
+                    color: #333;
                 }
+            }
+        
         }
         .see-more-link{
             margin: 20px 0px;
@@ -587,7 +518,7 @@ body, body{
 .b-post-container{
     margin: 15px auto;
     background: white;
-    height: 100vh;
+    height: auto;
     .b-post{
         width: 80%;
         margin: 0 auto;
@@ -654,48 +585,7 @@ body, body{
     }
 }
 
-@media screen and (min-width: 1466px) {
-    .container-fluid{
-        max-width: 1466px;
-        width: 80% !important;
-    }
-    .box{
-    margin: 5px 10px 10px 25px;
-        .img{
-        width: 180px !important;
-            
-        }
-        a{
-            font-size: 1rem !important;
-        }
-    }
 
-}
-@media (min-width: 1024px) {
-    .col-lg-9{
-        display: flex !important;
-        flex-wrap: wrap;
-        justify-content: space-between !important;
-        .box{
-        max-width: 45%;
-        margin: 5px 10px 10px 15px !important;
-        flex: 1 !important;
-        flex-basis: 45% !important;
-        }
-    }
-}
-@media (min-width: 768px){
-    .col-lg-9{
-        display: flex !important;
-        flex-wrap: wrap;
-        justify-content: space-between !important;
-        .box{
-            margin: 5px 10px 0px 10px;
-            flex: 1 !important;
-            flex-basis: 45% !important;
-        }
-    }
-}
 footer{
     height: 65px;
     background: #313131;
