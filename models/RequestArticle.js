@@ -2,8 +2,16 @@ const mongoose = require('mongoose')
 , Schema = mongoose.Schema
 , getdate = require('../config/getdate')
 
-const userArticleSchema = new Schema ({
+const RequestArticleSchema = new Schema ({
     _id: mongoose.Schema.Types.ObjectId,
+    userId: {
+        type: String,
+        required: true
+    },
+    isPublish: {
+        type: Boolean,
+        default: false
+    },
     title: {
         type: String,
         required: true
@@ -12,14 +20,14 @@ const userArticleSchema = new Schema ({
         type: String,
         required: true,
     },
-    createdBy: {
+    requestBy: {
         type: String,
     },
     dateRequested:{ 
         type: String,
-        default: getdate.getdate,
+        default: getdate.getFormat,
         required: true
     }
 })
 
-module.exports = mongoose.model('userarticle', userArticleSchema)
+module.exports = mongoose.model('RequestArticle', RequestArticleSchema)

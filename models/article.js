@@ -3,6 +3,14 @@ const mongoose = require('mongoose')
 
 const articleSchema = new Schema ({
     _id: mongoose.Schema.Types.ObjectId,
+    userId: {
+        type: String,
+        required: true
+    },
+    isPublish: {
+        type: Boolean,
+        required: true
+    },
     title: {
         type: String,
         required: true
@@ -21,4 +29,4 @@ const articleSchema = new Schema ({
 })
 
 
-module.exports = mongoose.model('article', articleSchema)
+module.exports = mongoose.model('Article', articleSchema)

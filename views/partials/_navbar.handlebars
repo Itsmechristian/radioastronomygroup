@@ -2,41 +2,98 @@
     <div class="container-fluid">
         <div class="b-categories">
             <div class="b-menu">
-            <span></span>
-            <span></span>
-            <span></span>
-            <a href="#">Categories</a>
+                <span></span>
+                <span></span>
+                <span></span>
+                <a href="#">Categories</a>
             </div>
             <a class="sub-links" href="/home">Home</a>
             {{#if user}}
-            <a class="sub-links"  href="/admin/create">Create Post</a>
+            <a class="sub-links" href="/user/create">Create Post</a>
             <div class="b-user-dropdown">
-                <li>{{user.firstname}} <i class="fa fa-caret-down"></i></li>
+                <li>{{user.firstname}}
+                    <i class="fa fa-caret-down"></i>
+                </li>
             </div>
             <div class="user-down">
-                <a href="/admin">Dashboard</a>
-                <a href="/admin/logout">Logout</a>
+                <a href="/user">Dashboard</a>
+                <a href="/user/logout">Logout</a>
             </div>
             {{else}}
-                <a class="b-login-link" href="/home/register">Register</a>
-                <a class="b-login-link" href="/home/login">Login</a>
-                {{/if}}
+            <a class="b-login-link" href="/home/register">Register</a>
+            <a class="b-login-link" href="/home/login">Login</a>
+            {{/if}}
         </div>
     </div>
     <div class="container-fluid" id="drop-item-container">
-    <div class="drop-item">
-        <div class="drop-left">
-            <li><a href="#">Home</a></li>
-            <li class="radioastronomy"><a href="#">Radio Astronomy</a></li>
-            <li class="projects"><a href="#">Projects</a></li>
-            <li class="observations"><a href="#">Observations</a></li>
-            <li class="resources"><a href="#">Resources</a></li>
-            <li class="about"><a href="#">About</a></li>
-        </div>
-        <div class="drop-right">
-            <li><a href="#">Radio</a></li>
+        <div class="drop-item">
+            <div class="drop-left">
+                <li>
+                    <a href="#">Home</a>
+                </li>
+                <li class="radioastronomy">
+                    <a href="#">Radio Astronomy</a>
+                </li>
+                <li class="projects">
+                    <a href="#">Projects</a>
+                </li>
+                <li class="observations">
+                    <a href="#">Observations</a>
+                </li>
+                <li class="resources">
+                    <a href="#">Resources</a>
+                </li>
+                <li class="about">
+                    <a href="#">About</a>
+                </li>
+            </div>
+            <div class="drop-right">
+                <li>
+                    <a href="#">Radio</a>
+                </li>
+            </div>
         </div>
     </div>
+    <div class="container-fluid mobile-navbar">
+        <div class="b-mobile-hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="b-mobile-sidebar">
+            <div class="mobile-categories">
+                <h1>Categories</h1>
+                <li>
+                    <a href="#">Log In</a>
+                </li>
+                <li>
+                    <a href="#">Register</a>
+                </li>
+                <h2>Radio Astronomy</h2>
+                <li>
+                    <a href="#">Getting Started</a>
+                </li>
+                <li>
+                    <a href="#">Radio Spectrum</a>
+                </li>
+                <li>
+                    <a href="#">VLF Solar</a>
+                </li>
+                <li>
+                    <a href="#">Magnetometry</a>
+                </li>
+                <li>
+                    <a href="#">Simple Radio Astronomy</a>
+                </li>
+                <li>
+                    <a href="#">Radio Jove</a>
+                </li>
+                <li>
+                    <a href="#">Radio Spectrum</a>
+                </li>
+            </div>
+        </div>
+        <div class="overlay"></div>
     </div>
 </nav>
 <header class="b-nav-header">

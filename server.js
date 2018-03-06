@@ -21,52 +21,54 @@ const express = require('express')
     , mongoose = require('mongoose')
     , mongo = require('mongodb')
     , methodOverride = require('method-override')
+
+    // Invoke an instance of express application
     , app = express()
 
+      /* Routers */
     const home = require('./routes/home')
-        , admin = require('./routes/admin')
+        , user = require('./routes/user')
         , subpages = require('./routes/subpages')
 
-    const User = require('./models/user')
+    const User = require('./models/User')
 
-/**
-* Connect to the database
-* After change database name
-*
-**/
+
+// Mongoose Middleware help you to connect in mongodb
 mongoose.connect(`${process.env.DB_HOST}/${process.env.DB_NAME}`)
 .then((result => console.log('Connected to mongoDB')))
 .catch((error => console.log(error)))
 
 
-// Handlebars middleware
+// Express Handlebars middlware register .handlebars layouts
 app.engine('handlebars', exphbs({layoutsDir: __dirname + '/views/layouts'}))
 app.set('view engine', 'handlebars')
-// Body parser middleware
+
+
+// Initialize body-parser to parse incoming parameters requests to req.body
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
+// Initialize directory to join in url
 app.use(express.static(path.join(__dirname, 'public')))
 
-
-// Express session
+// Initialize express-session to allow us track the logged in user across sessions.
 app.use(session({
   secret: 'askdmaskdkasndksa',
   resave: false,
   saveUninitialized: true,
-  store: new MongoStore({
-    url: `${process.env.DB_HOST}/test1`
-  }),
+  cookie: {
+    maxAge: 600000
+  }
 }))
 
-// Passport
+// Initialize passport to make a user logged in and get user info to req.user
 app.use(passport.initialize())
 app.use(passport.session())
 
-
-
+// Validate Errors if something error happening.
 app.use(expressValidator({
   customValidators: {
+    // Check database if username is available and give an error flash if i isn't
     isUsernameAvailable: (username) => {
       return new Promise((resolve, reject) => {
         User.findOne({ username : username }, (err, res) => {
@@ -80,6 +82,7 @@ app.use(expressValidator({
         })
       })
     },
+    // Check database if email is available and give an error flash if i isn't
     isEmailAvailable: (email) => {
       return new Promise((resolve, reject) => {
         User.findOne({ email : email }, (err, res) => {
@@ -94,6 +97,7 @@ app.use(expressValidator({
       })
     }
   },
+  // Format errors to make it easier to access it.
   errorFormatter: (param, msg) => {
     const namespace = param.split('.'),
           root = namespace.shift(),
@@ -108,43 +112,42 @@ app.use(expressValidator({
   }
 }))
 
-// Express Message || Connect-FLash
+// Initialize flash messages allow us to access a success or an error message to req.flash(body, message)
 app.use(require('connect-flash')());
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   res.locals.messages = require('express-messages')(req, res);
   next();
 });
 
-// Method override Middleware
+// Initialize method override to help us POST and DELETE
 app.use(methodOverride('_method'))
 
-
+// Redirct router to home by default
 app.get('/', (req, res) => {
   res.redirect('/home')
 })
-app.get('/admin/upload', (req, res) => {
-  res.render('admin/uploads', {layout: 'admin.handlebars'})
-})
-app.use((req, res, next) => {
-  res.locals.messages = require('express-messages')(req, res)
+app.get('*', (req, res, next) => {
+  res.app.locals.user = req.user;
   next()
 })
-app.all('*', (req, res, next) => {
-  res.locals.user = req.user
-  next()
-})
-app.use('/admin', admin)
+// Configure routings
+app.use('/user', user)
 app.use('/home', home)
 app.use('/pages', subpages)
+
+// Render to 404 pages if the page doesn't exist
 app.use(function (req, res, next){
   const error = new Error('Not Found')
   error.status = 404;
   res.status(error.status || 500)
-  .render('assets/error',{
+  .render('home/error',{
     layout: '',
     error: error
   })
 })
-// Connect to port
+
+// Application port
 const port = process.env.DB_PORT || 8000
+
+// start the express server
 app.listen(port, () => console.log(`Connected to port ${port}`))

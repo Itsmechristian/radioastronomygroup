@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Radio Astronomy Group Uploader</title>
+</head>
+<style>
+  body{
+    margin: 0;
+    padding: 0;
+    background: #6991f2;
+  }
+  .container{
+    margin: 0 auto;
+    width: 60%;
+    padding: 80px 0px;
+  }
+  .container .uploads{
+    border-radius: 5px;
+    height: 400px;
+    width: 100%;
+    background: #eff5ff;
+  }
+  .container .uploads p:nth-child(1){
+    color: #6991f2;
+    text-align: center;
+    font-family: Arial;
+    margin: 0;
+    padding: 15px 0px;
+    font-weight: 600;
+  }
+  .container .uploads .uploaded{
+    margin: 15px;
+    height: 50px;
+    padding: 5px;
+    background: #fff;
+  }
+  .container .uploads .uploaded a{
+    position: relative;
+    top: -35px;
+    font-size: 0.9rem;
+    text-decoration: none;
+  font-family: Arial;
+  font-weight: 600;
+  color: rgb(112, 112, 112);
+  }
+   .container .uploads .uploaded small{
+  font-family: Arial;
+     float: right;
+  font-weight: 600;
+  font-size: 0.7rem;
+  color: rgb(161, 161, 161);
+   }
+   .container .uploads .uploaded .manage{
+     float: right;
+     position: relative;
+     top: 30px;
+     left: 40px;
+   }
+   .container .uploads .uploaded .manage button{
+    margin: 0px 2px;
+    border: none;
+    color: #fff;
+    padding: 3px 10px;
+    border-radius: 2px;
+   }
+   .container .uploads .uploaded .manage button:nth-child(1){
+     background: #28a745;
+
+   }
+   .container .uploads .uploaded .manage button:nth-child(2){
+     background: #de3545;
+   }
+   .container .uploads form{
+     position: relative;
+     bottom: 0;
+     margin: 15px;
+     border: 2px dashed #6991f2;
+     height: 225px;
+   }
+   .container .uploads form input{
+     position: absolute;
+     height: 255px;
+     width: 418px;
+     opacity: 0;
+   }
+    .container .uploads form label{
+      position: relative;
+      left: 23%;
+      top: 35%;
+      color: #6991f2;
+    }
+</style>
+<body>
+  <div class="container">
+    <div class="uploads">
+      <p>Upload Image</p>
+      <img src="https://photos.google.com/search/_p0xe65102c51af4e9ea_Mablethorpe/photo/AF1QipNLkyiYn4BSv0NfAo0SJfPLMNhbi6F6QIZfhtN7" alt="" height="100" width="100">
+      {{#if imageInfo}}
+      <div class="uploaded">
+        <img onClick="returnFileUrl()" src="{{imageInfo.path}}" alt="" height="50" width="50" id="img">
+        <a onClick="returnFileUrl()">{{imageInfo.filename}}</a>
+        <small>{{imageInfo.size}}</small>
+        <div class="manage">
+        <button onClick="returnFileUrl()">Select</button>
+        <button type="submit">Delete</button>
+        </div>
+      </div> 
+      {{/if}}
+      <form action="/user/upload?CKEditor=editor&CKEditorFuncNum=1&langCode=en-gb" method="POST" enctype="multipart/form-data" id="form">
+      <input type="file" name="imageuploader" id="file" onchange="javascript: this.form.submit()">
+      <label for="file">Cick here to upload an image</label>
+      </form>
+    </div>
+  </div>
+    {{!-- <form action="/admin/upload?CKEditor=editor&CKEditorFuncNum=1&langCode=en-gb" method="POST" enctype="multipart/form-data" id="form">
+  <div class="uploader">
+  <input name="imageuploader" type="file" id="file">
+  <label for="file">Upload Image</label>
+  </div>
+  <p>Lorem ipsum dolor sit amet.</p>
+</form> --}}
+  <script>
+   var test = (document.getElementById('file'));
+   test.addEventListener("change" , function(e) {
+     console.log(this.value.slice(12, this.value.length))
+   })
+  // Helper function to get parameters from the query string.
+  function getUrlParam(paramName) {
+    var reParam = new RegExp("(?:[?&]|&)" + paramName + "=([^&]+)", "i");
+    var match = window.location.search.match(reParam);
+
+    return match && match.length > 1 ? match[1] : null;
+  }
+  // Simulate user action of selecting a file to be returned to CKEditor.
+  function returnFileUrl() {
+    var imgSrc = document.getElementById("img").src;
+    var funcNum = getUrlParam("CKEditorFuncNum");
+    window.opener.CKEDITOR.tools.callFunction(funcNum, imgSrc, function() {
+      // Get the reference to a dialog window.
+      var dialog = this.getDialog();
+      // Check if this is the Image Properties dialog window.
+      if (dialog.getName() == "image") {
+        // Get the reference to a text field that stores the "alt" attribute.
+        var element = dialog.getContentElement("info", "txtAlt");
+        // Assign the new value.
+        if (element) element.setValue("BAG Image");
+      }
+    });
+    window.close();
+  }
+  </script>
+    <script src="/ckeditor/ckeditor.js"></script>
+<script src="/js/ckeditorConfig.js"></script>
+</body>
+</html>

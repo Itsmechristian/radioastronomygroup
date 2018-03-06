@@ -1,0 +1,174 @@
+$primary-color: #2a5bb8;
+$text-color: #333;
+$secondary-text-color: #4a4747;
+$white-color: #fff;
+$border-color: 1px inset #ababab;
+
+.b-nav-main {
+  a {
+    position: relative;
+    font-family: OS-Regular;
+    color: #fff;
+    font-size: 1.2rem;
+    text-decoration: none;
+  }
+  li {
+    list-style: none;
+  }
+  width: 100%;
+  height: 50px;
+  background: $primary-color;
+  .container-fluid {
+    .b-categories {
+      width: 100%;
+      .b-menu {
+        border-radius: 2px;
+        cursor: pointer;
+        border-left: 1px solid rgb(196, 196, 196);
+        display: inline-block;
+        width: 125px;
+        height: 50px;
+        margin: 0px -3px;
+        padding: 15px 4px;
+        span {
+          background: #fff;
+          position: absolute;
+          height: 3px;
+          &:nth-child(1) {
+            top: 17px;
+            width: 10px;
+          }
+          &:nth-child(2) {
+            top: 22px;
+            width: 15px;
+          }
+          &:nth-child(3) {
+            top: 27px;
+            width: 10px;
+          }
+        }
+        a {
+          left: 20px;
+          top: -5px;
+        }
+      }
+      .sub-links {
+        padding: 13px 8px;
+        display: inline;
+        margin: 0px -2px;
+        top: -5px;
+        border-right: 1px solid rgb(196, 196, 196);
+        border-left: 1px solid rgb(196, 196, 196);
+      }
+      .b-user-dropdown {
+        cursor: pointer;
+        height: 50px;
+        width: auto;
+        padding: 10px 0px;
+        float: right;
+        color: #fff;
+        li {
+          text-transform: capitalize;
+          font-family: OS-Regular;
+          font-size: 1.2rem;
+          text-align: center;
+        }
+      }
+      .b-login-link {
+        height: 50px;
+        padding: 10px 0px;
+        float: right;
+        margin: 0px 10px;
+        &:nth-child(1) {
+          width: 50px;
+        }
+        &:nth-child(2) {
+          width: 70px;
+        }
+      }
+    }
+  }
+
+  .user-down.clicked {
+    display: block;
+  }
+  .user-down {
+    z-index: 20;
+    display: none;
+    border-radius: 5px;
+    background: #fff;
+    height: auto;
+    width: 135px;
+    top: 38px;
+    left: 63px;
+    float: right;
+    position: relative;
+    a {
+      padding: 5px;
+      margin: 0;
+      color: #4a4747;
+    }
+  }
+  #drop-item-container {
+    z-index: -2;
+    display: none;
+  }
+  #drop-item-container.clicked {
+    display: block;
+  }
+  .drop-item {
+    position: relative;
+    z-index: 20;
+    height: 200px;
+    width: 600px;
+    display: inline-block;
+    background: transparent;
+    .drop-left {
+      li {
+        margin: 10px;
+        cursor: pointer;
+        &:nth-child(1) {
+          display: none;
+        }
+      }
+      a {
+        color: #4a4747;
+      }
+      float: left;
+      height: 200px;
+      width: 200px;
+      background: #fff;
+    }
+    .drop-right {
+      float: right;
+      height: 200px;
+      width: 400px;
+      background: $primary-color;
+      li {
+        display: inline-block;
+        font-size: 0.8rem;
+        margin: 10px;
+      }
+    }
+  }
+}
+
+.b-nav-header {
+  position: relative;
+  z-index: 10;
+  height: auto;
+  width: 100%;
+  background: linear-gradient(black, $primary-color);
+  .container-fluid {
+    h1,
+    h2 {
+      position: relative;
+      top: 15px;
+      font-family: OS-Bold;
+      color: #fff;
+    }
+    img {
+      margin-top: 30px;
+    }
+  }
+}

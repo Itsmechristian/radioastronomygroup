@@ -4,17 +4,11 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "serve": "nodemon",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build-css": "node-sass --include-path scss scss/style.scss public/css/style.css",
-    "build-admin": "node-sass --include-path scss scss/admin.scss public/css/admin.css",
-    "build-media-query": "node-sass --include-path scss scss/media-query.scss public/css/media-query.css",
-    "watch-client": "nodemon -e scss -x \"npm run build-css\" ",
-    "watch-admin": "nodemon -e scss -x \"npm run build-admin\" ",
-    "watch-media": "nodemon -e scss -x \"npm run build-media-query\""
+    "test": "mocha",
+    "serve": "nodemon server",
+    "scss:compile": "node-sass --watch scss -o public/css"
   },
   "keywords": [],
-  "author": "Sijey",
   "license": "MIT",
   "dependencies": {
     "bcryptjs": "2.4.3",
@@ -35,7 +29,10 @@
     "passport-local": "1.0.0"
   },
   "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
     "dotenv": "5.0.0",
+    "mocha": "^5.0.1",
     "node-sass": "^4.7.2",
     "nodemon": "1.14.11"
   }

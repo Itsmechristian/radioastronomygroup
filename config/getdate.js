@@ -6,5 +6,5 @@ Date.prototype.getFormatDate = function() {
 var getFormat = new Date().getFormatDate()
 
 module.exports = {
-    getdate: getFormat
+    getFormat: getFormat
 } 

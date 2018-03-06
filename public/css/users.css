@@ -1,46 +1,5 @@
-@font-face {
-  font-family: OS-Bold;
-  src: url("/fonts/OpenSans-Bold.ttf"); }
-@font-face {
-  font-family: OS-BoldItalic;
-  src: url("/fonts/OpenSans-BoldItalic.ttf"); }
-@font-face {
-  font-family: OS-ExtraBold;
-  src: url("/fonts/OpenSans-ExtraBold.ttf"); }
-@font-face {
-  font-family: OS-ExtraBoldItalic;
-  src: url("/fonts/OpenSans-ExtraBoldItalic.ttf"); }
-@font-face {
-  font-family: OS-Italic;
-  src: url("/fonts/OpenSans-Italic.ttf"); }
-@font-face {
-  font-family: OS-LightItalic;
-  src: url("/fonts/OpenSans-LightItalic.ttf"); }
-@font-face {
-  font-family: OS-Regular;
-  src: url("/fonts/OpenSans-Regular.ttf"); }
-@font-face {
-  font-family: OS-Semibold;
-  src: url("/fonts/OpenSans-Semibold.ttf"); }
-@font-face {
-  font-family: OS-SemiboldItalic;
-  src: url("/fonts/OpenSans-SemiboldItalic.ttf"); }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: #4A4747;
-  padding: 0;
-  margin: 0; }
-
-body {
-  margin: 0;
-  padding: 0;
-  background: #f1f1f1;
-  box-sizing: border-box; }
-
+@import url("/css/fonts.css");
+@import url("/css/default.css");
 .b-nav-main {
   width: 100%;
   height: 50px;
@@ -53,57 +12,49 @@ body {
     text-decoration: none; }
   .b-nav-main li {
     list-style: none; }
-  .b-nav-main .container-fluid {
-    width: 80%; }
-    .b-nav-main .container-fluid .b-categories {
-      width: 100%; }
-      .b-nav-main .container-fluid .b-categories .b-menu {
-        cursor: pointer;
-        border-left: 1px solid #c4c4c4;
-        display: inline-block;
-        width: 125px;
-        height: 50px;
-        margin: 0px -3px;
-        padding: 15px 4px; }
-        .b-nav-main .container-fluid .b-categories .b-menu span {
-          background: #fff;
-          position: absolute;
-          height: 3px; }
-          .b-nav-main .container-fluid .b-categories .b-menu span:nth-child(1) {
-            top: 17px;
-            width: 10px; }
-          .b-nav-main .container-fluid .b-categories .b-menu span:nth-child(2) {
-            top: 22px;
-            width: 15px; }
-          .b-nav-main .container-fluid .b-categories .b-menu span:nth-child(3) {
-            top: 27px;
-            width: 10px; }
-        .b-nav-main .container-fluid .b-categories .b-menu a {
-          left: 20px;
-          top: -5px; }
-      .b-nav-main .container-fluid .b-categories .sub-links {
-        padding: 13px 8px;
-        display: inline;
-        margin: 0px -2px;
-        top: -5px;
-        border-left: 1px solid #c4c4c4; }
-      .b-nav-main .container-fluid .b-categories .b-user-dropdown {
-        cursor: pointer;
-        height: 50px;
-        width: auto;
-        padding: 10px 0px;
-        float: right;
-        color: #fff; }
-        .b-nav-main .container-fluid .b-categories .b-user-dropdown li {
-          text-transform: capitalize;
-          font-family: OS-Regular;
-          font-size: 1.2rem;
-          text-align: center; }
-      .b-nav-main .container-fluid .b-categories .b-login-link {
-        height: 50px;
-        width: 50px;
-        padding: 10px 0px;
-        float: right; }
+  .b-nav-main .container-fluid .b-categories {
+    width: 100%; }
+    .b-nav-main .container-fluid .b-categories .b-menu {
+      cursor: pointer;
+      border-left: 1px solid #c4c4c4;
+      display: inline-block;
+      width: 125px;
+      height: 50px;
+      margin: 0px -3px;
+      padding: 15px 4px; }
+      .b-nav-main .container-fluid .b-categories .b-menu span {
+        background: #fff;
+        position: absolute;
+        height: 3px; }
+        .b-nav-main .container-fluid .b-categories .b-menu span:nth-child(1) {
+          top: 17px;
+          width: 10px; }
+        .b-nav-main .container-fluid .b-categories .b-menu span:nth-child(2) {
+          top: 22px;
+          width: 15px; }
+        .b-nav-main .container-fluid .b-categories .b-menu span:nth-child(3) {
+          top: 27px;
+          width: 10px; }
+      .b-nav-main .container-fluid .b-categories .b-menu a {
+        left: 20px;
+        top: -5px; }
+    .b-nav-main .container-fluid .b-categories .b-user-dropdown {
+      cursor: pointer;
+      height: 50px;
+      width: auto;
+      padding: 10px 0px;
+      float: right;
+      color: #fff; }
+      .b-nav-main .container-fluid .b-categories .b-user-dropdown li {
+        text-transform: capitalize;
+        font-family: OS-Regular;
+        font-size: 1.2rem;
+        text-align: center; }
+    .b-nav-main .container-fluid .b-categories .b-login-link {
+      height: 50px;
+      width: 50px;
+      padding: 10px 0px;
+      float: right; }
   .b-nav-main .user-down.clicked {
     display: block; }
   .b-nav-main .user-down {
@@ -120,9 +71,8 @@ body {
     .b-nav-main .user-down a {
       padding: 5px;
       margin: 0;
-      color: #4A4747; }
+      color: #4a4747; }
   .b-nav-main #drop-item-container {
-    max-width: 80%;
     z-index: -2;
     display: none; }
   .b-nav-main #drop-item-container.clicked {
@@ -143,7 +93,7 @@ body {
         margin: 10px;
         cursor: pointer; }
       .b-nav-main .drop-item .drop-left a {
-        color: #4A4747; }
+        color: #4a4747; }
     .b-nav-main .drop-item .drop-right {
       float: right;
       height: 200px;
@@ -161,7 +111,6 @@ body {
   width: 100%;
   background: linear-gradient(black, #2a5bb8); }
   .b-nav-header .container-fluid {
-    width: 80%;
     height: auto; }
     .b-nav-header .container-fluid h1,
     .b-nav-header .container-fluid h2 {
@@ -188,6 +137,7 @@ body {
   font-family: OS-Bold; }
   .b-create h1 span {
     font-size: 1.2rem; }
+
 .b-create form {
   height: auto;
   padding: 35px;
@@ -205,8 +155,10 @@ body {
     border: 1px solid #d1d1d1; }
     .b-create form input:-webkit-autofill {
       -webkit-text-fill-color: #fff; }
+
 .b-create textarea {
   border: 1px solid #d1d1d1 !important; }
+
 .b-create button {
   position: relative;
   top: 10px;
@@ -227,14 +179,12 @@ body {
     height: 50px;
     border-radius: 2px;
     border: 1px solid #ababab; }
-    .b-requests .row .box h2 {
-      padding: 10px 0px;
-      display: inline-block; }
-      .b-requests .row .box h2 a {
-        color: #313131;
-        text-decoration: none; }
-        .b-requests .row .box h2 a:hover {
-          text-decoration-line: underline; }
+    .b-requests .row .box a {
+      font-size: 1rem;
+      color: #313131;
+      text-decoration: none; }
+      .b-requests .row .box a:hover {
+        text-decoration-line: underline; }
     .b-requests .row .box i {
       color: #fff; }
     .b-requests .row .box .edit {
@@ -269,5 +219,3 @@ body {
     .b-reqpost-container .b-reqpost p {
       font-size: 1.2rem;
       font-family: OS-Regular; }
-
-/*# sourceMappingURL=admin.css.map */

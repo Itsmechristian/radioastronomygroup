@@ -1,0 +1,86 @@
+<div class="container b-register">
+  {{#if errorforms}}
+  <form action="/home/register" method="post" id="registerform" class="errorForms">
+    <h2>Register</h2>
+    <label for="Username" id="usernamelabel">Username</label>
+    <input class="input" id="username" type="text" name="username" placeholder="Username*" value="{{errorforms.username}}" autocomplete="off">
+    <div class="usernameErrors">
+      {{#each usernameError}}
+      <small>{{{msg}}}</small>
+      {{/each}}
+    </div>
+    <label for="firstname" id="firstnamelabel">Firstname</label>
+    <input class="input" id="firstname" type="text" name="firstname" placeholder="Firstname*" value="{{errorforms.firstname}}"
+      auto-complete="something-new">
+    <div class="firstnameErrors">
+      {{#each firstnameError}}
+      <small>{{msg}}</small>
+      {{/each}}
+    </div>
+    <label for="lastname" id="lastnamelabel">Lastname</label>
+    <input class="input" id="lastname" type="text" name="lastname" placeholder="Lastname*" value="{{errorforms.lastname}}" autocomplete="off">
+    <div class="lastnameErrors">
+      {{#each lastnameError}}
+      <small>{{msg}}</small>
+      {{/each}}
+    </div>
+    <label for="email" id="emaillabel">Email</label>
+    <input class="input" id="email" type="email" name="email" placeholder="Email*" value="{{errorforms.email}}" autocomplete="off">
+    <div class="emailErrors">
+      {{#each emailError}}
+      <small>{{msg}}</small>
+      {{/each}}
+    </div>
+    <label for="password" id="passwordlabel">Password</label>
+    <input class="input" id="password" type="password" name="password" placeholder="Password*" autocomplete="off">
+    <small id="strengthchecker"></small>
+    <div class="passwordErrors">
+      {{#each passwordError}}
+      <small>{{msg}}</small>
+      {{/each}}
+    </div>
+    <label for="password2" id="password2label">Confirm Password</label>
+    <input class="input" id="password2" type="password" name="password2" placeholder="Confirm Password*" autocomplete="off">
+    <div class="password2Errors">
+      {{#each password2Error}}
+      <small>{{msg}}</small>
+      {{/each}}
+    </div>
+    <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+    <button type="submit" id="submit">Submit</button>
+    <a href="#">Already Have An Account?</a>
+  </form>
+  {{else}}
+  <form action="/home/register" method="post" id="registerform">
+    <h2>Register</h2>
+    <label for="Username" id="usernamelabel">Username</label>
+    <input class="input" id="username" type="text" name="username" placeholder="Username*" autocomplete="off">
+    <div class="usernameErrors">
+    </div>
+    <label for="firstname" id="firstnamelabel">Firstname</label>
+    <input class="input" id="firstname" type="text" name="firstname" placeholder="Firstname*" autocomplete="false">
+    <div class="firstnameErrors">
+    </div>
+    <label for="firstname" id="lastnamelabel">Lastname</label>
+    <input class="input" id="lastname" type="text" name="lastname" placeholder="Lastname*" autocomplete="false">
+    <div class="lastnameErrors">
+    </div>
+    <label for="firstname" id="emaillabel">Email</label>
+    <input class="input" id="email" type="email" name="email" placeholder="Email*" autocomplete="off">
+    <div class="emailErrors">
+    </div>
+    <label for="firstname" id="passwordlabel">Password</label>
+    <input class="input" id="password" type="password" name="password" placeholder="Password*" autocomplete="false">
+    <small id="strengthchecker"></small>
+    <div class="passwordErrors">
+    </div>
+    <label for="firstname" id="password2label">Confirm Password</label>
+    <input class="input" id="password2" type="password" name="password2" placeholder="Confirm Password*" autocomplete="false">
+    <div class="password2Errors">
+    </div>
+    <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+    <button type="submit" id="submit">Submit</button>
+    <a href="#">Already Have An Account?</a>
+  </form>
+  {{/if}}
+</div>
