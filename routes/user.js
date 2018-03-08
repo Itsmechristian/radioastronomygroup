@@ -166,8 +166,9 @@ router.get("/request/post/:id", (req, res) => {
     .findById({
       _id: req.params.id
     })
-    .select("_id dateCreate title body createBy")
+    .select("_id dateRequested title body createBy")
     .then(result => {
+      const getdate = require('../config/getdate')
       res.render("user/reqpost", { post: result });
     })
     .catch(err => console.log(err));

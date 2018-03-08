@@ -1,10 +1,9 @@
-Date.prototype.getFormatDate = function() {
+/**
+ * This will format the date to MMMM/DD/YYYY
+ * @param date new Date() 
+ */
+
+module.exports = function(date) {
     const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-    return monthNames[this.getMonth()]+' '+this.getDate()+', '+this.getFullYear()
+    return monthNames[date.getMonth()]+' '+date.getDate()+', '+date.getFullYear()
 }
-
-var getFormat = new Date().getFormatDate()
-
-module.exports = {
-    getFormat: getFormat
-} 

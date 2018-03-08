@@ -1,6 +1,7 @@
 <div class="b-body container-fluid">
     <div class="row home-row">
         <div class="col-lg-9">
+        {{#if articles}}
             {{#each articles}}
             <article class="box">
                 <img src="{{src}}">
@@ -10,22 +11,73 @@
             </article>
             {{/each}}
             <a href="#" class="see-more-link">See More</a>
+            {{else}}
+            <article class="box">
+                <img src="/img/500x500.png" alt="">
+                <div class="link-side">
+                    <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae ipsa</a>
+                </div>
+            </article>
+                        <article class="box">
+                <img src="/img/500x500.png" alt="">
+                <div class="link-side">
+                    <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae ipsa</a>
+                </div>
+            </article>
+                        <article class="box">
+                <img src="/img/500x500.png" alt="">
+                <div class="link-side">
+                    <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae ipsa</a>
+                </div>
+            </article>
+                        <article class="box">
+                <img src="/img/500x500.png" alt="">
+                <div class="link-side">
+                    <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae ipsa</a>
+                </div>
+            </article>
+                        <article class="box">
+                <img src="/img/500x500.png" alt="">
+                <div class="link-side">
+                    <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae ipsa</a>
+                </div>
+            </article>
+                        <article class="box">
+                <img src="/img/500x500.png" alt="">
+                <div class="link-side">
+                    <a href="#">Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae ipsa</a>
+                </div>
+            </article>
+            <a href="#" class="see-more-link">See More</a>
+        {{/if}}
+        <div class="b-sub-sections">
+            <div class="icon-body">
+                <i class="fa fa-rocket"></i>
+                <p>You have landed on the BAA RAG Web pages. The site content has been totally rewritten with additional new content added on a regular basis.We would welcome details of projects that you are working on or any observations that you have made.</p>
+            </div>
+            <div class="icon-body">
+                <i class="fa fa-info-circle"></i>
+                <p>The UK Radio Astronomy Association (UKRAA) was set up in 2008 with the support of the Radio Astronomy Group of the British Astronomical Association to handle the development and sale of radio astronomy equipment developed by the BAA RAG. </p>
+            </div>
+            <div class="icon-body">
+                <i class="fa fa-comment"></i>
+                <p>We always appreciate feedback on the work of the Group and suggestions as to what should be included on this site.</p>
+            </div>
+
+        </div>
         </div>
         <div class="col-lg-3">
-            <div class="events">
-                <i class="fa fa-calendar"></i>
-                <h4>Radio Astronomy Talks</h4>
-                <p>Birmingham AS</p>
-                <small>Date: October 27, 2015</small>
-                <small>Time: 15:00</small>
-                <p>Meteor Workshop, Northampton</p>
-                <small>Date: October 27, 2015</small>
-                <small>Time: 15:00</small>
+            <div class="events-wrapper">
+                <h2>Radio Astronomy Talks</h2>
+                <div class="events">
+                    <div class="place">
+                        <p>Birmingham AS</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
 <footer>
     <p>Copyright &copy; 2018 British Astronomy Group</p>
 </footer>

@@ -9,10 +9,11 @@
     <h3>{{success}}</h3>
   </div>
   {{/if}}
-  
 <form class="b-form" action="/home/login" method="post">
   <h2>Login To Your Account</h2>
+  <label for="username" id="usernamelabel">Username</label>
   <input type="text" name="username" placeholder="Username*" id="username">
+  <label for="password" id="passwordlabel">Password</label>
   <input type="password" name="password" placeholder="Password*" id="password">
   <button type="submit">Login</button>
   <a href="#">Forgot Password?</a>

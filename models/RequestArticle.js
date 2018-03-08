@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 , Schema = mongoose.Schema
-, getdate = require('../config/getdate')
 
 const RequestArticleSchema = new Schema ({
     _id: mongoose.Schema.Types.ObjectId,
@@ -24,8 +23,8 @@ const RequestArticleSchema = new Schema ({
         type: String,
     },
     dateRequested:{ 
-        type: String,
-        default: getdate.getFormat,
+        type: Date,
+        default: new Date(),
         required: true
     }
 })
