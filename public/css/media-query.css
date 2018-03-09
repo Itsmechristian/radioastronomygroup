@@ -1,14 +1,14 @@
-@media screen and (max-width: 990px) {
-  .col-lg-9 {
-    border: none !important; } }
-
 @media screen and (min-width: 769px) {
   .mobile-navbar {
     display: none; } }
 
+@media screen and (max-width: 990px) {
+  .col-lg-9 {
+    border: none !important; } }
+
 @media screen and (max-width: 1466px) {
   .container-fluid {
-    max-width: 80%; } }
+    max-width: 90%; } }
 
 @media screen and (max-width: 1200px) {
   .b-post img {
@@ -84,6 +84,7 @@
     background: rgba(0, 0, 0, 0.582); }
   .b-mobile-sidebar.clicked {
     display: block;
+    overflow: hidden;
     animation: slideSideBar 0.2s both; }
   .b-mobile-sidebar.hid {
     animation: CloseSideBar 0.2s both; }

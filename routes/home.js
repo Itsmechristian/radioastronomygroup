@@ -5,8 +5,10 @@ const express = require("express"),
   passport = require("passport"),
   LocalStrategy = require("passport-local").Strategy,
   expressValidator = require("express-validator"),
+  csrf = require('csurf')
   flash = require("connect-flash");
 
+const csrfProtection = csrf()
   // Models
 const Article = require("../models/Article")
      , User = require("../models/User");
@@ -87,16 +89,13 @@ router.get("/post/:id", (req, res) => {
 });
 
 
-// Log in route
-
-
 // Register route
 router.get("/register", (req, res) => {
   res.render("user/register");
 });
 
 
-router.post("/register", (req, res) => {
+router.post("/register", csrfProtection, (req, res) => {
   let username = req.body.username.toLowerCase(),
     firstname = req.body.firstname.toLowerCase(),
     lastname = req.body.lastname.toLowerCase(),
@@ -164,12 +163,13 @@ router.post("/register", (req, res) => {
     });
   });
 });
-router.get("/login", (req, res) => {
+router.get("/login", csrfProtection, (req, res) => {
   if (!req.user) {
     res.render("home/login", {
       layout: "main.handlebars",
       success: req.flash("success"),
       errors: req.flash("error"),
+      csrfToken: req.csrfToken()
     });
   } else {
     req.flash("isLogin", "Already logged in");

@@ -1,17 +1,19 @@
-@media screen and (max-width: 990px) {
-  .col-lg-9 {
-    border: none !important;
-  }
-}
+// For navigation
 @media screen and (min-width: 769px) {
   .mobile-navbar {
     display: none;
   }
 }
 
+@media screen and (max-width: 990px) {
+  .col-lg-9 {
+    border: none !important;
+  }
+}
+
 @media screen and (max-width: 1466px) {
   .container-fluid {
-    max-width: 80%;
+    max-width: 90%;
   }
 }
 @media screen and (max-width: 1200px) {
@@ -110,6 +112,7 @@
   }
   .b-mobile-sidebar.clicked {
     display: block;
+    overflow: hidden;
     animation: slideSideBar 0.2s both;
   }
   .b-mobile-sidebar.hid {

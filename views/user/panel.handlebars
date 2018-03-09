@@ -2,7 +2,26 @@
   {{#if success}}
   <h1>{{success}}</h1>
   {{/if}}
+  <div class="post-box">
+    {{#if notpublishcount}}
+      <h3>Number requested: <span>{{notpublishcount}}</span></h3>
+      <h3>Your recent request:</h3>
+      <p>{{notpublishresult.title}}</p>
+      <a href="#">View them all</a>
+      {{else}}
+      <h3>Number requested: 0</h3>
+      <p>No Recent Request Record</p>
+      {{/if}}
+  </div>
     <div class="post-box">
-      <h4>Working</h4>
+      {{#if publishedcount}}
+      <h3>Your Publish Article: <span>{{publishedcount}}</span></h3>
+      <h3>Recent:</h3>
+      <p>{{published.title}}</p>
+      <a href="#">View them all</a>
+      {{else}}
+      <h3>Your Publish Article: 0</h3>
+      <p>No Publish Article Record</p>
+      {{/if}}
   </div>
 </div>

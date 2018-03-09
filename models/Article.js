@@ -22,9 +22,10 @@ const articleSchema = new Schema ({
     createdBy: {
         type: String,
     },
-    dateCreate:{
-        type: String,
-        required: true
+    datePublished:{
+        type: Date,
+        required: true,
+        default: new Date()
     }
 })
 
