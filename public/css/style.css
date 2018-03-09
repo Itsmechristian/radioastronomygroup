@@ -640,9 +640,14 @@ footer {
   .b-create h1 span {
     font-size: 1.2rem; }
 
+.b-create small {
+  display: block;
+  font-family: OS-Bold;
+  color: #e33545; }
+
 .b-create form {
   height: auto;
-  padding: 35px;
+  padding: 40px 35px;
   background: #fff;
   position: relative;
   top: 10px; }

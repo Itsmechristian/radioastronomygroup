@@ -10,6 +10,9 @@ const express = require("express"),
   fs = require("fs"),
   url = require("url");
 
+// router.use(csurf())
+
+const getdate = require('../config/getdate')
 
 // Initialize multer to uplaod a file
 const storage = multer.diskStorage({
@@ -54,6 +57,7 @@ router.all("/*",(req, res, next) => {
     req.app.locals.layout = "main.handlebars";
     next();
 });
+
 const newBugs = function(error, whosLoggedin) {
   const newBugs = new Bugs({
     _id: new mongoose.Types.ObjectId(),
@@ -71,23 +75,74 @@ router.get("/logout", (req, res) => {
   res.redirect("/home/login");
 });
 
-router.get("/",(req, res) => {
+router.get("/", (req, res) => {
   if(!req.user) {
     req.flash('error', 'Logged In First');
     res.redirect('/home/login')
   }
   else{
+
+
+    /*
+    * Use another solution if possible
+    * Not a good idea to call models inside another models
+    * It's working but there's a best solution for it.
+    */
+
+    RequestArticle.find({'userId': req.user._id}, null, {sort: {dateRequested: 1}}, (requestArticleError, requestArticle) => {
+    Article.find({'userId': req.user._id}, null, {sort: {dateRequested: 1}},(articleError, article) => {
+      if(requestArticleError || articleError) {
+        req.logout()
+        res.redirect('/home/login')
+        req.flash('error', 'There\'s a problem try again later')
+      }
+      let userArticles = 
+      { 
+        notpublish: {
+        requestCount: requestArticle.length,
+        results: requestArticle.map(e => {
+          return {
+            title: e.title,
+            dateRequested: getdate(e.dateRequested),
+            author: e.requestBy, 
+            status: {
+              isPublish: e.isPublish
+            },
+          }
+        })
+      },
+      published: {
+        requestCount: article.length,
+        results: article.map(e => {
+          return {
+            title: e.title,
+            datePublished: getdate(e.datePublished),
+            author: e.requestBy, 
+            status: {
+              isPublish: e.isPublish
+            },
+          }
+        })
+      }
+    }
+
     res.render("user/panel", {
-    firstname: req.user.firstname,
-    success: req.flash("success")})
+      notpublishcount: userArticles.notpublish.requestCount,
+      notpublishresult: userArticles.notpublish.results[0],
+      publishedcount: userArticles.published.requestCount,
+      published: userArticles.published.results[0]
+        })
+      })  
+    })
   }
 });
 
-router.get("/create", (req, res) => {
+router.get("/create",(req, res) => {
   res.render("user/create");
 });
 
 router.post("/create", upload, (req, res) => {
+
   const newArticle = new RequestArticle({
     _id: new mongoose.Types.ObjectId(),
     userId: req.user._id,
@@ -95,6 +150,15 @@ router.post("/create", upload, (req, res) => {
     body: req.body.body,
     requestBy: req.user.firstname + " " + req.user.lastname
   });
+
+  if(newArticle.title == '') {
+    res.render('create')
+    req.flash()
+  }
+  else if(newArticle.body == '') {
+
+  }
+
   newArticle
     .save()
     .then(results => {
@@ -105,7 +169,7 @@ router.post("/create", upload, (req, res) => {
       req.flash("success", response.message);
       res.redirect("/user");
     })
-    .catch(err => console.log(err));
+    // .catch(err => console.log(err));
 });
 
 router.get('/upload', (req, res) => {
@@ -133,6 +197,7 @@ router.post("/upload", (req, res) => {
 
 router.get("/requests", (req, res) => {
   if (req.user.admin === true) {
+    
     RequestArticle
       .find()
       .then(results => {
@@ -162,12 +227,15 @@ router.get("/requests", (req, res) => {
   }
 });
 router.get("/request/post/:id", (req, res) => {
+  const articleConfiguration = require('../config/articleConfiguration')
+  
   RequestArticle
     .findById({
       _id: req.params.id
     })
     .select("_id dateRequested title body createBy")
     .then(result => {
+  console.log(articleConfiguration(result))
       const getdate = require('../config/getdate')
       res.render("user/reqpost", { post: result });
     })
@@ -180,30 +248,30 @@ router.post("/request/post/:id", (req, res) => {
       _id: req.params.id
     })
     .then(result => {
-      changeImgPath(result.body);
-      const newArticle = new Article({
-        _id: new mongoose.Types.ObjectId(),
-        userId: result.userId,
-        isPublish: true,
-        title: result.title,
-        body: changeArticlePath(result),
-        createdBy: result.requestBy,
-        dateCreate: result.dateRequested
-      });
-      newArticle.save().then(saved => {
-        req.flash("success", "Article Published");
-        res.redirect("/user");
-        RequestArticle
-          .remove({
-            _id: req.params.id
-          })
-          .catch(err => {
-            console.log(err);
-          });
-      });
+
+
+      // const newArticle = new Article({
+      //   _id: new mongoose.Types.ObjectId(),
+      //   userId: result.userId,
+      //   isPublish: true,
+      //   title: result.title,
+      //   body: result.body,
+      //   createdBy: result.requestBy,
+      // });
+      // newArticle.save().then(saved => {
+      //   req.flash("success", "Article Published");
+      //   res.redirect("/user");
+      //   RequestArticle
+      //     .remove({
+      //       _id: req.params.id
+      //     })
+      //     .catch(err => {
+      //       console.log(err);
+      //     });
+      // });
     })
     .catch(err => {
-      newBugs(err, req.user.firstname + "" + req.user.lastname);
+      console.log(err)
     });
 });
 

@@ -20,7 +20,9 @@ const express = require('express')
     , expressValidator = require('express-validator')
     , mongoose = require('mongoose')
     , mongo = require('mongodb')
+    , csrf = require('csurf')
     , methodOverride = require('method-override')
+    
 
     // Invoke an instance of express application
     , app = express()
@@ -111,6 +113,7 @@ app.use(expressValidator({
     }      
   }
 }))
+
 
 // Initialize flash messages allow us to access a success or an error message to req.flash(body, message)
 app.use(require('connect-flash')());

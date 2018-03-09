@@ -61,6 +61,7 @@ $white: #fff;
 $grey: #ababab;
 $brown2: #707070;
 $border-color: 1px inset #ababab;
+$red: #e33545;
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
@@ -785,9 +786,14 @@ footer {
       font-size: 1.2rem;
     }
   }
+  small{
+    display: block;
+    font-family: OS-Bold;
+    color: $red;
+  }
   form {
     height: auto;
-    padding: 35px;
+    padding: 40px 35px;
     background: $white;
     position: relative;
     top: 10px;
