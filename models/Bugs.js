@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 , Schema = mongoose.Schema
-, getdate = require('../config/getdate')
 
 const bugsSchema = new Schema({
     _id: mongoose.Schema.Types.ObjectId,
@@ -9,7 +8,7 @@ const bugsSchema = new Schema({
     },
     dateOccur: {
         type: Date,
-        default: getdate.getdate
+        default: new Date()
     },
     whosLoggedin: {
         type: String

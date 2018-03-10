@@ -14,7 +14,7 @@ const Article = require("../models/Article")
      , User = require("../models/User");
 
   // Get date format mmmm-dd-yyyy
-  getDate = require("../config/getdate");
+  getDate = require("../module/getdate");
 
 
 router.all("/*", (req, res, next) => {
@@ -29,29 +29,40 @@ router.get("/", (req, res) => {
   Article.find().sort({ dateCreate: -1 })
     .limit(6)
     .then(results => {
-      articles = [];
+      // Catch articles within array
+      let articles = [];
+
       results.forEach(result => {
         let imgOpenTag = result.body.search("<img"),
             imgCloseTag = result.body.search("/>"),
-            img = result.body.toString().slice(imgOpenTag, imgCloseTag + 2),
-            src = img.match(/([a-z\-_0-9\/\:\.]*\.(jpg|jpeg|png|gif))/i);
-        function trancateTitle(title) {
+
+            // Get html element <img  src="*"/>
+            img = result.body.toString().slice(imgOpenTag, imgCloseTag + 2)
+
+        //This will gonna truncate a title if it is over 100 character so the article title wont overflow in home articles boxes
+        function truncateTitle(title) {
           if (title.length > 100) {
             return (title = title.substring(0, 100) + "...");
           }
           return title;
         }
+        
+       //As we get the img element this will gonna get the source url
+       let src = img.split(' ').filter(e =>{
+          return e.includes('src')
+       })
+       let imagePath = src[0].substring(5, src[0].length - 1)
 
         if (src) {
           articles.push({
             _id: result._id,
-            title: trancateTitle(result.title),
-            src: src[0] || src[1]
+            title: truncateTitle(result.title),
+            src: imagePath
           });
         } else {
           articles.push({
             _id: result._id,
-            title: result.title.substring(0, 100),
+            title: truncateTitle(result.title),
             src:
               "https://www.drbrownstein.com/wp-content/uploads/2017/03/500x500.png"
           });

@@ -130,6 +130,7 @@ app.get('/', (req, res) => {
   res.redirect('/home')
 })
 app.get('*', (req, res, next) => {
+  req.app.locals.error = req.flash('error')
   res.app.locals.user = req.user;
   next()
 })
