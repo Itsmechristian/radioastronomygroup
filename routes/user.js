@@ -134,38 +134,44 @@ router.get("/", (req, res) => {
 });
 
 router.get("/create",(req, res) => {
+  console.log(req.flash('error'))
   res.render("user/create");
 });
 
 router.post("/create", upload, (req, res) => {
 
-  const newArticle = new RequestArticle({
-    _id: new mongoose.Types.ObjectId(),
-    userId: req.user._id,
-    title: req.body.title,
-    body: req.body.body,
-    requestBy: req.user.firstname + " " + req.user.lastname
-  });
+  let title = req.body.title
+    , body = req.body.body
 
-  if(newArticle.title == '') {
-    res.render('user/create')
-    req.flash()
-  }
-  else if(newArticle.body == '') {
+   req.checkBody('title', 'Title cannot be empty').notEmpty()
+   req.checkBody('body', 'Body cannot be empty').notEmpty()
 
-  }
-
-  newArticle
-    .save()
-    .then(results => {
-      const response = {
-        message:
-          "Created successfully you need wait adminstrator to approve it thanks",
-      };
-      req.flash("success", response.message);
-      res.redirect("/user");
-    })
-    .catch(err => console.log(err));
+   req.asyncValidationErrors()
+   .then(result => {
+     let newArticle = new RequestArticle({
+       userId: req.user._id,
+       title,
+       body,
+       requestBy: req.user.firstname + req.user.lastname
+     })
+     newArticle.save()
+   })
+   .catch(error => {
+     error.forEach(e => {
+       switch(e.from){
+         case 'title':
+            title
+            break;
+         case 'body':
+            body   
+       } 
+     })
+     res.render('user/create', {
+       errors: error,
+       title,
+       body
+     })
+  })
 });
 
 router.get('/upload', (req, res) => {
