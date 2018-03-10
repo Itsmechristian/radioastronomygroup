@@ -39,24 +39,23 @@ module.exports = (article) => {
     );
   });
 
-  // function getSpecificIndex(arrayBody, bodySrc) {
-  //   return imagesIndex.map(e => {
-  //     return arrayBody.indexOf(e);
-  //   });
-  // }
-  // function changeStringPath(imagesUrl) {
-  //   return imagesUrl.map(e => {
-  //     return e.toString().replace("temp", "uploads");
-  //   });
-  // }
-  // let transferredUrl = changeStringPath(bodySrc);
-  // let indexOfImg = getSpecificIndex(arrayBody, bodySrc);
+  function getSpecificIndex(arrayBody, bagImages) {
+    return bagImages.map(e => {
+      return arrayBody.indexOf(e);
+    });
+  }
+  function changeStringPath(imagesUrl) {
+    return imagesUrl.map(e => {
+      return e.toString().replace("temp", "uploads");
+    });
+  }
+  let transferredUrl = changeStringPath(bodySrc);
+  let indexOfImg = getSpecificIndex(arrayBody, bodySrc);
 
-  // for (let i = 0; i < transferredUrl.length; i++) {
-  //   arrayBody.splice(indexOfImg[i], 1, transferredUrl[i]);
-  // }
+  for (let i = 0; i < transferredUrl.length; i++) {
+    arrayBody.splice(indexOfImg[i], 1, transferredUrl[i]);
+  }
 
-  // arrayBody.join(' ')
+  return arrayBody.join(' ')
 
-  // return
 }

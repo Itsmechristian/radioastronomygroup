@@ -10,9 +10,7 @@ const express = require("express"),
   fs = require("fs"),
   url = require("url");
 
-// router.use(csurf())
-
-const getdate = require('../config/getdate')
+const getdate = require('../module/getdate')
 
 // Initialize multer to uplaod a file
 const storage = multer.diskStorage({
@@ -48,16 +46,19 @@ function checkFileType(file, cb) {
   RequestArticle = require("../models/RequestArticle"),
   Bugs = require("../models/Bugs");
 
-// Own Configuration
-const changeArticlePath = require("../config/changeArticlePath"),
-  changeImgPath = require("../config/changeImgPath");
-
+// Own Module
+const changeArticlePath = require("../module/changeArticlePath")
+  ,  changeImgPath = require("../module/changeImgPath")
+  , articleConfiguration = require('../module/articleConfiguration')
+  
 
 router.all("/*",(req, res, next) => {
     req.app.locals.layout = "main.handlebars";
     next();
 });
 
+
+// Tracking what are the errors
 const newBugs = function(error, whosLoggedin) {
   const newBugs = new Bugs({
     _id: new mongoose.Types.ObjectId(),
@@ -66,8 +67,6 @@ const newBugs = function(error, whosLoggedin) {
   });
   newBugs.save();
 };
-
-
 
 router.get("/logout", (req, res) => {
   req.flash("success", "Succesfully logged you out");
@@ -81,14 +80,11 @@ router.get("/", (req, res) => {
     res.redirect('/home/login')
   }
   else{
-
-
     /*
     * Use another solution if possible
     * Not a good idea to call models inside another models
     * It's working but there's a best solution for it.
     */
-
     RequestArticle.find({'userId': req.user._id}, null, {sort: {dateRequested: 1}}, (requestArticleError, requestArticle) => {
     Article.find({'userId': req.user._id}, null, {sort: {dateRequested: 1}},(articleError, article) => {
       if(requestArticleError || articleError) {
@@ -152,7 +148,7 @@ router.post("/create", upload, (req, res) => {
   });
 
   if(newArticle.title == '') {
-    res.render('create')
+    res.render('user/create')
     req.flash()
   }
   else if(newArticle.body == '') {
@@ -169,7 +165,7 @@ router.post("/create", upload, (req, res) => {
       req.flash("success", response.message);
       res.redirect("/user");
     })
-    // .catch(err => console.log(err));
+    .catch(err => console.log(err));
 });
 
 router.get('/upload', (req, res) => {
@@ -227,16 +223,12 @@ router.get("/requests", (req, res) => {
   }
 });
 router.get("/request/post/:id", (req, res) => {
-  const articleConfiguration = require('../config/articleConfiguration')
-  
   RequestArticle
     .findById({
       _id: req.params.id
     })
     .select("_id dateRequested title body createBy")
     .then(result => {
-  console.log(articleConfiguration(result))
-      const getdate = require('../config/getdate')
       res.render("user/reqpost", { post: result });
     })
     .catch(err => console.log(err));
@@ -249,26 +241,25 @@ router.post("/request/post/:id", (req, res) => {
     })
     .then(result => {
 
-
-      // const newArticle = new Article({
-      //   _id: new mongoose.Types.ObjectId(),
-      //   userId: result.userId,
-      //   isPublish: true,
-      //   title: result.title,
-      //   body: result.body,
-      //   createdBy: result.requestBy,
-      // });
-      // newArticle.save().then(saved => {
-      //   req.flash("success", "Article Published");
-      //   res.redirect("/user");
-      //   RequestArticle
-      //     .remove({
-      //       _id: req.params.id
-      //     })
-      //     .catch(err => {
-      //       console.log(err);
-      //     });
-      // });
+      const newArticle = new Article({
+        _id: new mongoose.Types.ObjectId(),
+        userId: result.userId,
+        isPublish: true,
+        title: result.title,
+        body: articleConfiguration(result),
+        createdBy: result.requestBy,
+      });
+      newArticle.save().then(saved => {
+        req.flash("success", "Article Published");
+        res.redirect("/user");
+        RequestArticle
+          .remove({
+            _id: req.params.id
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      });
     })
     .catch(err => {
       console.log(err)
