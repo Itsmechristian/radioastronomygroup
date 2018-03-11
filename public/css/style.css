@@ -85,9 +85,6 @@ select:-webkit-autofill:focus {
     top: 30px;
     opacity: 0; } }
 
-p {
-  color: #ababab; }
-
 h1,
 h2,
 h3,
@@ -98,6 +95,9 @@ h6 {
   padding: 0;
   margin: 0;
   font-family: OS-Regular; }
+
+p {
+  color: #ababab; }
 
 li {
   list-style: none; }
@@ -352,6 +352,16 @@ body.scrolldisable {
           .b-body .home-row .col-lg-3 .events-wrapper .events .place p {
             color: #fff; }
 
+footer {
+  height: 65px;
+  background: #2a5bb8;
+  width: 100%; }
+  footer p {
+    text-align: center;
+    color: #fff;
+    padding: 20px;
+    font-family: OS-Regular; }
+
 .b-post {
   margin: 15px 0px;
   height: auto;
@@ -558,50 +568,6 @@ body.scrolldisable {
       font-size: 1.2rem;
       font-family: OS-Regular; }
 
-.b-sub {
-  background: #fff;
-  height: auto;
-  margin: 10px; }
-  .b-sub p {
-    font-family: OS-Regular; }
-  .b-sub h1 {
-    font-family: OS-SemiBold; }
-  .b-sub small {
-    font-family: OS-Italic; }
-  .b-sub img {
-    display: block; }
-  .b-sub .row {
-    margin: 0; }
-    .b-sub .row .col-lg-2 {
-      border-radius: 0px 0px 5px 0px;
-      height: auto;
-      background: #2a5bb8; }
-      .b-sub .row .col-lg-2 h1 {
-        color: #fff; }
-      .b-sub .row .col-lg-2 .sub-links {
-        padding: 0; }
-        .b-sub .row .col-lg-2 .sub-links li {
-          margin: 0px -15px;
-          padding: 15px 0px; }
-          .b-sub .row .col-lg-2 .sub-links li:visited {
-            background: #3f6ab9; }
-          .b-sub .row .col-lg-2 .sub-links li a {
-            padding-left: 15px;
-            font-family: OS-Regular;
-            color: #fff; }
-    .b-sub .row .col-lg-10 p {
-      margin: 10px; }
-
-footer {
-  height: 65px;
-  background: #2a5bb8;
-  width: 100%; }
-  footer p {
-    text-align: center;
-    color: #fff;
-    padding: 20px;
-    font-family: OS-Regular; }
-
 .container.panel {
   font-family: OS-Regular;
   height: auto;
@@ -724,3 +690,78 @@ footer {
     .b-reqpost-container .b-reqpost p {
       font-size: 1.2rem;
       font-family: OS-Regular; }
+
+.b-radioastronomy {
+  -webkit-box-shadow: 10px 0px 55px -8px rgba(0, 0, 0, 0.27);
+  -moz-box-shadow: 10px 0px 55px -8px rgba(0, 0, 0, 0.27);
+  box-shadow: 10px 0px 55px -8px rgba(0, 0, 0, 0.27);
+  height: auto;
+  width: 100%;
+  background: #fff;
+  margin: 20px 0px; }
+  .b-radioastronomy .sidebar {
+    display: inline-block;
+    width: 250px;
+    background: #2a5bb8; }
+    .b-radioastronomy .sidebar h1, .b-radioastronomy .sidebar a {
+      color: #fff;
+      font-family: OS-Regular; }
+    .b-radioastronomy .sidebar h1 {
+      margin: 10px;
+      font-size: 1.4rem; }
+    .b-radioastronomy .sidebar .sub-links {
+      margin: 0;
+      padding: 0; }
+      .b-radioastronomy .sidebar .sub-links li {
+        margin: 20px 10px;
+        padding: 0; }
+  .b-radioastronomy .page {
+    width: 75%;
+    vertical-align: top;
+    display: inline-block;
+    margin: 0px 15px; }
+    .b-radioastronomy .page p {
+      margin: 10px 0px;
+      font-family: OS-Regular;
+      color: #333; }
+    .b-radioastronomy .page img {
+      display: block; }
+    .b-radioastronomy .page small {
+      font-style: italic;
+      color: #ababab; }
+  .b-radioastronomy table {
+    border-spacing: 0px;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 15px;
+    background-color: transparent;
+    text-align: left; }
+    .b-radioastronomy table th {
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      padding: 8px; }
+    .b-radioastronomy table td {
+      border: 1px solid #cccccc;
+      padding: 8px; }
+    .b-radioastronomy table tr {
+      background: transparent; }
+    .b-radioastronomy table tr:nth-of-type(2n+1) {
+      background-color: #eeeeee; }
+    .b-radioastronomy table tr th {
+      background-color: #dddddd; }
+    .b-radioastronomy table tr {
+      -moz-transition: background-color 300ms ease-in-out 0s;
+      -ms-transition: background-color 300ms ease-in-out 0s;
+      -o-transition: background-color 300ms ease-in-out 0s;
+      -webkit-transition: background-color 300ms ease-in-out 0s;
+      transition: background-color 300ms ease-in-out 0s; }
+    .b-radioastronomy table tr:hover {
+      background-color: #fff176; }
+      .b-radioastronomy table tr:hover tr {
+        border-top: 1px solid #cccccc;
+        border-bottom: 1px solid #cccccc; }
+      .b-radioastronomy table tr:hover th, .b-radioastronomy table tr:hover td {
+        border: none; }
+  .b-radioastronomy a {
+    color: #2a5bb8; }

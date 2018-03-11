@@ -63,6 +63,7 @@ $brown2: #707070;
 $border-color: 1px inset #ababab;
 $red: #e33545;
 
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus
@@ -101,9 +102,7 @@ select:-webkit-autofill:focus {
     opacity: 0;
   }
 }
-p{
-  color: $grey;
-}
+
 h1,
 h2,
 h3,
@@ -114,6 +113,9 @@ h6 {
   padding: 0;
   margin: 0;
   font-family: OS-Regular;
+}
+p{
+  color: $grey;
 }
 li{
   list-style: none;
@@ -142,6 +144,7 @@ body.scrolldisable {
   padding: 0 !important;
 }
 
+// Navbar and Header Layouts
 .b-nav-main {
   width: 100%;
   height: 50px;
@@ -302,7 +305,10 @@ body.scrolldisable {
       margin-top: 30px;
     }
 }
+// End Navbar and Header styles
 
+
+// Home style
 .b-body{
   padding: 0px;
   margin-top: 20px;
@@ -432,6 +438,17 @@ body.scrolldisable {
     }
   }
 }
+footer {
+  height: 65px;
+  background: $blue;
+  width: 100%;
+  p {
+    text-align: center;
+    color: $white;
+    padding: 20px;
+    font-family: OS-Regular;
+  }
+}
 
 .b-post {
   margin: 15px 0px;
@@ -445,6 +462,10 @@ body.scrolldisable {
   background: white;
 }
 
+
+// End Home style
+
+// Login Styles
 .b-login {
   .b-form {
     border-radius: 2px;
@@ -543,7 +564,9 @@ body.scrolldisable {
 .b-success.fade {
   display: none;
 }
+// End Login style
 
+// Register style
 .b-register {
   height: auto;
   #strengthchecker {
@@ -679,66 +702,10 @@ body.scrolldisable {
     }
   }
 }
-.b-sub {
-  background: #fff;
-  height: auto;
-  margin: 10px;
-  p {
-    font-family: OS-Regular;
-  }
-  h1 {
-    font-family: OS-SemiBold;
-  }
-  small {
-    font-family: OS-Italic;
-  }
-  img {
-    display: block;
-  }
-  .row {
-    margin: 0;
-    .col-lg-2 {
-      border-radius: 0px 0px 5px 0px;
-      height: auto;
-      background: $blue;
-      h1 {
-        color: $white;
-      }
-      .sub-links {
-        padding: 0;
-        li {
-          margin: 0px -15px;
-          padding: 15px 0px;
-          &:visited {
-            background: #3f6ab9;
-          }
-          a {
-            padding-left: 15px;
-            font-family: OS-Regular;
-            color: $white;
-          }
-        }
-      }
-    }
-    .col-lg-10 {
-      p {
-        margin: 10px;
-      }
-    }
-  }
-}
+// End Register style
 
-footer {
-  height: 65px;
-  background: $blue;
-  width: 100%;
-  p {
-    text-align: center;
-    color: $white;
-    padding: 20px;
-    font-family: OS-Regular;
-  }
-}
+
+// User panel style
 .container.panel {
   font-family: OS-Regular;
   height: auto;
@@ -884,4 +851,101 @@ footer {
       font-family: OS-Regular;
     }
   }
+}
+// End User panel style
+
+.b-radioastronomy{
+  -webkit-box-shadow: 10px 0px 55px -8px rgba(0, 0, 0, 0.27);
+  -moz-box-shadow: 10px 0px 55px -8px rgba(0, 0, 0, 0.27);
+  box-shadow: 10px 0px 55px -8px rgba(0, 0, 0, 0.27);
+  height: auto;
+  width: 100%;
+  background: $white;
+  margin: 20px 0px;
+  .sidebar{
+    display: inline-block;
+    width: 250px;
+    background: $blue;
+    h1, a{
+      color: $white;
+      font-family: OS-Regular;
+    }
+    h1{
+      margin: 10px;
+      font-size: 1.4rem;
+    }
+    .sub-links{
+      margin: 0;
+      padding: 0;
+      li{
+        margin: 20px 10px;
+        padding: 0;
+      }
+    }
+  }
+  .page{
+    width: 75%;
+    vertical-align: top;
+    display: inline-block;
+    margin: 0px 15px;
+    p{
+      margin: 10px 0px;
+      font-family: OS-Regular;
+      color: $black;
+    }
+    img{
+      display: block;
+    }
+    small{
+      font-style: italic;
+      color: $grey;
+    }
+  }
+  table{
+    border-spacing: 0px;
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 15px;
+    background-color: transparent;
+    text-align: left;
+    th{
+      font-weight: bold;
+      border: 1px solid #cccccc;
+      padding: 8px;
+    }
+    td{
+      border: 1px solid #cccccc;
+      padding: 8px;
+    }
+    tr{
+      background: transparent;
+    }
+    tr:nth-of-type(2n+1) {
+      background-color: #eeeeee;
+    }
+    tr th {
+      background-color: #dddddd;
+    }
+    tr {
+      -moz-transition: background-color 300ms ease-in-out 0s;
+      -ms-transition: background-color 300ms ease-in-out 0s;
+      -o-transition: background-color 300ms ease-in-out 0s;
+      -webkit-transition: background-color 300ms ease-in-out 0s;
+      transition: background-color 300ms ease-in-out 0s;
+    }
+    tr:hover {
+      background-color: #fff176;
+    tr {
+      border-top: 1px solid #cccccc;
+      border-bottom: 1px solid #cccccc;
+    }
+    th, td {
+      border: none;
+    }
+  }
+}
+a{
+  color: $blue;
+}
 }

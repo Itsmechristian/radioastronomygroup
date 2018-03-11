@@ -14,7 +14,7 @@ $(".drop-left li").hover(function() {
     var resources = `
           <li><a href="/pages/radioastronomy/getting-started">
           Getting Started</a></li>
-          <li><a href="#">
+          <li><a href="/pages/radioastronomy/radiospectrum">
           Radio Spectrum</a></li>
           <li><a href="#">
           VLF Solar</a></li>
