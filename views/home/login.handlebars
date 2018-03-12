@@ -1,7 +1,7 @@
 <div class="container b-login">
-  {{#if errors}}
+  {{#if error}}
   <div class="b-warning" id="warning">
-    <h3>{{errors}}</h3>
+    <h3>{{error}}</h3>
   </div>
   {{/if}}
   {{#if success}}
@@ -17,6 +17,5 @@
   <input type="password" name="password" placeholder="Password*" id="password">
   <input type="hidden" name="_csrf" value="{{ csrfToken }}">
   <button type="submit">Login</button>
-  <a href="#">Forgot Password?</a>
 </form>
 </div>

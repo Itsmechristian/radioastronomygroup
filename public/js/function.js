@@ -21,3 +21,4 @@ $(document).ready(function() {
   $('.sidebar').css('height', 'auto');
   }
 })
+

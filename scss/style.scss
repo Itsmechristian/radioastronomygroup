@@ -254,35 +254,44 @@ body.scrolldisable {
   .drop-item {
     position: relative;
     z-index: 20;
-    height: 200px;
-    width: 600px;
     display: inline-block;
     background: transparent;
-    .drop-left {
-      li {
-        margin: 10px;
-        cursor: pointer;
-        &:nth-child(1) {
-          display: none;
-        }
-      }
-      a {
-        color: #4a4747;
-      }
-      float: left;
-      height: 200px;
-      width: 200px;
+
+    .drop{
       background: $white;
-    }
-    .drop-right {
-      float: right;
-      height: 200px;
-      width: 400px;
-      background: $blue;
-      li {
-        display: inline-block;
-        font-size: 0.8rem;
-        margin: 10px;
+      height: auto;
+      width: 230px;
+      > ul {
+        padding: 0;
+        margin: 0;
+        > li {
+          display: flex;
+          padding: 10px;
+          justify-content: space-between;
+          a {
+            text-align: right;
+            color: $black;
+          }
+          i{
+            text-align: right;
+          }
+          > ul{
+            margin: 0;
+            padding: 0;
+            display: none;
+            background: $blue;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            width: 250px;
+            li{
+              padding: 10px;
+              a{
+                color: $white;
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -451,15 +460,16 @@ footer {
 }
 
 .b-post {
-  margin: 15px 0px;
+  height: auto;
+  background: white;
+  margin: 10px 0px;
   h1 {
     text-align: center;
   }
   img {
-    width: 100%;
+    width: 100% !important;
   }
-  height: auto;
-  background: white;
+
 }
 
 
@@ -688,7 +698,7 @@ footer {
   background: white;
   height: auto;
   .b-post {
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
     padding: 20px 15px;
     h1 {
@@ -719,6 +729,7 @@ footer {
     height: 225px;;
     width: 400px;
     border: 1px solid $grey;
+    border-bottom: 2px solid $blue;
     h3{
       color: $brown2;
       margin: 8px 5px;
@@ -726,16 +737,19 @@ footer {
     }
     p{
       margin: 2px 0px;
-      color: $brown2;
-      font-family: OS-SemiBold;
       padding: 0px 5px;
       font-weight: 300;
       cursor: pointer;
-      &:hover{
+      color: $brown2;
+      a{
+      color: $brown2;
+      font-family: OS-SemiBold;
+        &:hover{
         text-decoration-line: underline;
+        }
       }
     }
-    a{
+    > a{
       margin: 5px 20px;
       padding: 3px 10px;
       background: $blue;
