@@ -6,3 +6,19 @@
 //     $(".home-row").css("height", "950px");
 //   }
 // });
+
+
+
+// Make sidebar and Page same height
+
+$(document).ready(function() {
+  const pageHeight = $('.page').height()
+
+  if(pageHeight > 500) {
+  $('.sidebar').css('height', pageHeight);
+  }
+  else{
+  $('.sidebar').css('height', 'auto');
+  }
+})
+

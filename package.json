@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "mocha",
+    "start": "concurrently \"npm run serve\" \"npm run scss:compile\"",
     "serve": "nodemon server",
     "scss:compile": "node-sass --watch scss -o public/css"
   },

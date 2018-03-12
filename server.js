@@ -20,7 +20,6 @@ const express = require('express')
     , expressValidator = require('express-validator')
     , mongoose = require('mongoose')
     , mongo = require('mongodb')
-    , csrf = require('csurf')
     , methodOverride = require('method-override')
     
 

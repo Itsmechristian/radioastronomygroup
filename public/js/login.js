@@ -36,4 +36,13 @@ if(document.location.pathname === "/home/login") {
   }
   formValidationAnimation($username)
   formValidationAnimation($password)
+
+  $("#username, #password").focus(function() {
+    $("#warning, #success").fadeOut();
+  });
+  
+  setInterval(function() {
+    $('#warning').fadeOut('slow')
+    $('#success').fadeOut('slow')
+  }, 5000)
 }

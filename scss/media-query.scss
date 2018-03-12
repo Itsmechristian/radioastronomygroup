@@ -1,3 +1,20 @@
+@keyframes slideSideBar {
+  from {
+    width: 0px;
+  }
+  to {
+    width: 250px;
+  }
+}
+@keyframes CloseSideBar {
+  from {
+    width: 250px;
+  }
+  to {
+    width: 0px;
+  }
+}
+
 // For navigation
 @media screen and (min-width: 769px) {
   .mobile-navbar {
@@ -6,9 +23,7 @@
 }
 
 @media screen and (max-width: 990px) {
-  .col-lg-9 {
-    border: none !important;
-  }
+
 }
 
 @media screen and (max-width: 1466px) {
@@ -23,6 +38,9 @@
   }
   .container-fluid {
     max-width: 90%;
+  }
+  .col-lg-9 {
+    border: none !important;
   }
 }
 
@@ -83,22 +101,6 @@
   }
   .mobile-categories {
     display: none;
-  }
-  @keyframes slideSideBar {
-    from {
-      width: 0px;
-    }
-    to {
-      width: 250px;
-    }
-  }
-  @keyframes CloseSideBar {
-    from {
-      width: 250px;
-    }
-    to {
-      width: 0px;
-    }
   }
   .overlay {
     display: none;

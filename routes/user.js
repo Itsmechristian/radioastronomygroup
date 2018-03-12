@@ -1,3 +1,4 @@
+
 const express = require("express"),
   router = express.Router(),
   mongoose = require("mongoose"),
@@ -47,16 +48,22 @@ function checkFileType(file, cb) {
   Bugs = require("../models/Bugs");
 
 // Own Module
-const changeArticlePath = require("../module/changeArticlePath")
-  ,  changeImgPath = require("../module/changeImgPath")
-  , articleConfiguration = require('../module/articleConfiguration')
-  
+  const articleConfiguration = require('../module/articleConfiguration')
 
-router.all("/*",(req, res, next) => {
-    req.app.locals.layout = "main.handlebars";
-    next();
-});
-
+ router.use((req, res, next) => {
+  if(req.session && req.user) {
+      req.app.locals.layout = "main.handlebars";
+      req.session.user = req.user;
+    next()
+  }
+  else{
+    req.flash('error', 'Logged In First');
+    res.redirect('/home/login')
+  }
+ })
+ function isLogin(req, res, next) {
+ 
+ } 
 
 // Tracking what are the errors
 const newBugs = function(error, whosLoggedin) {
@@ -68,73 +75,67 @@ const newBugs = function(error, whosLoggedin) {
   newBugs.save();
 };
 
-router.get("/logout", (req, res) => {
-  req.flash("success", "Succesfully logged you out");
-  req.logout();
-  res.redirect("/home/login");
-});
-
-router.get("/", (req, res) => {
-  if(!req.user) {
-    req.flash('error', 'Logged In First');
-    res.redirect('/home/login')
-  }
-  else{
-    /*
-    * Use another solution if possible
-    * Not a good idea to call models inside another models
-    * It's working but there's a best solution for it.
-    */
+router.get("/" ,(req, res) => {
     RequestArticle.find({'userId': req.user._id}, null, {sort: {dateRequested: 1}}, (requestArticleError, requestArticle) => {
-    Article.find({'userId': req.user._id}, null, {sort: {dateRequested: 1}},(articleError, article) => {
-      if(requestArticleError || articleError) {
-        req.logout()
-        res.redirect('/home/login')
-        req.flash('error', 'There\'s a problem try again later')
+      Article.find({'userId': req.user._id}, null, {sort: {dateRequested: 1}},(articleError, article) => {
+        if(requestArticleError || articleError) {
+          req.logout()
+          res.redirect('/home/login')
+          req.flash('error', 'There\'s a problem try again later')
+        }
+        let userArticles = 
+        { 
+          notpublish: {
+          requestCount: requestArticle.length,
+          results: requestArticle.map(e => {
+            return {
+              _id: e._id,
+              title: e.title,
+              dateRequested: getdate(e.dateRequested),
+              author: e.requestBy, 
+              status: {
+                isPublish: e.isPublish
+              },
+            }
+          })
+        },
+        published: {
+          requestCount: article.length,
+          results: article.map(e => {
+            return {
+              _id: e._id,
+              title: e.title,
+              datePublished: getdate(e.datePublished),
+              author: e.requestBy, 
+              status: {
+                isPublish: e.isPublish
+              },
+            }
+          })
+        }
       }
-      let userArticles = 
-      { 
-        notpublish: {
-        requestCount: requestArticle.length,
-        results: requestArticle.map(e => {
-          return {
-            title: e.title,
-            dateRequested: getdate(e.dateRequested),
-            author: e.requestBy, 
-            status: {
-              isPublish: e.isPublish
-            },
-          }
-        })
-      },
-      published: {
-        requestCount: article.length,
-        results: article.map(e => {
-          return {
-            title: e.title,
-            datePublished: getdate(e.datePublished),
-            author: e.requestBy, 
-            status: {
-              isPublish: e.isPublish
-            },
-          }
-        })
-      }
-    }
-
-    res.render("user/panel", {
-      notpublishcount: userArticles.notpublish.requestCount,
-      notpublishresult: userArticles.notpublish.results[0],
-      publishedcount: userArticles.published.requestCount,
-      published: userArticles.published.results[0]
-        })
-      })  
-    })
-  }
+  
+      res.render("user/panel", {
+        notpublishcount: userArticles.notpublish.requestCount,
+        notpublishresult: userArticles.notpublish.results[0],
+        publishedcount: userArticles.published.requestCount,
+        published: userArticles.published.results[0]
+          })
+        })  
+      })
 });
 
+router.get('/article/:id', (req, res) => {
+  RequestArticle
+  .findById(req.params.id)
+  .then(docs => {
+    res.render('user/post', {docs})
+  })
+  .catch(err => {
+    console.log(err)
+  })
+})
 router.get("/create",(req, res) => {
-  console.log(req.flash('error'))
   res.render("user/create");
 });
 
@@ -149,25 +150,24 @@ router.post("/create", upload, (req, res) => {
    req.asyncValidationErrors()
    .then(result => {
      let newArticle = new RequestArticle({
+       _id: new mongoose.Types.ObjectId(),
        userId: req.user._id,
        title,
        body,
        requestBy: req.user.firstname + req.user.lastname
      })
-     newArticle.save()
-   })
-   .catch(error => {
-     error.forEach(e => {
-       switch(e.from){
-         case 'title':
-            title
-            break;
-         case 'body':
-            body   
-       } 
+     newArticle.save(err => {
+      if(err){ 
+        res.status(500).redirect('/user/create')
+      }
+      else{
+        res.status(200).redirect('/user')
+      }
      })
+   })
+   .catch(err => {
      res.render('user/create', {
-       errors: error,
+       errors: err,
        title,
        body
      })
@@ -300,5 +300,10 @@ router.delete("/edit/delete/:id", (req, res) => {
   });
 });
 
+router.get("/logout", (req, res) => {
+  req.flash("success", "Succesfully logged you out");
+  req.logout();
+  res.redirect("/home/login");
+});
 
 module.exports = router;

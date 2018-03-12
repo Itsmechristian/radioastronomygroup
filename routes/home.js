@@ -183,7 +183,6 @@ router.get("/login", csrfProtection, (req, res) => {
       csrfToken: req.csrfToken()
     });
   } else {
-    req.flash("isLogin", "Already logged in");
     res.redirect("/user");
   }
 });
@@ -224,7 +223,6 @@ router.post(
   passport.authenticate("local", {
     successRedirect: "/user",
     failureRedirect: "/home/login",
-    failureMessage: "Invalid username or password",
     failureFlash: true
   }),
   (req, res) => {
