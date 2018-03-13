@@ -368,15 +368,6 @@ footer {
     padding: 20px;
     font-family: OS-Regular; }
 
-.b-post {
-  height: auto;
-  background: white;
-  margin: 10px 0px; }
-  .b-post h1 {
-    text-align: center; }
-  .b-post img {
-    width: 100% !important; }
-
 .b-login .b-form {
   border-radius: 2px;
   border-top: 2px solid #2a5bb8;
@@ -561,7 +552,26 @@ footer {
 .b-post-container {
   margin: 15px auto;
   background: white;
-  height: auto; }
+  height: 700px;
+  position: relative; }
+  .b-post-container small {
+    font-family: OS-Regular; }
+  .b-post-container .options {
+    text-align: right; }
+    .b-post-container .options > small {
+      font-weight: bold; }
+    .b-post-container .options .items {
+      background: #fff;
+      border: 1px solid #ababab;
+      right: 8%;
+      position: absolute;
+      height: auto;
+      width: 80px;
+      padding: 0px 5px; }
+      .b-post-container .options .items small {
+        margin: 5px 0px;
+        text-align: right;
+        display: block; }
   .b-post-container .b-post {
     width: 90%;
     margin: 0 auto;
@@ -579,36 +589,34 @@ footer {
   height: auto;
   background: #fff;
   margin: 20px auto; }
-  .container.panel .post-box {
-    margin: 50px 6%;
+  .container.panel small, .container.panel h4 {
+    color: #333; }
+  .container.panel small {
+    font-weight: bold; }
+  .container.panel .req-wrapper, .container.panel .publish-wrapper {
+    width: 48%;
+    padding: 30px;
+    height: auto;
     vertical-align: top;
-    display: inline-block;
-    top: 30px;
-    height: 225px;
-    width: 400px;
+    display: inline-block; }
+    .container.panel .req-wrapper > a, .container.panel .publish-wrapper > a {
+      position: relative;
+      padding: 5px 10px;
+      top: -28px;
+      left: 1px;
+      color: #fff;
+      background: #2a5bb8; }
+  .container.panel .post-box {
+    padding: 5px;
+    height: 200px;
+    width: 100%;
+    border-radius: 2px;
     border: 1px solid #ababab;
     border-bottom: 2px solid #2a5bb8; }
-    .container.panel .post-box h3 {
-      color: #707070;
-      margin: 8px 5px;
-      font-weight: 300; }
-    .container.panel .post-box p {
-      margin: 2px 0px;
-      padding: 0px 5px;
-      font-weight: 300;
-      cursor: pointer;
-      color: #707070; }
-      .container.panel .post-box p a {
-        color: #707070;
-        font-family: OS-SemiBold; }
-        .container.panel .post-box p a:hover {
-          text-decoration-line: underline; }
-    .container.panel .post-box > a {
-      margin: 5px 20px;
-      padding: 3px 10px;
-      background: #2a5bb8;
-      color: #fff;
-      float: right; }
+    .container.panel .post-box h4 a {
+      color: #333; }
+      .container.panel .post-box h4 a:hover {
+        text-decoration: underline; }
 
 .b-create h1 {
   font-family: OS-Bold; }

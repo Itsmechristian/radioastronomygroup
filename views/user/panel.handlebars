@@ -2,26 +2,30 @@
   {{#if success}}
   <h1>{{success}}</h1>
   {{/if}}
+  <div class="req-wrapper">
   <div class="post-box">
     {{#if notpublishcount}}
-      <h3>Number requested: <span>{{notpublishcount}}</span></h3>
-      <h3>Your recent request:</h3>
-      <p><a href="/user/article/{{notpublishresult._id}}">{{notpublishresult.title}}</a></p>
-      <a href="#">View them all</a>
-      {{else}}
-      <h3>Number requested: 0</h3>
-      <p>No Recent Request Record</p>
-      {{/if}}
+    <small>Your Latest Request:</small>
+    <h4><a href="/user/article/{{notpublishresult._id}}">{{notpublishresult.title}}</a></h4>
+    {{else}}
+    <h4>No Request</h4>
+    {{/if}}
   </div>
+    {{#if notpublishcount}}
+    <a href="#">See more ...</a>
+    {{/if}}
+  </div>
+  <div class="publish-wrapper">
     <div class="post-box">
-      {{#if publishedcount}}
-      <h3>Your Publish Article: <span>{{publishedcount}}</span></h3>
-      <h3>Recent:</h3>
-      <p>{{published.title}}</p>
-      <a href="#">View them all</a>
-      {{else}}
-      <h3>Your Publish Article: 0</h3>
-      <p>No Publish Article Record</p>
-      {{/if}}
+    {{#if publishedcount}}
+    <small>Published:</small>
+    <h4><a href="/home/article/{{published._id}}">{{published.title}}</a></h4>
+    {{else}}
+    <h4>No Request</h4>
+    {{/if}}
+  </div>
+     {{#if publishedcount}}
+    <a href="#">See more ...</a>
+    {{/if}}
   </div>
 </div>

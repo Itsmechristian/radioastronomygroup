@@ -81,7 +81,7 @@ router.get("/", (req, res) => {
 });
 
 //Selected post route
-router.get("/post/:id", (req, res) => {
+router.get("/article/:id", (req, res) => {
   Article.findOne({
     _id: req.params.id
   })

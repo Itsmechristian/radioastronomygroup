@@ -1,6 +1,15 @@
   <div class="container b-post-container">
   <div class="b-post">
+  <div class="options">
+    <small>Options <i class="fa fa-wrench"></i> <i class="fa fa-angle-down"></i></small>
+          <div class="items">
+    <small>Edit</small>
+    <small>Delete</small>
+    </div>
+  </div>
+
   <h1>{{docs.title}}</h1>
   {{{docs.body}}}
+  <a href="/user/article/edit/{{docs._id}}">edit</a>
   </div>
 </div>
