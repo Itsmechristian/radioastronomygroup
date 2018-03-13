@@ -1,6 +1,6 @@
 <div class="container b-create">
 <h1>Posts <span>Create new</span></h1>
-<form action="/user/create" method="post">
+<form action="/user/article/edit/{{_id}}" method="post">
 {{#if errors}}
 {{#each errors}}
 <small>{{msg}}</small>

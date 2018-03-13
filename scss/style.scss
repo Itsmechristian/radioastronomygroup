@@ -459,18 +459,7 @@ footer {
   }
 }
 
-.b-post {
-  height: auto;
-  background: white;
-  margin: 10px 0px;
-  h1 {
-    text-align: center;
-  }
-  img {
-    width: 100% !important;
-  }
 
-}
 
 
 // End Home style
@@ -696,7 +685,34 @@ footer {
 .b-post-container {
   margin: 15px auto;
   background: white;
-  height: auto;
+  height: 700px;
+  position: relative;
+  small{
+    font-family: OS-Regular;
+  }
+  .options{
+    text-align: right;
+
+    > small {
+      font-weight: bold;
+    }
+    .items
+    {
+      background: $white;
+      border: 1px solid $grey;
+      right: 8%;
+      position: absolute;
+      height: auto;
+      width: 80px;
+      padding: 0px 5px;
+      small{
+        margin: 5px 0px;
+        text-align: right;
+        display: block;
+      }
+    }
+  }
+
   .b-post {
     width: 90%;
     margin: 0 auto;
@@ -721,41 +737,41 @@ footer {
   height: auto;
   background: $white;
   margin: 20px auto;
-  .post-box {
-    margin: 50px 6%;
+  small, h4{
+    color: $black;
+  }
+  small{
+    font-weight: bold;
+  }
+  .req-wrapper, .publish-wrapper{
+    width: 48%;
+    padding: 30px;
+    height: auto;
     vertical-align: top;
     display: inline-block;
-    top: 30px;
-    height: 225px;;
-    width: 400px;
+    > a{
+      position: relative;
+      padding: 5px 10px;
+      top: -28px;
+      left: 1px;
+      color: $white;
+      background: $blue;
+    }
+  }
+  .post-box{
+    padding: 5px;
+    height: 200px;
+    width: 100%;
+    border-radius: 2px;
     border: 1px solid $grey;
     border-bottom: 2px solid $blue;
-    h3{
-      color: $brown2;
-      margin: 8px 5px;
-      font-weight: 300;
-    }
-    p{
-      margin: 2px 0px;
-      padding: 0px 5px;
-      font-weight: 300;
-      cursor: pointer;
-      color: $brown2;
+    h4{
       a{
-      color: $brown2;
-      font-family: OS-SemiBold;
+        color: $black;
         &:hover{
-        text-decoration-line: underline;
+          text-decoration: underline;
         }
       }
-    }
-    > a{
-      margin: 5px 20px;
-      padding: 3px 10px;
-      background: $blue;
-      color: $white;
-      float: right;
-
     }
   }
 }

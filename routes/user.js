@@ -61,9 +61,6 @@ function checkFileType(file, cb) {
     res.redirect('/home/login')
   }
  })
- function isLogin(req, res, next) {
- 
- } 
 
 // Tracking what are the errors
 const newBugs = function(error, whosLoggedin) {
@@ -76,8 +73,8 @@ const newBugs = function(error, whosLoggedin) {
 };
 
 router.get("/" ,(req, res) => {
-    RequestArticle.find({'userId': req.user._id}, null, {sort: {dateRequested: 1}}, (requestArticleError, requestArticle) => {
-      Article.find({'userId': req.user._id}, null, {sort: {dateRequested: 1}},(articleError, article) => {
+    RequestArticle.find({'userId': req.user._id}, null, {sort: {dateRequested: -1}}, (requestArticleError, requestArticle) => {
+      Article.find({'userId': req.user._id}, null, {sort: {dateRequested: -1}},(articleError, article) => {
         if(requestArticleError || articleError) {
           req.logout()
           res.redirect('/home/login')
@@ -135,12 +132,36 @@ router.get('/article/:id', (req, res) => {
     console.log(err)
   })
 })
+
+router.get('/article/edit/:id', (req, res) => {
+  RequestArticle.findById(req.params.id).then(docs => {
+    res.render('user/update',
+     {
+      _id: docs._id,
+      title: docs.title,
+      body: docs.body
+    })
+  })
+})
+router.post('/article/edit/:id', (req, res) => {
+  RequestArticle.findById(req.params.id, (err, docs) => {
+    if(err) throw err;
+    docs.set({
+      title: req.body.title,
+      body: req.body.body
+    })
+    docs.save((err, updatedArticle) => {
+      if(err) throw err;
+      res.json(updatedArticle)
+    })
+  })
+})
+
 router.get("/create",(req, res) => {
   res.render("user/create");
 });
 
 router.post("/create", upload, (req, res) => {
-
   let title = req.body.title
     , body = req.body.body
 
@@ -241,6 +262,7 @@ router.get("/request/post/:id", (req, res) => {
 });
 
 router.post("/request/post/:id", (req, res) => {
+
   RequestArticle
     .findById({
       _id: req.params.id
@@ -272,12 +294,13 @@ router.post("/request/post/:id", (req, res) => {
     });
 });
 
+
+
 router.get("/edit", (req, res) => {
   Article.find()
     .then(results => {
       res.render("user/edit", { results: results });
     })
-    .catch(err => newBugs(err, req.user.firstname + " " + req.user.lastname));
 });
 
 router.get("/edit/:id", (req, res) => {
