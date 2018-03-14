@@ -31,9 +31,12 @@ const upload = multer({
 
 // Multer check for file type
 function checkFileType(file, cb) {
+  // Check the file types
   const filetypes = /jpeg|jpg|png|gif/;
   const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
   const mimetype = filetypes.test(file.mimetype);
+
+  // Condional
   if (mimetype && extname) {
     return cb(null, true);
   } else {
@@ -51,6 +54,7 @@ function checkFileType(file, cb) {
   const articleConfiguration = require('../module/articleConfiguration')
 
  router.use((req, res, next) => {
+   // Check the session and Check if there is a user for security reaseon
   if(req.session && req.user) {
       req.app.locals.layout = "main.handlebars";
       req.session.user = req.user;
@@ -72,7 +76,9 @@ const newBugs = function(error, whosLoggedin) {
   newBugs.save();
 };
 
+// Panel Routing
 router.get("/" ,(req, res) => {
+    // Get the article to display in to panels
     RequestArticle.find({'userId': req.user._id}, null, {sort: {dateRequested: -1}}, (requestArticleError, requestArticle) => {
       Article.find({'userId': req.user._id}, null, {sort: {dateRequested: -1}},(articleError, article) => {
         if(requestArticleError || articleError) {
@@ -122,6 +128,7 @@ router.get("/" ,(req, res) => {
       })
 });
 
+// Get Specific Request Article
 router.get('/article/:id', (req, res) => {
   RequestArticle
   .findById(req.params.id)
@@ -133,6 +140,7 @@ router.get('/article/:id', (req, res) => {
   })
 })
 
+// Routing if they need to edit their article.
 router.get('/article/edit/:id', (req, res) => {
   RequestArticle.findById(req.params.id).then(docs => {
     res.render('user/update',
@@ -157,6 +165,7 @@ router.post('/article/edit/:id', (req, res) => {
   })
 })
 
+// Creating new request Article
 router.get("/create",(req, res) => {
   res.render("user/create");
 });
@@ -195,6 +204,7 @@ router.post("/create", upload, (req, res) => {
   })
 });
 
+// Image Upload Routing so they can upload images in Article
 router.get('/upload', (req, res) => {
   res.render('user/uploads', {layout: '' })
 })
@@ -218,6 +228,7 @@ router.post("/upload", (req, res) => {
   });
 });
 
+// This is administrator routes for user request article
 router.get("/requests", (req, res) => {
   if (req.user.admin === true) {
     
@@ -260,7 +271,6 @@ router.get("/request/post/:id", (req, res) => {
     })
     .catch(err => console.log(err));
 });
-
 router.post("/request/post/:id", (req, res) => {
 
   RequestArticle
@@ -289,13 +299,9 @@ router.post("/request/post/:id", (req, res) => {
           });
       });
     })
-    .catch(err => {
-      console.log(err)
-    });
 });
 
-
-
+// Get the administrator to access and edit user article manually
 router.get("/edit", (req, res) => {
   Article.find()
     .then(results => {
@@ -314,15 +320,17 @@ router.get("/edit/:id", (req, res) => {
     );
 });
 
-router.delete("/edit/delete/:id", (req, res) => {
+router.delete("/article/delete/:id", (req, res) => {
   let id = req.params.id;
-  Post.remove({
+  RequestArticle.remove({
     _id: id
-  }).then(() => {
-    res.redirect("/user/edit");
-  });
+  }, function(err) {
+    if(err) throw err;
+    res.send('Success')
+  })
 });
 
+// Log out the user or adminstrator
 router.get("/logout", (req, res) => {
   req.flash("success", "Succesfully logged you out");
   req.logout();

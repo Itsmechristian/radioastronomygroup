@@ -561,6 +561,7 @@ footer {
     .b-post-container .options > small {
       font-weight: bold; }
     .b-post-container .options .items {
+      display: none;
       background: #fff;
       border: 1px solid #ababab;
       right: 8%;
@@ -569,9 +570,17 @@ footer {
       width: 80px;
       padding: 0px 5px; }
       .b-post-container .options .items small {
-        margin: 5px 0px;
         text-align: right;
         display: block; }
+        .b-post-container .options .items small a {
+          color: #333; }
+      .b-post-container .options .items button {
+        background: transparent;
+        border: none;
+        margin: 5px 0px;
+        padding: 0; }
+    .b-post-container .options .items.clicked {
+      display: block; }
   .b-post-container .b-post {
     width: 90%;
     margin: 0 auto;
