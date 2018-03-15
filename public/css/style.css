@@ -351,12 +351,6 @@ body.scrolldisable {
         margin: 30px 0px; }
         .b-body .home-row .col-lg-3 .events-wrapper h2 {
           text-align: center; }
-        .b-body .home-row .col-lg-3 .events-wrapper .events .place {
-          height: 30px;
-          width: 100px;
-          background: #4a4747; }
-          .b-body .home-row .col-lg-3 .events-wrapper .events .place p {
-            color: #fff; }
 
 footer {
   height: 65px;
@@ -579,8 +573,6 @@ footer {
         border: none;
         margin: 5px 0px;
         padding: 0; }
-    .b-post-container .options .items.clicked {
-      display: block; }
   .b-post-container .b-post {
     width: 90%;
     margin: 0 auto;
@@ -593,18 +585,40 @@ footer {
       font-size: 1.2rem;
       font-family: OS-Regular; }
 
+.items.clicked {
+  display: block !important; }
+
 .container.panel {
   font-family: OS-Regular;
   height: auto;
   background: #fff;
   margin: 20px auto; }
+  .container.panel .options {
+    padding: 3px;
+    margin: 0px 15px;
+    position: relative; }
+    .container.panel .options > small {
+      cursor: pointer;
+      font-size: 1.3rem; }
+    .container.panel .options .items {
+      display: none;
+      position: absolute;
+      border: 1px solid #333;
+      background: #fff;
+      height: auto;
+      width: 100px; }
+      .container.panel .options .items a {
+        padding: 5px;
+        font-size: 1.2rem;
+        display: block;
+        color: #333; }
   .container.panel small, .container.panel h4 {
     color: #333; }
   .container.panel small {
     font-weight: bold; }
   .container.panel .req-wrapper, .container.panel .publish-wrapper {
     width: 48%;
-    padding: 30px;
+    padding: 20px;
     height: auto;
     vertical-align: top;
     display: inline-block; }
@@ -626,6 +640,92 @@ footer {
       color: #333; }
       .container.panel .post-box h4 a:hover {
         text-decoration: underline; }
+
+.b-event {
+  margin: 20px auto;
+  height: 500px;
+  background: white; }
+  .b-event .create-event-wrapper {
+    display: inline-block;
+    vertical-align: top;
+    width: 48%;
+    padding: 15px; }
+    .b-event .create-event-wrapper input, .b-event .create-event-wrapper textarea {
+      font-family: OS-Regular;
+      color: #333;
+      font-size: 1rem;
+      padding: 0px 10px; }
+    .b-event .create-event-wrapper input {
+      position: relative;
+      margin: 5px 0px;
+      height: 42px;
+      display: block;
+      width: 40%;
+      border: 1px solid #b3b3b3;
+      outline: none; }
+    .b-event .create-event-wrapper textarea {
+      padding: 10px;
+      display: block;
+      height: 300px;
+      width: 400px;
+      resize: none; }
+    .b-event .create-event-wrapper button {
+      border: none;
+      color: #fff;
+      padding: 5px 10px;
+      background: #2a5bb8;
+      margin: 15px 0px; }
+  .b-event .event-list-wrapper {
+    width: 48%;
+    display: inline-block;
+    vertical-align: top;
+    padding: 15px; }
+    .b-event .event-list-wrapper .year {
+      width: 100%;
+      border-bottom: 1px solid #2a5bb8; }
+      .b-event .event-list-wrapper .year h3 {
+        color: #2a5bb8;
+        padding: 5px 0px; }
+    .b-event .event-list-wrapper .event .box-date {
+      vertical-align: top;
+      display: inline-block;
+      margin: 10px 0px;
+      border: 1px solid #ababab;
+      height: 100px;
+      width: 100px;
+      background: transparent; }
+      .b-event .event-list-wrapper .event .box-date .month {
+        height: 40px;
+        width: 100%;
+        background: #2a5bb8; }
+        .b-event .event-list-wrapper .event .box-date .month h4 {
+          text-align: center;
+          padding: 10px;
+          font-weight: bold;
+          color: #fff; }
+      .b-event .event-list-wrapper .event .box-date .day {
+        height: 60px;
+        width: 100%; }
+        .b-event .event-list-wrapper .event .box-date .day h2 {
+          color: #333;
+          text-align: center;
+          padding: 10px 0px; }
+    .b-event .event-list-wrapper .info {
+      margin: 15px;
+      vertical-align: top;
+      display: inline-block;
+      width: 75%; }
+      .b-event .event-list-wrapper .info .head-wrapper {
+        display: flex;
+        justify-content: space-between; }
+        .b-event .event-list-wrapper .info .head-wrapper h4 {
+          text-transform: capitalize; }
+        .b-event .event-list-wrapper .info .head-wrapper a {
+          color: #e33545; }
+      .b-event .event-list-wrapper .info p {
+        font-size: 0.8rem;
+        font-family: OS-Regular;
+        color: #333; }
 
 .b-create h1 {
   font-family: OS-Bold; }
@@ -751,6 +851,7 @@ footer {
       font-family: OS-Regular;
       color: #333; }
     .b-radioastronomy .page img {
+      background-size: contain;
       display: block; }
     .b-radioastronomy .page small {
       font-style: italic;

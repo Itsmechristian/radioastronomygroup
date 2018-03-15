@@ -14,7 +14,7 @@ const Article = require("../models/Article")
      , User = require("../models/User");
 
   // Get date format mmmm-dd-yyyy
-  getDate = require("../module/getdate");
+   dateFormat = require("../module/dateFormat");
 
 
 router.all("/*", (req, res, next) => {
@@ -68,11 +68,32 @@ router.get("/", (req, res) => {
           });
         }
       });
+
+
+      // Hard Coded Events Demo purposes
+      const events = {
+        months: {
+          October: [
+            {
+              description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras enim nibh',
+              place: 'Birmingham AS, 2015',
+              date: 'Oct 27, 2015',
+              soldout: false            
+            },
+            {
+              description: 'Aliquam et tincidunt neque. Mauris quis felis enim. Aliquam erat volutpat.',
+              place: 'Birmingham AS',
+              date: 'Oct 31, 2015',
+              soldout: false            
+            },
+          ]
+        }
+      }
+
       res.status(200).render("home/home", {
         articles: articles,
         layout: "main.handlebars",
         user: req.user,
-        date: getDate.getFormat
       });
     })
     .catch(err => {

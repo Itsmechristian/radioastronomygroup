@@ -11,7 +11,7 @@ const express = require("express"),
   fs = require("fs"),
   url = require("url");
 
-const getdate = require('../module/getdate')
+const dateFormat = require('../module/dateFormat')
 
 // Initialize multer to uplaod a file
 const storage = multer.diskStorage({
@@ -48,12 +48,14 @@ function checkFileType(file, cb) {
   Article = require("../models/Article"),
   User = require("../models/User"),
   RequestArticle = require("../models/RequestArticle"),
+  Events = require('../models/Events')
   Bugs = require("../models/Bugs");
 
 // Own Module
   const articleConfiguration = require('../module/articleConfiguration')
 
  router.use((req, res, next) => {
+   res.app.locals.success = req.flash('success')
    // Check the session and Check if there is a user for security reaseon
   if(req.session && req.user) {
       req.app.locals.layout = "main.handlebars";
@@ -94,7 +96,7 @@ router.get("/" ,(req, res) => {
             return {
               _id: e._id,
               title: e.title,
-              dateRequested: getdate(e.dateRequested),
+              dateRequested: dateFormat.fullDate(e.dateRequested),
               author: e.requestBy, 
               status: {
                 isPublish: e.isPublish
@@ -108,7 +110,7 @@ router.get("/" ,(req, res) => {
             return {
               _id: e._id,
               title: e.title,
-              datePublished: getdate(e.datePublished),
+              datePublished: dateFormat.fullDate(e.datePublished),
               author: e.requestBy, 
               status: {
                 isPublish: e.isPublish
@@ -134,9 +136,6 @@ router.get('/article/:id', (req, res) => {
   .findById(req.params.id)
   .then(docs => {
     res.render('user/post', {docs})
-  })
-  .catch(err => {
-    console.log(err)
   })
 })
 
@@ -165,8 +164,39 @@ router.post('/article/edit/:id', (req, res) => {
   })
 })
 
+router.get('/create/events', (req, res) => {
+  Events.find().then(event => {
+    const eventYear = event.filter(e => (e.year === 2018))
+  console.log(eventYear)
+res.render('user/events')
+})
+.catch(err => console.log(err))
+})
+
+router.post('/create/events', (req, res) => {
+  const place = req.body.place,
+        fullDate = req.body.fulldate,
+        description = req.body.description
+  const Event = new Events({
+      place,
+      year: dateFormat.getYear(fullDate),
+      fulldate: {
+        weekdays: dateFormat.getDay(fullDate),
+        month: dateFormat.getMonth(fullDate),
+        date: dateFormat.getDate(fullDate),
+      },
+      description
+  })
+  Event
+  .save()
+  .then(saved => {
+    req.flash('success', 'Upcoming event created succcesfully')
+    res.redirect('/user/create/events')
+  })      
+  .catch(err => console.log(err))
+})
 // Creating new request Article
-router.get("/create",(req, res) => {
+router.get("/create", (req, res) => {
   res.render("user/create");
 });
 
@@ -272,7 +302,6 @@ router.get("/request/post/:id", (req, res) => {
     .catch(err => console.log(err));
 });
 router.post("/request/post/:id", (req, res) => {
-
   RequestArticle
     .findById({
       _id: req.params.id

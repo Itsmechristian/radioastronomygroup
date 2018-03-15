@@ -25,7 +25,13 @@
   .container-fluid {
     max-width: 90%; }
   .col-lg-9 {
-    border: none !important; } }
+    border: none !important; }
+  .b-radioastronomy .sidebar {
+    width: 200px; }
+  .b-radioastronomy .page {
+    width: 65%; }
+  .b-radioastronomy img {
+    width: 100%; } }
 
 @media screen and (max-width: 768px) {
   .container-fluid {
@@ -89,4 +95,12 @@
   .b-mobile-sidebar.hid {
     animation: CloseSideBar 0.2s both; }
   .overlay.clicked {
-    display: block; } }
+    display: block; }
+  .b-radioastronomy .sidebar {
+    display: none; }
+  .b-radioastronomy .page {
+    margin: 0 auto;
+    padding: 15px;
+    width: 100%; }
+  .b-radioastronomy img {
+    width: 100%; } }
