@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="/css/media-query.css">
     <link rel="stylesheet" href="/css/bootstrap.grid.css">
     <link rel="stylesheet" href="/css/fontawesome.css">
+    <link rel="stylesheet" href="/css/pickaday.css">
     <title>Welcome to Britastro | Radio</title>
 </head>
 
@@ -27,7 +28,17 @@
     <script src="/js/login.js"></script>
     <script src="/js/register.js"></script>
     <script src="/js/function.js"></script>
-
+    <script src="/js/pickaday.js"></script>
+    <script>
+   var picker = new Pikaday(
+    {
+        field: document.getElementById('datepicker'),
+        firstDay: 1,
+        minDate: new Date(),
+        maxDate: new Date(2020, 12, 31),
+        yearRange: [2000,2020],
+    });
+    </script>
 </body>
 
 </html>

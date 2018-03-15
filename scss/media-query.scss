@@ -42,6 +42,17 @@
   .col-lg-9 {
     border: none !important;
   }
+  .b-radioastronomy {
+    .sidebar{
+    width: 200px;
+    }
+    .page {
+      width: 65%;
+    }
+    img{
+      width: 100%;
+    }
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -122,6 +133,19 @@
   }
   .overlay.clicked {
     display: block;
+  }
+  .b-radioastronomy {
+    .sidebar{
+      display: none;
+    }
+    .page {
+      margin: 0 auto;
+      padding: 15px;
+      width: 100%;
+    }
+    img{
+      width: 100%;
+    }
   }
 }
 @media (min-width: 480px) {

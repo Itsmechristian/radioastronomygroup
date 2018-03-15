@@ -1,0 +1,35 @@
+<div class="container-fluid b-event">
+  <div class="create-event-wrapper">
+    {{#if success}}
+    <small class="">{{success}}</small>
+    {{/if}}
+    <form action="/user/create/events" method="post">
+      <input type="text" name="place" id="place" placeholder="Place...">
+      <input type="text" name="fulldate" id="datepicker" onkeydown="return false" placeholder="Date...">
+      <textarea type="text" name="description" id="description" placeholder="Description..."></textarea>
+      <button type="submit">Create Event</button>
+    </form>
+  </div>
+  <div class="event-list-wrapper">
+    <div class="year">
+      <h3>2017</h3>
+    </div>
+    <div class="event">
+      <div class="box-date">
+        <div class="month">
+          <h4>January</h4>
+        </div>
+        <div class="date">
+          <h2>25</h2>
+        </div>
+      </div>
+      <div class="info">
+        <div class="head-wrapper">
+      <h4>Birmingham <i class="fa fa-map-marker"></i></h4>
+      <a href="#">Cancel Event</a>
+        </div>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae alias unde, qui neque obcaecati quas tenetur dolores officiis quod. Voluptate adipisci voluptatibus nulla repellendus quidem vitae magnam error in consequatur!</p>
+      </div>
+    </div>
+  </div>
+</div>

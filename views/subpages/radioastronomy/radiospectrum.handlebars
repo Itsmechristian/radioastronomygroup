@@ -1,66 +1,261 @@
 <div class="container-fluid b-radioastronomy">
-    <div class="sidebar">
-      {{> radioastronomy/_sidebar}}
-    </div>
-    <div class="page">
-      <h1>Introduction to Radio Astronomy</h1>
-      <p>
-        Most amateur astronomers observe in Visible light. The electromagnetic spectrum encompasses a vast scope, starting almost at Direct Current and with frequencies up to 2.4×1023 Hz (Gamma rays).
-      </p>
-      <img src="http://britastro.org/radio/images/spectrum.jpg" alt="">
-      <small>(image courtesy wikipedia) 
-</small>
-<p>As can be seen from the figure, visible light comprises a tiny fraction of the entire EM spectrum - everything else is considered to be fair game for radio astronomers
-</p>
-<p>
-  However, not all this radiation can actually penetrate the atmosphere. Additionally, much of the spectrum is used by commercial bodies - for example, television, mobile phones, data communications etc. In fact, there is actually very little left that is potentially usable yet unused. Because of this, certain bands of frequencies are protected and these should be considered if serious observations are planned. It is not necessary to stick to these bands though, in fact it can be much more rewarding and easier making use of existing consumer hardware and living with the interference. This is potentially no worse than that most optical astronomers have to put up with - observing through a light polluted sky.
-</p>
-<h3>Radio Astronomy Protected Frequencies
-</h3>
-<p>There are a number of internationally protected frequencies that are sererved for the use of Radio Astronomers. However, not all these are globally honoured. For example, the band 73 - 74.6MHz is peculiar to the USA and Canada whereas it is unrecognised in the UK. It should also be noted that the 608 - 614MHz band will lose its protection in the UK from September 2012.
-</p>
-<table cellspacing="1" cellpadding="1">
-  <thead>
-    <tr>
-      <td>Frequency band	</td>
-      <td>Status</td>
-      <td>Radio astronomy use</td>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>13.36 - 13.41 MHz	t</td>
-      <td></td>
-      <td></td>
-    </tr>
-        <tr>
-      <td>25.55 - 25.67 MHz</td>
-      <td>37.5 - 38.25 MHz</td>
-      <td>Continuum observations</td>
-    </tr>
-            <tr>
-      <td>73 - 74.6 MHz</td>
-      <td></td>
-      <td>Solar wind observations,
-Continuum observations.</td>
-    </tr>
-            <tr>
-      <td>80.5 - 82.5 MHz	</td>
-      <td></td>
-      <td>Continuum observations. 
-, Pulsar observations. 
-, Solar observations.
-</td>
-    </tr>
-            <tr>
-      <td>Column Content</td>
-      <td>Column Content</td>
-      <td>Column Content</td>
-    </tr>
-  </tbody>
-</table>
-<p>The majority of Amateur Radio Astronomy observations are usually performed at less than 12GHz. Higher frequencies are deemed to be very exotic requiring very specialist construction and measurement techniques
-</p>
-<h3>Resources</h3>
-<a href="#">Committee on Radio Astronomy Frequencies</a>
+<div class="sidebar">
+   {{> radioastronomy/_sidebar}}
+</div>
+<div class="page">
+   <h1>Introduction to Radio Astronomy</h1>
+   <p>
+      Most amateur astronomers observe in Visible light. The electromagnetic spectrum encompasses a vast scope, starting almost at Direct Current and with frequencies up to 2.4×1023 Hz (Gamma rays).
+   </p>
+   <img src="http://britastro.org/radio/images/spectrum.jpg" alt="">
+   <small>(image courtesy wikipedia) 
+   </small>
+   <p>As can be seen from the figure, visible light comprises a tiny fraction of the entire EM spectrum - everything else is considered to be fair game for radio astronomers</p>
+   <p>
+      However, not all this radiation can actually penetrate the atmosphere. Additionally, much of the spectrum is used by commercial bodies - for example, television, mobile phones, data communications etc. In fact, there is actually very little left that is potentially usable yet unused. Because of this, certain bands of frequencies are protected and these should be considered if serious observations are planned. It is not necessary to stick to these bands though, in fact it can be much more rewarding and easier making use of existing consumer hardware and living with the interference. This is potentially no worse than that most optical astronomers have to put up with - observing through a light polluted sky.
+   </p>
+   <h3>Radio Astronomy Protected Frequencies</h3>
+   <p>There are a number of internationally protected frequencies that are sererved for the use of Radio Astronomers. However, not all these are globally honoured. For example, the band 73 - 74.6MHz is peculiar to the USA and Canada whereas it is unrecognised in the UK. It should also be noted that the 608 - 614MHz band will lose its protection in the UK from September 2012.</p>
+   <table cellspacing="1" cellpadding="1">
+      <thead>
+         <tr>
+            <td>Frequency band	</td>
+            <td>Status</td>
+            <td>Radio astronomy use</td>
+         </tr>
+      </thead>
+      <tbody>
+         <tr>
+            <td>13.36 - 13.41 Mhzt</td>
+            <td></td>
+            <td></td>
+         </tr>
+         <tr>
+            <td>25.55 - 25.67 MHz</td>
+            <td></td>
+            <td></td>
+         </tr>
+         <tr>
+            <td>37.5 - 38.25 MHz</td>
+            <td></td>
+            <td>Continuum observations.</td>
+         </tr>
+         <tr>
+            <td>73 - 74.6 MHz</td>
+            <td></td>
+            <td>Solar wind observations, Pulsar observations
+               , Continuum observations
+            </td>
+         </tr>
+         <tr>
+            <td>80.5 - 82.5 Mhz</td>
+            <td></td>
+            <td>Pulsar observations</td>
+         </tr>
+         <tr>
+            <td>150.05 - 153 MHz Mhz</td>
+            <td></td>
+            <td>Continuum observations, Pulsar observations, Solar observations
+            </td>
+         </tr>
+         <tr>
+            <td>322 - 328.6 MHz</td>
+            <td></td>
+            <td>Continuum observations, VLBI</td>
+         </tr>
+         <tr>
+            <td>406.1 - 410 MHz</td>
+            <td></td>
+            <td>Continuum observations, Pulsar observations</td>
+         </tr>
+         <tr>
+            <td>608 - 614 MHz</td>
+            <td></td>
+            <td>Continuum observations, VLBI</td>
+         </tr>
+         <tr>
+            <td>1400 - 1427 MHz</td>
+            <td></td>
+            <td>Spectral line observations, 21cm hydrogen line</td>
+         </tr>
+         <tr>
+            <td>1660 - 1660.5 MHz</td>
+            <td></td>
+            <td>VLBI</td>
+         </tr>
+         <tr>
+            <td>1660.5 - 1668.4 MHz</td>
+            <td></td>
+            <td>VLBI, Line observations, Continuum observations</td>
+         </tr>
+         <tr>
+            <td>1668.4 - 1670 MHz</td>
+            <td></td>
+            <td></td>
+         </tr>
+         <tr>
+            <td>1718.8 - 1722.2 MHz</td>
+            <td></td>
+            <td></td>
+         </tr>
+         <tr>
+            <td>2655 - 2690 MHz</td>
+            <td></td>
+            <td>Continuum observations</td>
+         </tr>
+         <tr>
+            <td>2690 - 2700 MHz</td>
+            <td></td>
+            <td></td>
+         </tr>
+         <tr>
+            <td>3260 - 3267 MHz</td>
+            <td></td>
+            <td></td>
+         </tr>
+         <tr>
+            <td>3260 - 3267 MHz</td>
+            <td></td>
+            <td></td>
+         </tr>
+         <tr>
+            <td>3345.8 - 3352.5 MHz</td>
+            <td></td>
+            <td></td>
+         </tr>
+         <tr>
+            <td>4800 - 4990 MHz</td>
+            <td></td>
+            <td>Continuum observations</td>
+         </tr>
+         <tr>
+            <td>4990 - 5000 MHz</td>
+            <td></td>
+            <td>Continuum observations, VLBI</td>
+         </tr>
+         <tr>
+            <td>5000 - 5030 MHz</td>
+            <td></td>
+            <td>VLBI</td>
+         </tr>
+         <tr>
+            <td>6650 - 6675.2 MHz</td>
+            <td></td>
+            <td></td>
+         </tr>
+         <tr>
+            <td>10.6 - 10.68 GHz</td>
+            <td></td>
+            <td>Continuum meausurements, VLBI</td>
+         </tr>
+         <tr>
+            <td>10.68 - 10.7 GHz</td>
+            <td></td>
+            <td>Continuum observations, VLBI</td>
+         </tr>
+         <tr>
+            <td>14.47 - 14.5 GHz</td>
+            <td></td>
+            <td>Spectral line observations, VLBI</td>
+         </tr>
+         <tr>
+            <td>15.2 - 15.35 GHz</td>
+            <td></td>
+            <td>VLBI</td>
+         </tr>
+         <tr>
+            <td>15.35 - 15.4 GHz</td>
+            <td></td>
+            <td>Continuum observations, VLBI</td>
+         </tr>
+         <tr>
+            <td>22.01 - 22.21 GHz</td>
+            <td></td>
+            <td>Spectral line observationS, Water line</td>
+         </tr>
+         <tr>
+            <td>22.21 - 22.5 GHz</td>
+            <td></td>
+            <td>Spectral line observations, Water line.</td>
+         </tr>
+         <tr>
+            <td>22.91 - 22.86 GHz</td>
+            <td></td>
+            <td>Spectral line observations, Methyl Formate, Ammonia</td>
+         </tr>
+         <tr>
+            <td>23.07 - 23.12 GHz</td>
+            <td></td>
+            <td>Spectral line observations</td>
+         </tr>
+         <tr>
+            <td>23.6 - 24.0 GHz</td>
+            <td></td>
+            <td>Spectral line observations, Continuum observations, Ammonia line</td>
+         </tr>
+         <tr>
+            <td>31.2 - 31.3 GHz</td>
+            <td></td>
+            <td>Continuum observations</td>
+         </tr>
+         <tr>
+            <td>31.3 - 31.5 GHz</td>
+            <td></td>
+            <td>Continuum observations</td>
+         </tr>
+         <tr>
+            <td>31.5 - 31.8 GHz</td>
+            <td></td>
+            <td>Continuum observations</td>
+         </tr>
+         <tr>
+            <td>36.43 - 36.5 GHz</td>
+            <td></td>
+            <td>Spectral line observations, Hydrogen cyanide, Hydroxil</td>
+         </tr>
+         <tr>
+            <td>42.5 - 43.5 GHz</td>
+            <td></td>
+            <td>Spectral line observations, Silicon monoxide and many other lines</td>
+         </tr>
+         <tr>
+            <td>48.94 - 49.04 GHz</td>
+            <td></td>
+            <td>Spectral line observations, Carbon monosulphide</td>
+         </tr>
+         <tr>
+            <td>51.4 - 54.25 GHz</td>
+            <td></td>
+            <td></td>
+         </tr>
+         <tr>
+            <td>58.2 - 59 GHz</td>
+            <td></td>
+            <td></td>
+         </tr>
+         <tr>
+            <td>72.77 - 72.91 GHz</td>
+            <td></td>
+            <td>Spectral line observations,Formaldehyde line </td>
+         </tr>
+         <tr>
+            <td>86 - 92 GHz</td>
+            <td></td>
+            <td>Spectral line observations, Continuum obserations</td>
+         </tr>
+         <tr>
+            <td>92 - 94 GHz</td>
+            <td></td>
+            <td>Spectral line observations, Diazenylium and many other lines.</td>
+         </tr>
+         <tr>
+            <td>95 - 100 GHz</td>
+            <td></td>
+            <td>Spectral line observations, Continuum observations.</td>
+         </tr>
+      </tbody>
+   </table>
+   <p>The majority of Amateur Radio Astronomy observations are usually performed at less than 12GHz. Higher frequencies are deemed to be very exotic requiring very specialist construction and measurement techniques</p>
+   <h3>Resources</h3>
+   <a href="#">Committee on Radio Astronomy Frequencies</a>
 </div>

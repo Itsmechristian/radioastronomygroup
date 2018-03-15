@@ -434,14 +434,9 @@ body.scrolldisable {
          text-align: center;
        }
        .events{
-         .place{
-           height: 30px;
-           width: 100px;
-           background: $brown;
-           p{
-             color: $white;
-           }
-         }
+          .months{
+        
+          }
        }
      }
     }
@@ -719,11 +714,7 @@ footer {
         padding: 0;
       }
     }
-    .items.clicked{
-      display: block;
-    }
   }
-
   .b-post {
     width: 90%;
     margin: 0 auto;
@@ -741,13 +732,39 @@ footer {
 }
 // End Register style
 
-
+.items.clicked{
+  display: block !important;
+}
 // User panel style
 .container.panel {
   font-family: OS-Regular;
   height: auto;
   background: $white;
   margin: 20px auto;
+  .options{
+    padding: 3px;
+    margin: 0px 15px;
+    position: relative;
+     > small{
+       cursor: pointer;
+      font-size: 1.3rem;
+    }
+    .items{
+      display: none;
+      position: absolute;
+      border: 1px solid $black;
+      background: $white;
+      height: auto;
+      width: 100px;
+      a{
+        padding: 5px;
+        font-size: 1.2rem;
+        display: block;
+        color: $black;
+      }
+    }
+  }
+
   small, h4{
     color: $black;
   }
@@ -756,7 +773,7 @@ footer {
   }
   .req-wrapper, .publish-wrapper{
     width: 48%;
-    padding: 30px;
+    padding: 20px;
     height: auto;
     vertical-align: top;
     display: inline-block;
@@ -782,6 +799,112 @@ footer {
         &:hover{
           text-decoration: underline;
         }
+      }
+    }
+  }
+}
+.b-event{
+  margin: 20px auto;
+  height: 500px;    
+  background: white;
+  .create-event-wrapper{
+    display: inline-block;
+    vertical-align: top;
+    width: 48%;
+    padding: 15px;
+    input, textarea {
+      font-family: OS-Regular;
+      color: #333;
+      font-size: 1rem;
+      padding: 0px 10px;
+    }
+    input{
+      position: relative;
+      margin: 5px 0px;
+      height: 42px;
+      display: block;
+      width: 40%;
+      border: 1px solid #b3b3b3;
+      outline: none;
+    }
+    textarea{
+      padding: 10px;
+      display: block;
+      height: 300px;
+      width: 400px;
+      resize: none;
+    }
+    button{
+      border: none;
+      color: #fff;
+      padding: 5px 10px;
+      background: $blue;
+      margin: 15px 0px;
+    }
+  }
+  .event-list-wrapper{
+    width: 48%;
+    display: inline-block;
+    vertical-align: top;
+    padding: 15px;
+    .year{
+      width: 100%;
+      border-bottom: 1px solid $blue;
+      h3{
+        color: $blue;
+        padding: 5px 0px;
+      }
+    }
+    .event{
+      .box-date{
+      vertical-align: top;
+        display: inline-block;
+        margin: 10px 0px;
+        border: 1px solid $grey;
+        height: 100px;
+        width: 100px;
+        background:transparent;
+        .month{
+          height: 40px;
+          width: 100%;
+          background: $blue;
+          h4{
+            text-align: center;
+            padding: 10px;
+            font-weight: bold;
+            color: $white;
+          }
+        }
+        .day{
+          height: 60px;
+          width: 100%;
+          h2{
+            color: $black;
+            text-align: center;
+            padding: 10px 0px;
+          }
+        }
+      }
+    }
+    .info{
+      margin: 15px;
+      vertical-align: top;
+      display: inline-block;
+      width: 75%;
+      .head-wrapper{
+        display: flex;
+        justify-content: space-between;
+        h4{
+          text-transform: capitalize;
+        }
+        a{
+          color: $red;
+        }
+      }
+      p{
+        font-size: 0.8rem;
+        font-family: OS-Regular;
+        color: $black;
       }
     }
   }
@@ -935,6 +1058,7 @@ footer {
       color: $black;
     }
     img{
+      background-size: contain;
       display: block;
     }
     small{
