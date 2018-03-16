@@ -26,7 +26,7 @@ router.all("/*", (req, res, next) => {
 // Home Route
 router.get("/", (req, res) => {
   
-  Article.find().sort({ dateCreate: -1 })
+  Article.find().sort([['datePublished', 'desc']])
     .limit(6)
     .then(results => {
       // Catch articles within array
@@ -68,27 +68,6 @@ router.get("/", (req, res) => {
           });
         }
       });
-
-
-      // Hard Coded Events Demo purposes
-      const events = {
-        months: {
-          October: [
-            {
-              description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras enim nibh',
-              place: 'Birmingham AS, 2015',
-              date: 'Oct 27, 2015',
-              soldout: false            
-            },
-            {
-              description: 'Aliquam et tincidunt neque. Mauris quis felis enim. Aliquam erat volutpat.',
-              place: 'Birmingham AS',
-              date: 'Oct 31, 2015',
-              soldout: false            
-            },
-          ]
-        }
-      }
 
       res.status(200).render("home/home", {
         articles: articles,

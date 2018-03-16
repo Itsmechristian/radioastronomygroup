@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
     , Schema = mongoose.Schema
-
 const EventSchema = new Schema({
   place: {
     type: String,
@@ -21,5 +20,7 @@ const EventSchema = new Schema({
     default: false
   }
 })
+
+
 
 module.exports = mongoose.model('events', EventSchema)

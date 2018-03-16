@@ -23,7 +23,9 @@
 }
 
 @media screen and (max-width: 990px) {
-
+  .b-body .home-row .col-lg-9{
+    border: none;
+  }
 }
 
 @media screen and (max-width: 1466px) {
@@ -32,15 +34,19 @@
   }
 }
 @media screen and (max-width: 1200px) {
+  .b-body .home-row .col-lg-9 .box{
+    overflow: hidden;
+    max-width: 28%;
+    img{
+      width: 100%;
+    }
+  }
   .b-post img {
     width: 100% !important;
     height: auto !important;
   }
   .container-fluid {
     max-width: 90%;
-  }
-  .col-lg-9 {
-    border: none !important;
   }
   .b-radioastronomy {
     .sidebar{
@@ -55,7 +61,18 @@
   }
 }
 
+// Yesterday's work
 @media screen and (max-width: 768px) {
+  .b-body{
+    width: 70% !important;
+    .home-row{
+      .col-lg-9{
+        .box{
+          max-width:100%;
+        }
+      }
+    }
+  }
   .container-fluid {
     max-width: 90%;
   }

@@ -1,7 +1,7 @@
 <div class="container-fluid b-event">
   <div class="create-event-wrapper">
     {{#if success}}
-    <small class="">{{success}}</small>
+    <small id="success">{{success}}</small>
     {{/if}}
     <form action="/user/create/events" method="post">
       <input type="text" name="place" id="place" placeholder="Place...">
@@ -11,25 +11,80 @@
     </form>
   </div>
   <div class="event-list-wrapper">
+    {{#if event2018}}
     <div class="year">
-      <h3>2017</h3>
+      <h3>2018</h3>
     </div>
+    {{#each event2018}}
     <div class="event">
       <div class="box-date">
         <div class="month">
-          <h4>January</h4>
+          <h4>{{fulldate.month}}</h4>
         </div>
         <div class="date">
-          <h2>25</h2>
+          <h2>{{fulldate.date}}</h2>
         </div>
       </div>
       <div class="info">
         <div class="head-wrapper">
-      <h4>Birmingham <i class="fa fa-map-marker"></i></h4>
+      <h4>{{place}} <i class="fa fa-map-marker"></i></h4>
       <a href="#">Cancel Event</a>
         </div>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae alias unde, qui neque obcaecati quas tenetur dolores officiis quod. Voluptate adipisci voluptatibus nulla repellendus quidem vitae magnam error in consequatur!</p>
+        <small>{{fulldate.day}}</small>
+      <p>{{description}}</p>
       </div>
     </div>
+    {{/each}}
+    {{/if}}
+        {{#if event2019}}
+    <div class="year">
+      <h3>2019</h3>
+    </div>
+    {{#each event2019}}
+    <div class="event">
+      <div class="box-date">
+        <div class="month">
+          <h4>{{fulldate.month}}</h4>
+        </div>
+        <div class="date">
+          <h2>{{fulldate.date}}</h2>
+        </div>
+      </div>
+      <div class="info">
+        <div class="head-wrapper">
+      <h4>{{place}} <i class="fa fa-map-marker"></i></h4>
+      <a href="#">Cancel Event</a>
+        </div>
+        <small>{{fulldate.day}}</small>
+      <p>{{description}}</p>
+      </div>
+    </div>
+    {{/each}}
+    {{/if}}
+    {{#if event2020}}
+    <div class="year">
+      <h3>2020</h3>
+    </div>
+    {{#each event2020}}
+    <div class="event">
+      <div class="box-date">
+        <div class="month">
+          <h4>{{fulldate.month}}</h4>
+        </div>
+        <div class="date">
+          <h2>{{fulldate.date}}</h2>
+        </div>
+      </div>
+      <div class="info">
+        <div class="head-wrapper">
+      <h4>{{place}} <i class="fa fa-map-marker"></i></h4>
+      <a href="#">Cancel Event</a>
+        </div>
+        <small>{{fulldate.day}}</small>
+      <p>{{description}}</p>
+      </div>
+    </div>
+    {{/each}}
+    {{/if}}
   </div>
 </div>

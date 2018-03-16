@@ -166,9 +166,16 @@ router.post('/article/edit/:id', (req, res) => {
 
 router.get('/create/events', (req, res) => {
   Events.find().then(event => {
-    const eventYear = event.filter(e => (e.year === 2018))
-  console.log(eventYear)
-res.render('user/events')
+    const event2018 = event.filter(e => (e.year === '2018'))
+    const event2019 = event.filter(e => (e.year === '2019'))
+    const event2020 = event.filter(e => (e.year === '2020'))
+
+
+    res.render('user/events', {
+      event2018,
+      event2019,
+      event2020
+    })
 })
 .catch(err => console.log(err))
 })
@@ -181,11 +188,11 @@ router.post('/create/events', (req, res) => {
       place,
       year: dateFormat.getYear(fullDate),
       fulldate: {
-        weekdays: dateFormat.getDay(fullDate),
+        day: dateFormat.getDay(fullDate),
         month: dateFormat.getMonth(fullDate),
         date: dateFormat.getDate(fullDate),
       },
-      description
+      description,
   })
   Event
   .save()
@@ -307,7 +314,6 @@ router.post("/request/post/:id", (req, res) => {
       _id: req.params.id
     })
     .then(result => {
-
       const newArticle = new Article({
         _id: new mongoose.Types.ObjectId(),
         userId: result.userId,

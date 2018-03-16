@@ -275,8 +275,10 @@ body.scrolldisable {
       height: auto;
       border-right: 1px inset #ababab; }
       .b-body .home-row .col-lg-9 .box {
+        text-overflow: ellipsis;
+        overflow-y: hidden;
+        height: 330px;
         width: 250px;
-        height: 320px;
         display: inline-block;
         vertical-align: top;
         margin: 5px 10px 10px 15px !important;
@@ -296,8 +298,11 @@ body.scrolldisable {
             display: inline-block;
             text-overflow: ellipsis;
             text-decoration: none;
-            font-family: OS-Bold;
-            color: #333; }
+            font-family: OS-SemiBold;
+            color: #333;
+            text-transform: full-width; }
+            .b-body .home-row .col-lg-9 .box .link-side a::first-letter {
+              text-transform: capitalize; }
       .b-body .home-row .col-lg-9 .see-more-link {
         margin: 20px 0px;
         color: #2a5bb8;
@@ -339,7 +344,7 @@ body.scrolldisable {
           width: 100%;
           margin: 0 auto; }
         .b-body .home-row .b-sub-sections .icon-body p {
-          font-family: OS-Bold;
+          font-family: OS-Regular;
           text-align: center;
           color: #4a4747;
           font-size: 0.9rem; }
@@ -643,7 +648,7 @@ footer {
 
 .b-event {
   margin: 20px auto;
-  height: 500px;
+  height: auto;
   background: white; }
   .b-event .create-event-wrapper {
     display: inline-block;
@@ -703,10 +708,10 @@ footer {
           padding: 10px;
           font-weight: bold;
           color: #fff; }
-      .b-event .event-list-wrapper .event .box-date .day {
+      .b-event .event-list-wrapper .event .box-date .date {
         height: 60px;
         width: 100%; }
-        .b-event .event-list-wrapper .event .box-date .day h2 {
+        .b-event .event-list-wrapper .event .box-date .date h2 {
           color: #333;
           text-align: center;
           padding: 10px 0px; }
@@ -722,8 +727,13 @@ footer {
           text-transform: capitalize; }
         .b-event .event-list-wrapper .info .head-wrapper a {
           color: #e33545; }
+      .b-event .event-list-wrapper .info small {
+        font-family: OS-Bold;
+        color: #333; }
       .b-event .event-list-wrapper .info p {
-        font-size: 0.8rem;
+        margin: 2px 0px;
+        font-size: 0.9rem;
+        font-weight: 400;
         font-family: OS-Regular;
         color: #333; }
 
