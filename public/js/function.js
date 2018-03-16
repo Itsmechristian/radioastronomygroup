@@ -1,14 +1,13 @@
-var boxLength = $(".box").length;
-$(document).ready(function() {
-  if (boxLength > 6) {
-    $(".home-row").css("height", "auto");
-  } else {
-    $(".home-row").css("height", "950px");
-  }
-});
+// var boxLength = $(".box").length;
+// $(document).ready(function() {
+//   if (boxLength > 6) {
+//     $(".home-row").css("height", "auto");
+//   } else {
+//     $(".home-row").css("height", "950px");
+//   }
+// });
 
 // Make sidebar and Page same height
-
 window.onload = function() {
   // Subpages Sidebar Height
   const pageHeight = $('.page').height()
@@ -42,3 +41,8 @@ $(document).ready(function() {
     })
   })
 })
+
+setInterval(function() {
+  $('#warning').fadeOut('slow')
+  $('#success').fadeOut('slow')
+}, 5000)

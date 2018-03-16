@@ -41,8 +41,5 @@ if(document.location.pathname === "/home/login") {
     $("#warning, #success").fadeOut();
   });
   
-  setInterval(function() {
-    $('#warning').fadeOut('slow')
-    $('#success').fadeOut('slow')
-  }, 5000)
+
 }

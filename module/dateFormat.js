@@ -14,7 +14,7 @@ function getMonth(fullDate) {
     return monthNames[month]
 }
 function getDay(fullDate) {
-    const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+    const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
     const day = new Date(fullDate).getDay()
     return dayNames[day]
 }

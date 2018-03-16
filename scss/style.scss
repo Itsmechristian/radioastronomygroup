@@ -338,10 +338,11 @@ body.scrolldisable {
       padding: 10px;
       height: auto;
       border-right: 1px inset $grey;
-
       .box {
+        text-overflow: ellipsis;
+        overflow-y: hidden;
+        height: 330px;
         width: 250px;
-        height: 320px;
         display: inline-block;
         vertical-align: top;
         margin: 5px 10px 10px 15px !important;
@@ -358,15 +359,18 @@ body.scrolldisable {
         .link-side {
           width: 100%;
           padding: 5px;
-
           a {
             overflow: hidden;
             width: 100%;
             display: inline-block;
             text-overflow: ellipsis;
             text-decoration: none;
-            font-family: OS-Bold;
+            font-family: OS-SemiBold;
             color: $black;
+            text-transform: full-width;
+            &::first-letter{
+              text-transform: capitalize;
+            }
           }
         }
       }
@@ -417,7 +421,7 @@ body.scrolldisable {
           margin: 0 auto;
         }
         p{
-          font-family: OS-Bold;
+          font-family: OS-Regular;
           text-align: center;
           color: $brown;
           font-size: 0.9rem;
@@ -805,7 +809,7 @@ footer {
 }
 .b-event{
   margin: 20px auto;
-  height: 500px;    
+  height: auto;    
   background: white;
   .create-event-wrapper{
     display: inline-block;
@@ -875,7 +879,7 @@ footer {
             color: $white;
           }
         }
-        .day{
+        .date{
           height: 60px;
           width: 100%;
           h2{
@@ -901,8 +905,14 @@ footer {
           color: $red;
         }
       }
+      small{
+        font-family: OS-Bold;
+        color: $black;
+      }
       p{
-        font-size: 0.8rem;
+        margin: 2px 0px;
+        font-size: 0.9rem;
+        font-weight: 400;
         font-family: OS-Regular;
         color: $black;
       }

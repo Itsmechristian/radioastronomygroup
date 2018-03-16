@@ -25,7 +25,7 @@ const articleSchema = new Schema ({
     datePublished:{
         type: Date,
         required: true,
-        default: new Date()
+        default: Date.now
     }
 })
 
