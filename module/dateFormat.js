@@ -4,25 +4,26 @@
  */
 
 function fullDate(date) {
+    const fulldate = new Date()
     const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-    return monthNames[date.getMonth()]+' '+date.getDate()+', '+date.getFullYear()
+    return monthNames[fulldate.getMonth()]+' '+fulldate.getDate()+', '+fulldate.getFullYear()
 }
 
-function getMonth(fullDate) {
+function getMonth(fulldate) {
     const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-    const month = new Date(fullDate).getMonth();
+    const month = new Date(fulldate).getMonth();
     return monthNames[month]
 }
-function getDay(fullDate) {
+function getDay(fulldate) {
     const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-    const day = new Date(fullDate).getDay()
+    const day = new Date(fulldate).getDay()
     return dayNames[day]
 }
-function getYear(fullDate) {
-    return new Date(fullDate).getFullYear()
+function getYear(fulldate) {
+    return new Date(fulldate).getFullYear()
 }
-function getDate(fullDate) {
-    return new Date(fullDate).getDate()
+function getDate(fulldate) {
+    return new Date(fulldate).getDate()
 }
 
 module.exports = {

@@ -62,11 +62,13 @@
 }
 
 // Yesterday's work
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .b-body{
-    width: 70% !important;
+    width: 60% !important;
     .home-row{
       .col-lg-9{
+        margin: 0 auto;
+        width: 19rem;
         .box{
           max-width:100%;
         }
@@ -164,6 +166,13 @@
       width: 100%;
     }
   }
+  .b-body .home-row .b-sub-sections .icon-body{
+    width: 90%;
+    margin: 0 auto;
+  }
 }
-@media (min-width: 480px) {
+@media screen and (max-width: 480px) {
+  .b-body{
+    width: 90% !important;
+  }
 }

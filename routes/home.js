@@ -1,12 +1,12 @@
 const express = require("express"),
-  router = express.Router(),
-  mongoose = require("mongoose"),
-  path = require("path"),
-  passport = require("passport"),
-  LocalStrategy = require("passport-local").Strategy,
-  expressValidator = require("express-validator"),
-  csrf = require('csurf')
-  flash = require("connect-flash");
+      router = express.Router(),
+      mongoose = require("mongoose"),
+      path = require("path"),
+      passport = require("passport"),
+      LocalStrategy = require("passport-local").Strategy,
+      expressValidator = require("express-validator"),
+      csrf = require('csurf')
+      flash = require("connect-flash");
 
 const csrfProtection = csrf()
   // Models
@@ -101,10 +101,11 @@ router.get("/article/:id", (req, res) => {
 
 
 // Register route
-router.get("/register", (req, res) => {
-  res.render("user/register");
-});
-
+router.get("/register", csrfProtection, (req, res) => {
+  res.render("user/register", {
+    csrfToken: req.csrfToken()
+  })
+})
 
 router.post("/register", csrfProtection, (req, res) => {
   let username = req.body.username.toLowerCase(),

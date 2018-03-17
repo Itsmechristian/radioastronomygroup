@@ -8,6 +8,7 @@
 // });
 
 // Make sidebar and Page same height
+
 window.onload = function() {
   // Subpages Sidebar Height
   const pageHeight = $('.page').height()
@@ -20,8 +21,10 @@ window.onload = function() {
   // Article Container Height
   const bPost = $('.b-post').height()
   if(bPost > 700){
-    $('.b-post-container').css('height', bPost);
+    $('.b-post-container').css('height', bPost + 100);
   }
+
+  // Image Config
 }
 
 $('.options > small').click(function() {

@@ -78,6 +78,7 @@
     <input class="input" id="password2" type="password" name="password2" placeholder="Confirm Password*" autocomplete="false">
     <div class="password2Errors">
     </div>
+      <input type="hidden" name="_csrf" value="{{ csrfToken }}">
     <button type="submit" id="submit">Submit</button>
     <a href="/home/login">Already Have An Account?</a>
   </form>

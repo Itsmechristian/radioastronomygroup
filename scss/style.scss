@@ -51,7 +51,7 @@ COLOR PALETTE
 #333 - Black;
 #4a4747 - Brown;
 #fff - White;
-#ababab - Gret;
+#ababab - Grey;
 
 **/
 $blue: #2a5bb8;
@@ -438,9 +438,59 @@ body.scrolldisable {
          text-align: center;
        }
        .events{
-          .months{
-        
+          .year{
+            h3{
+              color: $blue;
+              border-bottom: 2px solid $blue;
+              padding: 10px 0px 0px 10px;
+            }
           }
+          .event{
+            margin: 10px 5px;
+            .box-date{
+              vertical-align: top;
+              display: inline-block;
+              border: 1px solid #ababab;
+              height: 100px;
+              width: 100px;
+              background: transparent;
+              .month{
+                height: 40px;
+                width: 100%;
+                background: #2a5bb8;
+                h4{
+                  text-align: center;
+                  padding: 10px;
+                  font-weight: bold;
+                  color: #fff;
+                }
+              }
+              .date{
+                height: 60px;
+                width: 100%;
+                h2{
+                  color: #333;
+                  text-align: center;
+                  padding: 10px 0px;
+                }
+              }
+            }
+            .info{
+              width: 60%;
+              display: inline-block;
+              small{
+                font-family: OS-Bold;
+              }
+              p{
+                font-size: 0.8rem;
+                color: $black;
+                margin: 5px 0px;
+                font-family: OS-Regular;
+              }
+            }
+            
+          }
+        
        }
      }
     }
@@ -938,7 +988,14 @@ footer {
     background: $white;
     position: relative;
     top: 10px;
+    label{
+      color: $black;
+      font-family: OS-Semibold;
+      font-size: 1.2rem;
+    }
     input {
+      color: $black;
+      margin: 5px 0px 15px 0px;
       font-size: 1.2rem;
       outline: $white;
       display: block;
@@ -967,43 +1024,25 @@ footer {
 }
 
 .b-requests {
+  margin: 15px 0px;
   background: #fff;
   height: 500px;
-  .row {
-    .box {
-      margin: 15px auto;
+  padding: 50px 0px;
+  .requests-article-wrapper{
+    width: 80%;
+    margin: 0 auto;
+    .box{
+      width: 100%;
       height: 50px;
-      border-radius: 2px;
-      border: 1px solid #ababab;
-      a {
-        font-size: 1rem;
-        color: #313131;
-        text-decoration: none;
-        &:hover {
-          text-decoration-line: underline;
-        }
+      border: 1px dashed $grey;
+      border-radius: 10px;
+      display: flex;
+      align-items: stretch;
+      h4{
+        flex-grow: 8;
       }
-      i {
-        color: #fff;
-      }
-      .edit {
-        border-radius: 2px;
-        padding: 10px 20px;
-        background: $blue;
-        float: right;
-        position: relative;
-        left: -55px;
-        top: 5px;
-      }
-      button {
-        border-radius: 2px;
-        height: 38px;
-        width: 50px;
-        border: none;
-        background: red;
-        top: -42px;
-        position: relative;
-        float: right;
+      a{
+        flex-grow: 1;
       }
     }
   }

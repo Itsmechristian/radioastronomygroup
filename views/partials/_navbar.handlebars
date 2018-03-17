@@ -9,7 +9,9 @@
             </div>
             <a class="sub-links" href="/home">Home</a>
             {{#if user}}
+            {{#if user.admin}}
             <a class="sub-links" href="/user/create">Create Post</a>
+            {{/if}}
             <div class="b-user-dropdown">
                 <li>{{user.firstname}}
                     <i class="fa fa-caret-down"></i>

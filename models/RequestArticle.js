@@ -24,7 +24,7 @@ const RequestArticleSchema = new Schema ({
     },
     dateRequested:{ 
         type: Date,
-        default: new Date(),
+        default: Date.now,
         required: true
     }
 })
