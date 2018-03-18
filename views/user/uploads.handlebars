@@ -33,43 +33,54 @@
     height: 50px;
     padding: 5px;
     background: #fff;
+    display: flex;
+    justify-content: space-between;
   }
-  .container .uploads .uploaded a{
+  .container .uploads > small{
+    color: red;
+    width: 92%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    display: block;
+    margin: 0 auto;
+  }
+  .container .uploads .uploaded .imageinfo a{
     position: relative;
     top: -35px;
     font-size: 0.9rem;
     text-decoration: none;
-  font-family: Arial;
-  font-weight: 600;
-  color: rgb(112, 112, 112);
+    font-family: Arial;
+    font-weight: 600;
+    color: rgb(112, 112, 112);
   }
-   .container .uploads .uploaded small{
-  font-family: Arial;
-     float: right;
-  font-weight: 600;
-  font-size: 0.7rem;
-  color: rgb(161, 161, 161);
-   }
-   .container .uploads .uploaded .manage{
-     float: right;
-     position: relative;
-     top: 30px;
-     left: 40px;
-   }
-   .container .uploads .uploaded .manage button{
-    margin: 0px 2px;
+  .container .uploads .uploaded .settings{
+  }
+  .container .uploads .uploaded .settings small{
+    display: block;
+    font-family: Arial;
+    font-weight: 600;
+    font-size: 0.7rem;
+    color: rgb(161, 161, 161);
+    text-align: right;
+  }
+  .container .uploads .uploaded .settings .settings-wrapper{
+    display: block;
+    padding: 20px 0px 0px 0px;
+  }
+  .container .uploads .uploaded .settings .settings-wrapper button{
+    background: #28a745;
     border: none;
     color: #fff;
-    padding: 3px 10px;
-    border-radius: 2px;
-   }
-   .container .uploads .uploaded .manage button:nth-child(1){
-     background: #28a745;
-
-   }
-   .container .uploads .uploaded .manage button:nth-child(2){
-     background: #de3545;
-   }
+  }
+  .container .uploads .uploaded .settings .settings-wrapper a {
+    background: red;
+    text-decoration: none;
+    padding: 2px;
+    padding: 2px 10px;
+    font-size: 12px;
+    font-family: Arial;
+    color: #fff;
+  }
    .container .uploads form{
      position: relative;
      bottom: 0;
@@ -94,15 +105,21 @@
   <div class="container">
     <div class="uploads">
       <p>Upload Image</p>
-      <img src="https://photos.google.com/search/_p0xe65102c51af4e9ea_Mablethorpe/photo/AF1QipNLkyiYn4BSv0NfAo0SJfPLMNhbi6F6QIZfhtN7" alt="" height="100" width="100">
+      {{#if error}}
+      <small>{{error}}</small>
+      {{/if}}
       {{#if imageInfo}}
       <div class="uploaded">
-        <img onClick="returnFileUrl()" src="{{imageInfo.path}}" alt="" height="50" width="50" id="img">
-        <a onClick="returnFileUrl()">{{imageInfo.filename}}</a>
-        <small>{{imageInfo.size}}</small>
-        <div class="manage">
-        <button onClick="returnFileUrl()">Select</button>
-        <button type="submit">Delete</button>
+        <div class="imageinfo">
+          <img id="img" src="{{imageInfo.path}}" alt="" height="50" width="50">
+          <a onClick="returnFileUrl()">{{imageInfo.filename}}</a>
+        </div>
+        <div class="settings">
+          <small>{{imageInfo.size}}</small>
+          <div class="settings-wrapper">
+          <button onClick="returnFileUrl()">Select</button>
+          <a href="#">Delete</a>
+          </div>
         </div>
       </div> 
       {{/if}}
@@ -112,13 +129,6 @@
       </form>
     </div>
   </div>
-    {{!-- <form action="/admin/upload?CKEditor=editor&CKEditorFuncNum=1&langCode=en-gb" method="POST" enctype="multipart/form-data" id="form">
-  <div class="uploader">
-  <input name="imageuploader" type="file" id="file">
-  <label for="file">Upload Image</label>
-  </div>
-  <p>Lorem ipsum dolor sit amet.</p>
-</form> --}}
   <script>
    var test = (document.getElementById('file'));
    test.addEventListener("change" , function(e) {

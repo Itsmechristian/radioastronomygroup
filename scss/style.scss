@@ -51,7 +51,7 @@ COLOR PALETTE
 #333 - Black;
 #4a4747 - Brown;
 #fff - White;
-#ababab - Gret;
+#ababab - Grey;
 
 **/
 $blue: #2a5bb8;
@@ -438,9 +438,60 @@ body.scrolldisable {
          text-align: center;
        }
        .events{
-          .months{
-        
+          .year{
+            h3{
+              color: $blue;
+              border-bottom: 2px solid $blue;
+              padding: 10px 0px 0px 10px;
+            }
           }
+          .event-wrapper{
+            margin: 10px 5px;
+            .box-date{
+              vertical-align: top;
+              display: inline-block;
+              border: 1px solid #ababab;
+              height: 100px;
+              width: 100px;
+              background: transparent;
+              .month{
+                height: 40px;
+                width: 100%;
+                background: #2a5bb8;
+                h4{
+                  text-align: center;
+                  padding: 10px;
+                  font-weight: bold;
+                  color: #fff;
+                }
+              }
+              .date{
+                height: 60px;
+                width: 100%;
+                h2{
+                  color: #333;
+                  text-align: center;
+                  padding: 10px 0px;
+                }
+              }
+            }
+            .info{
+              width: 60%;
+              display: inline-block;
+              small{
+                text-transform: capitalize;
+                font-family: OS-Bold;
+              }
+              p{
+                font-size: 0.8rem;
+                color: $black;
+                margin: 5px 0px;
+                font-family: OS-Regular;
+              }
+            }
+            
+          }
+        
        }
      }
     }
@@ -711,12 +762,6 @@ footer {
           color: $black;
         }
       }
-      button{
-        background: transparent;
-        border: none;
-        margin: 5px 0px;
-        padding: 0;
-      }
     }
   }
   .b-post {
@@ -729,12 +774,12 @@ footer {
       font-size: 2rem;
     }
     p {
+      color: $black;
       font-size: 1.2rem;
       font-family: OS-Regular;
     }
   }
 }
-// End Register style
 
 .items.clicked{
   display: block !important;
@@ -807,10 +852,46 @@ footer {
     }
   }
 }
+.b-articles{
+  height: 700px;
+  margin: 20px 0px;
+  background: $white;
+  .articles-wrapper{
+    max-width: 500px;
+    margin: 15px;
+    width: 30%;
+    padding: 20px;
+    height: auto;
+    vertical-align: top;
+    display: inline-block;
+    .box{
+      position: relative;
+      padding: 5px;
+      height: 200px;
+      width: 100%;
+      border-radius: 2px;
+      border: 1px solid $grey;
+      border-bottom: 2px solid $blue;
+      h4{
+        a{
+          color: $black;
+          &:hover{
+            text-decoration: underline;
+          }
+        }
+      }
+      small{
+        display: block;
+        position: absolute;
+        bottom: 0;
+      }
+    }
+  }
+}
 .b-event{
   margin: 20px auto;
   height: auto;    
-  background: white;
+  background: $white;
   .create-event-wrapper{
     display: inline-block;
     vertical-align: top;
@@ -837,6 +918,10 @@ footer {
       height: 300px;
       width: 400px;
       resize: none;
+    }
+    small{
+      font-size: 1rem;
+      display: block;
     }
     button{
       border: none;
@@ -938,7 +1023,14 @@ footer {
     background: $white;
     position: relative;
     top: 10px;
+    label{
+      color: $black;
+      font-family: OS-Semibold;
+      font-size: 1.2rem;
+    }
     input {
+      color: $black;
+      margin: 5px 0px 15px 0px;
       font-size: 1.2rem;
       outline: $white;
       display: block;
@@ -967,62 +1059,49 @@ footer {
 }
 
 .b-requests {
+  margin: 15px 0px;
   background: #fff;
   height: 500px;
-  .row {
-    .box {
-      margin: 15px auto;
-      height: 50px;
-      border-radius: 2px;
-      border: 1px solid #ababab;
-      a {
-        font-size: 1rem;
-        color: #313131;
-        text-decoration: none;
-        &:hover {
-          text-decoration-line: underline;
-        }
-      }
-      i {
-        color: #fff;
-      }
-      .edit {
-        border-radius: 2px;
-        padding: 10px 20px;
-        background: $blue;
-        float: right;
-        position: relative;
-        left: -55px;
-        top: 5px;
-      }
-      button {
-        border-radius: 2px;
-        height: 38px;
-        width: 50px;
-        border: none;
-        background: red;
-        top: -42px;
-        position: relative;
-        float: right;
-      }
-    }
-  }
-}
-.b-reqpost-container {
-  margin: 15px auto;
-  background: white;
-  height: 100vh;
-  .b-reqpost {
+  padding: 50px 0px;
+  .requests-article-wrapper{
     width: 80%;
     margin: 0 auto;
-    padding: 20px 15px;
-    h1 {
-      font-family: OS-Bold;
-      font-size: 2rem;
-    }
-    p {
-      font-size: 1.2rem;
-      font-family: OS-Regular;
+    .box{
+      margin: 10px 0px;
+      width: 100%;
+      height: 70px;
+      border: 1px dashed $grey;
+      border-radius: 10px;
+      display: flex;
+      align-items: stretch;
+      padding: 15px;
+      .info{
+        flex: 2;
+        h4{
+          a{
+            color: $black;
+            &:hover{
+              text-decoration-line: underline;
+            }
+          }
+        }
+        small{
+          text-transform: capitalize;
+        }
+      }
+      .settings{
+        padding: 10px;
+        > a{
+          padding: 0px 10px;
+          &:nth-child(1) 
+          {
+            color: $blue;
+          }
+          &#delete-article{
+            color: $red;
+          }
+        }
+      }
     }
   }
 }

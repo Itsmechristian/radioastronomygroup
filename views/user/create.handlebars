@@ -1,6 +1,5 @@
 <div class="container b-create">
-<h1>Posts <span>Create new</span></h1>
-<form action="/user/create" method="post">
+<form action="/user/create/article" method="post">
 {{#if errors}}
 {{#each errors}}
 <small>{{msg}}</small>
@@ -8,7 +7,6 @@
 {{/if}}
 <label for="title">Title</label>
 <input type="text" name="title" placeholder="Title..." id="title" autocomplete="off" value="{{title}}">
-<label for="body">Body</label>
 <textarea id="editor" name="body" rows="10" cols="5">{{{body}}}</textarea>
 <button type="submit">Post</button>
 </form>

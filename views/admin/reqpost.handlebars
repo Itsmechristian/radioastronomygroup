@@ -1,4 +1,4 @@
-<div class="container b-post-container">
+  <div class="container b-post-container">
   <div class="b-post">
   <div class="options">
     <small>Options <i class="fa fa-wrench"></i> <i class="fa fa-angle-down"></i></small>
@@ -9,5 +9,8 @@
   </div>
   <h1>{{docs.title}}</h1>
   {{{docs.body}}}
+  <form action="/admin/requested/article/{{docs._id}}" method="post">
+    <button type="submit">Publish Article</button>
+  </form>
   </div>
 </div>

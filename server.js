@@ -26,16 +26,17 @@ const express = require('express')
     // Invoke an instance of express application
     , app = express()
 
-      /* Routers */
-    const home = require('./routes/home')
-        , user = require('./routes/user')
-        , subpages = require('./routes/subpages')
-
     const User = require('./models/User')
 
-
 // Mongoose Middleware help you to connect in mongodb
-mongoose.connect(`${process.env.DB_HOST}/${process.env.DB_NAME}`)
+
+mongoose.connect(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`, {
+  "auth": {
+    "authSource": "admin"
+  },
+  "user": `${process.env.DB_USERNAME}`,
+  "pass": `${process.env.DB_PASSWORD}`
+})
 .then((result => console.log('Connected to mongoDB')))
 .catch((error => console.log(error)))
 
@@ -133,10 +134,59 @@ app.get('*', (req, res, next) => {
   res.app.locals.user = req.user;
   next()
 })
+
+/* Routers */
+const home = require('./routes/home')
+    , panel = require('./routes/user/panel')
+    , article = require('./routes/user/article')
+    , create = require('./routes/user/create')
+    , edit = require('./routes/user/edit')
+    , upload = require('./routes/user/upload')
+    , subpages = require('./routes/subpages')
+    , publish = require('./routes/admin/publish')
 // Configure routings
-app.use('/user', user)
 app.use('/home', home)
 app.use('/pages', subpages)
+
+app.use('/user',(req, res, next) => {
+  res.app.locals.success = req.flash('success')
+  // Check the session and Check if there is a user for security reaseon
+ if(req.session && req.user) {
+     req.app.locals.layout = "main.handlebars";
+     req.session.user = req.user;
+      global.username = req.user.username;
+   next()
+ }
+ else{
+   req.flash('error', 'Log in to continue');
+   res.redirect('/home/login')
+ }
+})
+
+app.use('/user', panel)
+app.use('/user', article)
+app.use('/user', create)
+app.use('/user', edit)
+app.use('/user', upload)
+
+app.use('/admin', (req, res, next) => {
+  if(req.session && req.user && req.user.admin) {
+    res.app.locals.layout = 'main.handlebars';
+  next()
+  }
+  else{
+    if(req.user) {
+      req.flash('error', 'You should be an administrator')
+      res.redirect('/user')
+    }
+    else{
+      req.flash('error', 'Log in to continue');
+      res.redirect('/home/login')
+    }
+  }
+})
+
+app.use('/admin', publish)
 
 // Render to 404 pages if the page doesn't exist
 app.use(function (req, res, next){
@@ -150,7 +200,7 @@ app.use(function (req, res, next){
 })
 
 // Application port
-const port = process.env.DB_PORT || 8000
+const port = process.env.PORT || 8000
 
 // start the express server
 app.listen(port, () => console.log(`Connected to port ${port}`))

@@ -7,7 +7,7 @@ if (window.location.pathname === "/user/upload") {
 let url = window.location.href;
 let id = url.substring(url.indexOf('edit') + 5, url.length)
 
-if (window.location.pathname === "/user/create" || window.location.pathname === "/user/upload" || window.location.pathname === `/user/article/edit/${id}`) {
+if (window.location.pathname === "/user/create/article" || window.location.pathname === "/user/upload" || window.location.pathname === `/user/article/edit/${id}`) {
     CKEDITOR.replace("editor", {
       /* contentsCss: "body {font-size: 1re,; font-family: 'Open-Sans'; margin 10px;}", */
       resize_dir: "both",

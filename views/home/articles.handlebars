@@ -1,0 +1,11 @@
+<div class="container-fluid b-articles">
+      {{#if articles}}
+    {{#each articles}}
+  <div class="articles-wrapper">
+    <div class="box">
+    <h4><a href="/home/article/{{_id}}">{{title}}</a></h4>
+    </div>
+  </div>
+      {{/each}}
+    {{/if}}
+</div>

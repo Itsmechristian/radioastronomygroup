@@ -50,7 +50,7 @@ COLOR PALETTE
 #333 - Black;
 #4a4747 - Brown;
 #fff - White;
-#ababab - Gret;
+#ababab - Grey;
 
 **/
 input:-webkit-autofill,
@@ -356,6 +356,46 @@ body.scrolldisable {
         margin: 30px 0px; }
         .b-body .home-row .col-lg-3 .events-wrapper h2 {
           text-align: center; }
+        .b-body .home-row .col-lg-3 .events-wrapper .events .year h3 {
+          color: #2a5bb8;
+          border-bottom: 2px solid #2a5bb8;
+          padding: 10px 0px 0px 10px; }
+        .b-body .home-row .col-lg-3 .events-wrapper .events .event-wrapper {
+          margin: 10px 5px; }
+          .b-body .home-row .col-lg-3 .events-wrapper .events .event-wrapper .box-date {
+            vertical-align: top;
+            display: inline-block;
+            border: 1px solid #ababab;
+            height: 100px;
+            width: 100px;
+            background: transparent; }
+            .b-body .home-row .col-lg-3 .events-wrapper .events .event-wrapper .box-date .month {
+              height: 40px;
+              width: 100%;
+              background: #2a5bb8; }
+              .b-body .home-row .col-lg-3 .events-wrapper .events .event-wrapper .box-date .month h4 {
+                text-align: center;
+                padding: 10px;
+                font-weight: bold;
+                color: #fff; }
+            .b-body .home-row .col-lg-3 .events-wrapper .events .event-wrapper .box-date .date {
+              height: 60px;
+              width: 100%; }
+              .b-body .home-row .col-lg-3 .events-wrapper .events .event-wrapper .box-date .date h2 {
+                color: #333;
+                text-align: center;
+                padding: 10px 0px; }
+          .b-body .home-row .col-lg-3 .events-wrapper .events .event-wrapper .info {
+            width: 60%;
+            display: inline-block; }
+            .b-body .home-row .col-lg-3 .events-wrapper .events .event-wrapper .info small {
+              text-transform: capitalize;
+              font-family: OS-Bold; }
+            .b-body .home-row .col-lg-3 .events-wrapper .events .event-wrapper .info p {
+              font-size: 0.8rem;
+              color: #333;
+              margin: 5px 0px;
+              font-family: OS-Regular; }
 
 footer {
   height: 65px;
@@ -573,11 +613,6 @@ footer {
         display: block; }
         .b-post-container .options .items small a {
           color: #333; }
-      .b-post-container .options .items button {
-        background: transparent;
-        border: none;
-        margin: 5px 0px;
-        padding: 0; }
   .b-post-container .b-post {
     width: 90%;
     margin: 0 auto;
@@ -587,6 +622,7 @@ footer {
       font-family: OS-Bold;
       font-size: 2rem; }
     .b-post-container .b-post p {
+      color: #333;
       font-size: 1.2rem;
       font-family: OS-Regular; }
 
@@ -646,10 +682,39 @@ footer {
       .container.panel .post-box h4 a:hover {
         text-decoration: underline; }
 
+.b-articles {
+  height: 700px;
+  margin: 20px 0px;
+  background: #fff; }
+  .b-articles .articles-wrapper {
+    max-width: 500px;
+    margin: 15px;
+    width: 30%;
+    padding: 20px;
+    height: auto;
+    vertical-align: top;
+    display: inline-block; }
+    .b-articles .articles-wrapper .box {
+      position: relative;
+      padding: 5px;
+      height: 200px;
+      width: 100%;
+      border-radius: 2px;
+      border: 1px solid #ababab;
+      border-bottom: 2px solid #2a5bb8; }
+      .b-articles .articles-wrapper .box h4 a {
+        color: #333; }
+        .b-articles .articles-wrapper .box h4 a:hover {
+          text-decoration: underline; }
+      .b-articles .articles-wrapper .box small {
+        display: block;
+        position: absolute;
+        bottom: 0; }
+
 .b-event {
   margin: 20px auto;
   height: auto;
-  background: white; }
+  background: #fff; }
   .b-event .create-event-wrapper {
     display: inline-block;
     vertical-align: top;
@@ -674,6 +739,9 @@ footer {
       height: 300px;
       width: 400px;
       resize: none; }
+    .b-event .create-event-wrapper small {
+      font-size: 1rem;
+      display: block; }
     .b-event .create-event-wrapper button {
       border: none;
       color: #fff;
@@ -753,7 +821,13 @@ footer {
   background: #fff;
   position: relative;
   top: 10px; }
+  .b-create form label {
+    color: #333;
+    font-family: OS-Semibold;
+    font-size: 1.2rem; }
   .b-create form input {
+    color: #333;
+    margin: 5px 0px 15px 0px;
     font-size: 1.2rem;
     outline: #fff;
     display: block;
@@ -779,53 +853,38 @@ footer {
   color: #fff; }
 
 .b-requests {
+  margin: 15px 0px;
   background: #fff;
-  height: 500px; }
-  .b-requests .row .box {
-    margin: 15px auto;
-    height: 50px;
-    border-radius: 2px;
-    border: 1px solid #ababab; }
-    .b-requests .row .box a {
-      font-size: 1rem;
-      color: #313131;
-      text-decoration: none; }
-      .b-requests .row .box a:hover {
-        text-decoration-line: underline; }
-    .b-requests .row .box i {
-      color: #fff; }
-    .b-requests .row .box .edit {
-      border-radius: 2px;
-      padding: 10px 20px;
-      background: #2a5bb8;
-      float: right;
-      position: relative;
-      left: -55px;
-      top: 5px; }
-    .b-requests .row .box button {
-      border-radius: 2px;
-      height: 38px;
-      width: 50px;
-      border: none;
-      background: red;
-      top: -42px;
-      position: relative;
-      float: right; }
-
-.b-reqpost-container {
-  margin: 15px auto;
-  background: white;
-  height: 100vh; }
-  .b-reqpost-container .b-reqpost {
+  height: 500px;
+  padding: 50px 0px; }
+  .b-requests .requests-article-wrapper {
     width: 80%;
-    margin: 0 auto;
-    padding: 20px 15px; }
-    .b-reqpost-container .b-reqpost h1 {
-      font-family: OS-Bold;
-      font-size: 2rem; }
-    .b-reqpost-container .b-reqpost p {
-      font-size: 1.2rem;
-      font-family: OS-Regular; }
+    margin: 0 auto; }
+    .b-requests .requests-article-wrapper .box {
+      margin: 10px 0px;
+      width: 100%;
+      height: 70px;
+      border: 1px dashed #ababab;
+      border-radius: 10px;
+      display: flex;
+      align-items: stretch;
+      padding: 15px; }
+      .b-requests .requests-article-wrapper .box .info {
+        flex: 2; }
+        .b-requests .requests-article-wrapper .box .info h4 a {
+          color: #333; }
+          .b-requests .requests-article-wrapper .box .info h4 a:hover {
+            text-decoration-line: underline; }
+        .b-requests .requests-article-wrapper .box .info small {
+          text-transform: capitalize; }
+      .b-requests .requests-article-wrapper .box .settings {
+        padding: 10px; }
+        .b-requests .requests-article-wrapper .box .settings > a {
+          padding: 0px 10px; }
+          .b-requests .requests-article-wrapper .box .settings > a:nth-child(1) {
+            color: #2a5bb8; }
+          .b-requests .requests-article-wrapper .box .settings > a#delete-article {
+            color: #e33545; }
 
 .b-radioastronomy {
   -webkit-box-shadow: 10px 0px 55px -8px rgba(0, 0, 0, 0.27);

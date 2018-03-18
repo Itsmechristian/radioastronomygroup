@@ -40,11 +40,14 @@
   .b-radioastronomy img {
     width: 100%; } }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .b-body {
-    width: 70% !important; }
-    .b-body .home-row .col-lg-9 .box {
-      max-width: 100%; }
+    width: 60% !important; }
+    .b-body .home-row .col-lg-9 {
+      margin: 0 auto;
+      width: 19rem; }
+      .b-body .home-row .col-lg-9 .box {
+        max-width: 100%; }
   .container-fluid {
     max-width: 90%; }
   .b-categories,
@@ -114,4 +117,11 @@
     padding: 15px;
     width: 100%; }
   .b-radioastronomy img {
-    width: 100%; } }
+    width: 100%; }
+  .b-body .home-row .b-sub-sections .icon-body {
+    width: 90%;
+    margin: 0 auto; } }
+
+@media screen and (max-width: 480px) {
+  .b-body {
+    width: 90% !important; } }

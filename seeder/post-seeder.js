@@ -1,4 +1,4 @@
-const Article = require('../models/Article')
+const Article = require('../models/RequestArticle')
 , mongoose = require('mongoose')
 
 require('dotenv').config()
