@@ -5,10 +5,10 @@ const express = require('express')
     , flash = require('connect-flash')
 
 // Panel Routing
-router.get("/" ,(req, res) => {
+router.get(`/`,(req, res) => {
   // Get the article to display in to panels
   RequestArticle.find({'userId': req.user._id}, null, {sort: {dateRequested: 'desc'}}, (requestArticleError, requestArticle) => {
-    Article.find({'userId': req.user._id}, null, {sort: {dateRequested: 'desc'}},(articleError, article) => {
+    Article.find({'userId': req.user._id}, null, {sort: {datePublished: 'desc'}},(articleError, article) => {
       if(requestArticleError || articleError) {
         req.logout()
         res.redirect('/home/login')

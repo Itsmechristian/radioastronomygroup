@@ -6,7 +6,8 @@
     <form action="/user/create/events" method="post">
       <input type="text" name="place" id="place" placeholder="Place...">
       <input type="text" name="fulldate" id="datepicker" onkeydown="return false" placeholder="Date...">
-      <textarea type="text" name="description" id="description" placeholder="Description..."></textarea>
+      <textarea type="text" name="description" id="description" placeholder="Description..." maxlength="50"></textarea>
+      <small><span id="number">0</span>/50</small>
       <button type="submit">Create Event</button>
     </form>
   </div>
@@ -16,21 +17,21 @@
       <h3>2018</h3>
     </div>
     {{#each event2018}}
-    <div class="event">
+    <div class="event" data-iso="{{isodate}}">
       <div class="box-date">
         <div class="month">
-          <h4>{{fulldate.month}}</h4>
+          <h4>{{subdate.month}}</h4>
         </div>
         <div class="date">
-          <h2>{{fulldate.date}}</h2>
+          <h2>{{subdate.date}}</h2>
         </div>
       </div>
       <div class="info">
         <div class="head-wrapper">
       <h4>{{place}} <i class="fa fa-map-marker"></i></h4>
-      <a href="#">Cancel Event</a>
+      <a id="delete-event" data-id={{_id}}></a>
         </div>
-        <small>{{fulldate.day}}</small>
+        <small>{{subdate.day}}</small>
       <p>{{description}}</p>
       </div>
     </div>
@@ -41,21 +42,21 @@
       <h3>2019</h3>
     </div>
     {{#each event2019}}
-    <div class="event">
+    <div class="event" data-iso="{{isodate}}">
       <div class="box-date">
         <div class="month">
-          <h4>{{fulldate.month}}</h4>
+          <h4>{{subdate.month}}</h4>
         </div>
         <div class="date">
-          <h2>{{fulldate.date}}</h2>
+          <h2>{{subdate.date}}</h2>
         </div>
       </div>
       <div class="info">
         <div class="head-wrapper">
       <h4>{{place}} <i class="fa fa-map-marker"></i></h4>
-      <a href="#">Cancel Event</a>
+      <a id="delete-event" data-id={{_id}}></a>
         </div>
-        <small>{{fulldate.day}}</small>
+        <small>{{subdate.day}}</small>
       <p>{{description}}</p>
       </div>
     </div>
@@ -66,21 +67,21 @@
       <h3>2020</h3>
     </div>
     {{#each event2020}}
-    <div class="event">
+    <div class="event" data-iso="{{isodate}}">
       <div class="box-date">
         <div class="month">
-          <h4>{{fulldate.month}}</h4>
+          <h4>{{subdate.month}}</h4>
         </div>
         <div class="date">
-          <h2>{{fulldate.date}}</h2>
+          <h2>{{subdate.date}}</h2>
         </div>
       </div>
       <div class="info">
         <div class="head-wrapper">
       <h4>{{place}} <i class="fa fa-map-marker"></i></h4>
-      <a href="#">Cancel Event</a>
+      <a id="delete-event" data-id={{_id}}></a>
         </div>
-        <small>{{fulldate.day}}</small>
+        <small>{{subdate.day}}</small>
       <p>{{description}}</p>
       </div>
     </div>

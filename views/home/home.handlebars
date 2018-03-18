@@ -10,7 +10,7 @@
                 </div>
             </article>
             {{/each}}
-            <a href="#" class="see-more-link">See More</a>
+            <a href="/home/articles" class="see-more-link">See More</a>
             {{else}}
             <article class="box">
                 <img src="/img/500x500.png" alt="">
@@ -69,26 +69,78 @@
         <div class="col-lg-3">
             <div class="events-wrapper">
                 <h2>Radio Astronomy Talks</h2>
+                {{#if event2018}}
                 <div class="events">
                     <div class="year 2018">
                         <h3>2018</h3>
                     </div>
-                    <div class="event">
+                    {{#each event2018}}
+                    <div class="event-wrapper">
                         <div class="box-date">
                             <div class="month">
-                                <h4>August</h4>
+                                <h4>{{subdate.month}}</h4>
                             </div>
                             <div class="date">
-                                <h2>25</h2>
+                                <h2>{{subdate.date}}</h2>
                             </div>
                         </div>
                         <div class="info">
-                        <h4>Birmingham</h4>
-                        <small>Sunday</small>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, autem?</p>
+                        <h4>{{place}} <i class="fa fa-map-marker"></i></h4>
+                        <small>{{subdate.day}}</small>
+                        <p>{{description}}</p>
                         </div>
                     </div>
+                    {{/each}}
                 </div>
+                {{/if}}
+                {{#if event2019}}
+                <div class="events">
+                    <div class="year 2019">
+                        <h3>2019</h3>
+                    </div>
+                    {{#each event2019}}
+                    <div class="event-wrapper">
+                        <div class="box-date">
+                            <div class="month">
+                                <h4>{{subdate.month}}</h4>
+                            </div>
+                            <div class="date">
+                                <h2>{{subdate.date}}</h2>
+                            </div>
+                        </div>
+                        <div class="info">
+                        <h4>{{place}} <i class="fa fa-map-marker"></i></h4>
+                        <small>{{subdate.day}}</small>
+                        <p>{{description}}</p>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+                {{/if}}
+            {{#if event2020}}
+                <div class="events">
+                    <div class="year 2020">
+                        <h3>2020</h3>
+                    </div>
+                    {{#each event2020}}
+                    <div class="event-wrapper">
+                        <div class="box-date">
+                            <div class="month">
+                                <h4>{{subdate.month}}</h4>
+                            </div>
+                            <div class="date">
+                                <h2>{{subdate.date}}</h2>
+                            </div>
+                        </div>
+                        <div class="info">
+                        <h4>{{place}} <i class="fa fa-map-marker"></i></h4>
+                        <small>{{subdate.day}}</small>
+                        <p>{{description}}</p>
+                        </div>
+                    </div>
+                    {{/each}}
+                </div>
+                {{/if}}
             </div>
         </div>
     </div>

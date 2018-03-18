@@ -5,8 +5,12 @@ const EventSchema = new Schema({
     type: String,
     required: true
   },
+  isodate: {
+    type: Date,
+    require: true,
+  },
   year: String,
-  fulldate: {
+  subdate: {
     day: String,
     month: String,
     date: String,

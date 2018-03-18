@@ -3,9 +3,10 @@ const express = require('express')
     , mongoose = require('mongoose')
     , RequestArticle = require('../../models/RequestArticle')
     , Article = require('../../models/Article')
+    , Events = require('../../models/Events')
 
 router.get('/create/events', (req, res) => {
-  Events.find().then(event => {
+  Events.find({}).sort([['isodate', 1]]).then(event => {
     const event2018 = event.filter(e => (e.year === '2018'))
     const event2019 = event.filter(e => (e.year === '2019'))
     const event2020 = event.filter(e => (e.year === '2020'))
@@ -23,8 +24,9 @@ router.post('/create/events', (req, res) => {
         description = req.body.description
   const Event = new Events({
       place,
+      isodate: new Date(fullDate),
       year: dateFormat.getYear(fullDate),
-      fulldate: {
+      subdate: {
         day: dateFormat.getDay(fullDate),
         month: dateFormat.getMonth(fullDate),
         date: dateFormat.getDate(fullDate),
@@ -58,7 +60,7 @@ router.post("/create/article", (req, res) => {
       userId: req.user._id,
       title,
       body,
-      requestBy: req.user.firstname + req.user.lastname
+      requestBy: req.user.firstname +' '+req.user.lastname
     })
     newArticle.save(err => {
       if(err){ 
@@ -77,5 +79,25 @@ router.post("/create/article", (req, res) => {
     })
   })
 });
+
+router.delete('/delete/event/:id', (req, res) => {
+  let id = req.params.id;
+  Events.remove({
+    _id: id
+  }, err => {
+    if(err) throw err;
+    res.send('success')
+  })
+})
+
+router.delete('/finish/event/:id', (req, res) => {
+  let id = req.params.id;
+  Events.remove({
+    _id:id
+  }, err => {
+    if(err) throw err;
+    res.send('success')
+  })
+})
 
 module.exports = router;

@@ -6,25 +6,25 @@ const express = require('express')
     , articleConfiguration = require('../../module/articleConfiguration')
 
 // This is administrator routes for user request article
-router.get("/requests", (req, res) => {
+router.get("/requested", (req, res) => {
   if (req.user.admin === true) {
     RequestArticle
       .find()
       .then(results => {
         const response = {
           count: results.length,
-          posts: results.map(result => {
+          articles: results.map(result => {
             return {
               id: result._id,
               title: result.title.slice(0, 60) + "...",
               body: result.body,
-              createdBy: result.createdBy,
+              createdBy: result.requestBy,
               dateCreate: result.dateCreate
             };
           })
         };
         res.render("admin/request", {
-          posts: response.posts
+          articles: response.articles
         });
       })
   } else {
@@ -33,23 +33,22 @@ router.get("/requests", (req, res) => {
     res.redirect("/user");
   }
 });
-router.get("/request/post/:id", (req, res) => {
+
+router.get("/requested/article/:id", (req, res) => {
   RequestArticle
     .findById({
       _id: req.params.id
     })
     .select("_id dateRequested title body createBy")
     .then(result => {
-      res.render("admin/reqpost", { post: result });
+      res.render("admin/reqpost", { docs: result });
     })
-    .catch(err => console.log(err));
 });
-router.post("/request/post/:id", (req, res) => {
-  RequestArticle
-    .findById({
+
+router.post("/requested/article/:id", (req, res) => {
+  RequestArticle.findById({
       _id: req.params.id
-    })
-    .then(result => {
+    }).then(result => {
       const newArticle = new Article({
         _id: new mongoose.Types.ObjectId(),
         userId: result.userId,
@@ -59,16 +58,14 @@ router.post("/request/post/:id", (req, res) => {
         createdBy: result.requestBy,
       });
       newArticle.save().then(saved => {
+        RequestArticle.remove({
+            _id: result._id
+        }, err => {
+          if(err) throw err;
+        })
         req.flash("success", "Article Published");
         res.redirect("/user");
-        RequestArticle
-          .remove({
-            _id: req.params.id
-          })
-          .catch(err => {
-            console.log(err);
-          });
-      });
+      })
     })
 });
 

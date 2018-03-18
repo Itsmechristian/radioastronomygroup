@@ -11,7 +11,8 @@ const express = require("express"),
 const csrfProtection = csrf()
   // Models
 const Article = require("../models/Article")
-     , User = require("../models/User");
+     , User = require("../models/User")
+     , Events = require('../models/Events')
 
   // Get date format mmmm-dd-yyyy
    dateFormat = require("../module/dateFormat");
@@ -49,54 +50,81 @@ router.get("/", (req, res) => {
         
        //As we get the img element this will gonna get the source url
        let src = img.split(' ').filter(e =>{
-          return e.includes('src')
-       })
-       let imagePath = src[0].substring(5, src[0].length - 1)
+        return e.includes('src')
+     })
 
-        if (src) {
+       if(src.length === 0) {
+        articles.push({
+          _id: result._id,
+          title: truncateTitle(result.title),
+          src:
+            "https://www.drbrownstein.com/wp-content/uploads/2017/03/500x500.png"
+        });
+       }
+       else{
+       let imagePath = src[0].substring(5, src[0].length - 1)
           articles.push({
             _id: result._id,
             title: truncateTitle(result.title),
             src: imagePath
           });
-        } else {
-          articles.push({
-            _id: result._id,
-            title: truncateTitle(result.title),
-            src:
-              "https://www.drbrownstein.com/wp-content/uploads/2017/03/500x500.png"
-          });
-        }
+       }
       });
+      Events.find({}).sort([['isodate', 1]]).then(events => {
+        event2018 = events.filter(e => (e.year === '2018'))
+        const event2019 = events.filter(e => (e.year === '2019'))
+        const event2020 = events.filter(e => (e.year === '2020'))
 
-      res.status(200).render("home/home", {
-        articles: articles,
-        layout: "main.handlebars",
-        user: req.user,
-      });
+        res.status(200).render("home/home", {
+          event2018,
+          event2019,
+          event2020,
+          articles: articles,
+          layout: "main.handlebars",
+          user: req.user,
+        });
+      })
     })
     .catch(err => {
-      error: err;
+      console.log(err)
     });
 });
 
-//Selected post route
+router.get('/articles', (req, res) => {
+  Article.find().sort([['datePublished', 'desc']]).then(docs => {
+    res.render('home/articles', {articles: docs})
+  })
+})
+
+
 router.get("/article/:id", (req, res) => {
   Article.findOne({
     _id: req.params.id
   })
-    .then(results => {
-      res.render("home/post", {
+  .then(results => {
+    if(results === null) {
+      const error = new Error('Not Found')
+      error.status = 404;
+      res.render("home/error", {
+        layout: '',
+        error: error
+      });
+    }
+    else{
+      res.render("home/article", {
         layout: "main.handlebars",
         post: results
       });
-    })
-    .catch(err => {
-      res.render("home/post", {
-        layout: "main.handlebars",
-        error: err
-      });
+    }
+  })
+  .catch(err => {
+    const error = new Error('Not Found')
+    error.status = 404;
+    res.render("home/error", {
+      layout: '',
+      error: error
     });
+  });
 });
 
 
@@ -184,7 +212,7 @@ router.get("/login", csrfProtection, (req, res) => {
       csrfToken: req.csrfToken()
     });
   } else {
-    res.redirect("/user");
+    res.redirect("/user/"+req.user._id);
   }
 });
 
@@ -222,13 +250,12 @@ passport.deserializeUser((id, done) => {
 router.post(
   "/login",
   passport.authenticate("local", {
-    successRedirect: "/user",
     failureRedirect: "/home/login",
     failureFlash: true
   }),
   (req, res) => {
     req.session.authenticate = true;
-    res.redirect("/user");
+    res.redirect("/user/");
   }
 );
 

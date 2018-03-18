@@ -1,9 +1,21 @@
 <div class="container b-requests">
     <div class="requests-article-wrapper">
+        {{#if articles}}
+        {{#each articles}}
       <div class="box">
-          <h4>Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, ea.</h4>
-          <a href="#">test</a>
-          <a href="#">test</a>
+          <div class="info">
+              <h4><a  href="/admin/requested/article/{{id}}">{{title}}</a> </h4>
+              <small>Created By: {{createdBy}}
+              </small>
+          </div>
+          <div class="settings">
+              <a href="/admin/requested/article/{{id}}">View</a>
+              <a id="delete-article" data-id={{id}}>Decline</a>
+          </div>
       </div>
+      {{/each}}
+        {{else}}
+        <h1>No article requests were found</h1>
+      {{/if}}
     </div>
 </div>

@@ -6,7 +6,9 @@
     <small>Create <i class="fa fa-angle-down"></i></small>
       <div class="items">
     <a href="/user/create/article">Article</a>
-    <a href="/user/create/events">Events</a>
+    {{#if user.admin}}
+    <a href="/user/create/events">Event</a>
+    {{/if}}
   </div>
   </div>
   <div class="req-wrapper">
@@ -19,7 +21,7 @@
     {{/if}}
   </div>
     {{#if notpublishcount}}
-    <a href="#">See more ...</a>
+    <a href="/user/articles">See more ...</a>
     {{/if}}
   </div>
   <div class="publish-wrapper">
@@ -32,7 +34,7 @@
     {{/if}}
   </div>
      {{#if publishedcount}}
-    <a href="#">See more ...</a>
+    <a href="/user/articles/published">See more ...</a>
     {{/if}}
   </div>
 </div>

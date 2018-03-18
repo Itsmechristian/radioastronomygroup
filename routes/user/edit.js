@@ -2,7 +2,6 @@ const express = require('express')
     , router = express.Router()
     , RequestArticle = require('../../models/RequestArticle')
 
-
 // Routing if they need to edit their article.
 router.get('/article/edit/:id', (req, res) => {
   RequestArticle.findById(req.params.id).then(docs => {
@@ -17,7 +16,6 @@ router.get('/article/edit/:id', (req, res) => {
 
 router.post('/article/edit/:id', (req, res) => {
   RequestArticle.findById(req.params.id, (err, docs) => {
-    if(err) throw err;
     docs.set({
       title: req.body.title,
       body: req.body.body

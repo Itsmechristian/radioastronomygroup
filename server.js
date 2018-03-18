@@ -137,7 +137,6 @@ app.get('*', (req, res, next) => {
 
 /* Routers */
 const home = require('./routes/home')
-    , user = require('./routes/user')
     , panel = require('./routes/user/panel')
     , article = require('./routes/user/article')
     , create = require('./routes/user/create')
@@ -155,6 +154,7 @@ app.use('/user',(req, res, next) => {
  if(req.session && req.user) {
      req.app.locals.layout = "main.handlebars";
      req.session.user = req.user;
+      global.username = req.user.username;
    next()
  }
  else{
@@ -163,7 +163,6 @@ app.use('/user',(req, res, next) => {
  }
 })
 
-app.use('/user', user)
 app.use('/user', panel)
 app.use('/user', article)
 app.use('/user', create)

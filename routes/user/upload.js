@@ -12,6 +12,16 @@ const storage = multer.diskStorage({
   }
 });
 
+// Multer configuration
+const upload = multer({
+  storage: storage,
+  fileFilter: function(req, file, cb) {
+    checkFileType(file, cb);
+  },
+  limits: {
+    fileSize: 2000000
+  }
+}).single("imageuploader");
 // Multer check for file type
 function checkFileType(file, cb) {
   // Check the file types
@@ -27,14 +37,6 @@ function checkFileType(file, cb) {
   }
 }
 
-// Multer configuration
-const upload = multer({
-  storage: storage,
-  fileFilter: function(req, file, cb) {
-    checkFileType(file, cb);
-  }
-}).single("imageuploader");
-
 
 // Image Upload Routing so they can upload images in Article
 router.get('/upload', (req, res) => {
@@ -44,7 +46,8 @@ router.post("/upload", (req, res) => {
   upload(req, res, err => {
     if (err) {
       res.render("user/uploads", {
-        error: err
+        error: err,
+        layout: ''
       });
     } else {
       const imageInfo = {

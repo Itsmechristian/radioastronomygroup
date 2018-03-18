@@ -445,7 +445,7 @@ body.scrolldisable {
               padding: 10px 0px 0px 10px;
             }
           }
-          .event{
+          .event-wrapper{
             margin: 10px 5px;
             .box-date{
               vertical-align: top;
@@ -479,6 +479,7 @@ body.scrolldisable {
               width: 60%;
               display: inline-block;
               small{
+                text-transform: capitalize;
                 font-family: OS-Bold;
               }
               p{
@@ -761,12 +762,6 @@ footer {
           color: $black;
         }
       }
-      button{
-        background: transparent;
-        border: none;
-        margin: 5px 0px;
-        padding: 0;
-      }
     }
   }
   .b-post {
@@ -779,12 +774,12 @@ footer {
       font-size: 2rem;
     }
     p {
+      color: $black;
       font-size: 1.2rem;
       font-family: OS-Regular;
     }
   }
 }
-// End Register style
 
 .items.clicked{
   display: block !important;
@@ -857,10 +852,46 @@ footer {
     }
   }
 }
+.b-articles{
+  height: 700px;
+  margin: 20px 0px;
+  background: $white;
+  .articles-wrapper{
+    max-width: 500px;
+    margin: 15px;
+    width: 30%;
+    padding: 20px;
+    height: auto;
+    vertical-align: top;
+    display: inline-block;
+    .box{
+      position: relative;
+      padding: 5px;
+      height: 200px;
+      width: 100%;
+      border-radius: 2px;
+      border: 1px solid $grey;
+      border-bottom: 2px solid $blue;
+      h4{
+        a{
+          color: $black;
+          &:hover{
+            text-decoration: underline;
+          }
+        }
+      }
+      small{
+        display: block;
+        position: absolute;
+        bottom: 0;
+      }
+    }
+  }
+}
 .b-event{
   margin: 20px auto;
   height: auto;    
-  background: white;
+  background: $white;
   .create-event-wrapper{
     display: inline-block;
     vertical-align: top;
@@ -887,6 +918,10 @@ footer {
       height: 300px;
       width: 400px;
       resize: none;
+    }
+    small{
+      font-size: 1rem;
+      display: block;
     }
     button{
       border: none;
@@ -1032,36 +1067,41 @@ footer {
     width: 80%;
     margin: 0 auto;
     .box{
+      margin: 10px 0px;
       width: 100%;
-      height: 50px;
+      height: 70px;
       border: 1px dashed $grey;
       border-radius: 10px;
       display: flex;
       align-items: stretch;
-      h4{
-        flex-grow: 8;
+      padding: 15px;
+      .info{
+        flex: 2;
+        h4{
+          a{
+            color: $black;
+            &:hover{
+              text-decoration-line: underline;
+            }
+          }
+        }
+        small{
+          text-transform: capitalize;
+        }
       }
-      a{
-        flex-grow: 1;
+      .settings{
+        padding: 10px;
+        > a{
+          padding: 0px 10px;
+          &:nth-child(1) 
+          {
+            color: $blue;
+          }
+          &#delete-article{
+            color: $red;
+          }
+        }
       }
-    }
-  }
-}
-.b-reqpost-container {
-  margin: 15px auto;
-  background: white;
-  height: 100vh;
-  .b-reqpost {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px 15px;
-    h1 {
-      font-family: OS-Bold;
-      font-size: 2rem;
-    }
-    p {
-      font-size: 1.2rem;
-      font-family: OS-Regular;
     }
   }
 }
