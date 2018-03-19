@@ -2,8 +2,9 @@ const express = require('express')
     , router = express.Router()
     , multer = require("multer")
     , path = require("path")
-    
-    
+    , csrf = require('csurf')
+
+const csrfProtection = csrf()    
 // Initialize multer to uplaod a file
 const storage = multer.diskStorage({
   destination: "./public/temp",
@@ -19,6 +20,8 @@ const upload = multer({
     checkFileType(file, cb);
   },
   limits: {
+    files: 1,
+    fields: 1,
     fileSize: 2000000
   }
 }).single("imageuploader");
@@ -39,7 +42,7 @@ function checkFileType(file, cb) {
 
 
 // Image Upload Routing so they can upload images in Article
-router.get('/upload', (req, res) => {
+router.get('/upload', csrfProtection ,(req, res) => {
   res.render('user/uploads', {layout: '' })
 })
 router.post("/upload", (req, res) => {
@@ -62,5 +65,5 @@ router.post("/upload", (req, res) => {
     }
   });
 });  
-    
+
 module.exports = router;

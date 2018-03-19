@@ -118,7 +118,6 @@
           <small>{{imageInfo.size}}</small>
           <div class="settings-wrapper">
           <button onClick="returnFileUrl()">Select</button>
-          <a href="#">Delete</a>
           </div>
         </div>
       </div> 
@@ -130,10 +129,6 @@
     </div>
   </div>
   <script>
-   var test = (document.getElementById('file'));
-   test.addEventListener("change" , function(e) {
-     console.log(this.value.slice(12, this.value.length))
-   })
   // Helper function to get parameters from the query string.
   function getUrlParam(paramName) {
     var reParam = new RegExp("(?:[?&]|&)" + paramName + "=([^&]+)", "i");
@@ -158,6 +153,20 @@
     });
     window.close();
   }
+
+  const deleteButton = document.getElementById('delete-button')
+
+  deleteButton.addEventListener('click', function(){
+    const filename = this.getAttribute('data-filename')
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+      if(this.readyState == 4 && this.status == 200) {
+        console.log(this.responseText)
+      }
+    }
+    xhr.open('delete', '/user/uploads/delete/')
+    xhr.send()
+  })
   </script>
     <script src="/ckeditor/ckeditor.js"></script>
 <script src="/js/ckeditorConfig.js"></script>

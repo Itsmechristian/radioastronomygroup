@@ -1,14 +1,38 @@
-@keyframes slideSideBar {
+@keyframes opensidebar {
   from {
-    width: 0px; }
+    transform: translateX(-250px); }
   to {
-    width: 250px; } }
+    transform: translateX(0px); } }
 
-@keyframes CloseSideBar {
+@-moz-keyframes opensidebar {
   from {
-    width: 250px; }
+    transform: translateX(-250px); }
   to {
-    width: 0px; } }
+    transform: translateX(0px); } }
+
+@-webkit-keyframes opensidebar {
+  from {
+    transform: translateX(-250px); }
+  to {
+    transform: translateX(0px); } }
+
+@keyframes closesidebar {
+  from {
+    transform: translateX(0px); }
+  to {
+    transform: translateX(-250px); } }
+
+@-moz-keyframes closesidebar {
+  from {
+    transform: translateX(0px); }
+  to {
+    transform: translateX(-250px); } }
+
+@-webkit-keyframes closesidebar {
+  from {
+    transform: translateX(0px); }
+  to {
+    transform: translateX(-250px); } }
 
 @media screen and (min-width: 769px) {
   .mobile-navbar {
@@ -53,6 +77,8 @@
   .b-categories,
   #drop-item-container {
     display: none !important; }
+  .sidebar {
+    display: none !important; }
   .b-mobile-hamburger {
     float: left;
     height: 50px;
@@ -71,8 +97,12 @@
       .b-mobile-hamburger span:nth-child(3) {
         top: 31px;
         width: 18px; }
+  .b-mobile-sidebar.open {
+    animation: opensidebar 0.2s both; }
+  .b-mobile-sidebar.close {
+    animation: closesidebar 0.2s both; }
   .b-mobile-sidebar {
-    display: none;
+    transform: translateX(-250px);
     position: absolute;
     height: 999px;
     width: 250px;
@@ -85,14 +115,27 @@
       margin: 10px;
       color: #fff;
       font-weight: bold; }
+    .b-mobile-sidebar h2 i {
+      transform: translateY(10%) rotate(0deg);
+      transition: tranform 0.2s ease;
+      float: right; }
+    .b-mobile-sidebar h2 i.clicked {
+      transform: translateY(10%) rotate(90deg);
+      transition: tranform 0.2s ease; }
     .b-mobile-sidebar h2,
     .b-mobile-sidebar a {
       margin: 10px;
       color: #fff; }
     .b-mobile-sidebar li {
-      margin: 10px 0px; }
-  .mobile-categories {
-    display: none; }
+      background: #2a437a;
+      padding: 5px 0px; }
+    .b-mobile-sidebar .items {
+      overflow: auto;
+      max-height: 0;
+      transition: max-height 0.2s ease-out; }
+    .b-mobile-sidebar .items.clicked {
+      max-height: 225px;
+      transition: max-height 0.2s ease-in; }
   .overlay {
     display: none;
     position: absolute;
@@ -102,16 +145,6 @@
     left: 0;
     right: 0;
     background: rgba(0, 0, 0, 0.582); }
-  .b-mobile-sidebar.clicked {
-    display: block;
-    overflow: hidden;
-    animation: slideSideBar 0.2s both; }
-  .b-mobile-sidebar.hid {
-    animation: CloseSideBar 0.2s both; }
-  .overlay.clicked {
-    display: block; }
-  .b-radioastronomy .sidebar {
-    display: none; }
   .b-radioastronomy .page {
     margin: 0 auto;
     padding: 15px;
@@ -124,4 +157,10 @@
 
 @media screen and (max-width: 480px) {
   .b-body {
-    width: 90% !important; } }
+    width: 90% !important; }
+  .b-login .b-form {
+    width: 100%;
+    padding: 20px; }
+  .b-register form {
+    width: 100%;
+    padding: 20px; } }

@@ -18,30 +18,53 @@ $(".drop ul li").hover(function() {
   $(this).children('#sub-links').css('display','none')
 })
 
-// Mobile Navbar
 $(".b-user-dropdown").click(function() {
   $(".user-down").toggleClass("clicked");
   $("#drop-item-container").removeClass("clicked");
 });
 
+// Mobile Navbar
+// $(".b-mobile-hamburger").click(function() {
+//   $(".b-mobile-sidebar").addClass("clicked");
+//   $(".overlay").addClass("clicked");
+//   $("body").addClass("scrolldisable");
+//   setTimeout(function() {
+//     $(".mobile-categories").css("display", "block");
+//   }, 300);
+// });
+// $(".overlay").click(function() {
+//   $(".b-mobile-sidebar").addClass("hid");
+//   $(".mobile-categories").css("display", "none");
+//   setTimeout(function() {
+//     $("body").removeClass("scrolldisable");
+//     $(".b-mobile-sidebar").removeClass("hid");
+//     $(".b-mobile-sidebar").removeClass("clicked");
+//     $(".mobile-categories").css("display", "none");
+//   }, 300);
+//   $(".overlay").removeClass("clicked");
+// });
 
-$(".b-mobile-hamburger").click(function() {
-  $(".b-mobile-sidebar").addClass("clicked");
-  $(".overlay").addClass("clicked");
-  $("body").addClass("scrolldisable");
-  setTimeout(function() {
-    $(".mobile-categories").css("display", "block");
-  }, 300);
-});
-$(".overlay").click(function() {
-  $(".b-mobile-sidebar").addClass("hid");
-  $(".mobile-categories").css("display", "none");
-  setTimeout(function() {
-    $("body").removeClass("scrolldisable");
-    $(".b-mobile-sidebar").removeClass("hid");
-    $(".b-mobile-sidebar").removeClass("clicked");
-    $(".mobile-categories").css("display", "none");
-  }, 300);
-  $(".overlay").removeClass("clicked");
-});
+(function() {
+  var $sidebar = $('.b-mobile-sidebar')
+  var $links = $('.mobile-categories') 
+  var $overlay = $('.overlay')
 
+  $('.b-mobile-hamburger').click(function() {
+    $sidebar.removeClass('close').addClass('open')
+    setTimeout(function() {
+      $links.css('display', 'block')
+    }, 200)
+    $overlay.css('display', 'block').click(function() {
+      $sidebar.removeClass('open').addClass('close')
+      $overlay.css('display', 'none')
+      })
+    })
+
+  var $heading = $('#heading')
+  var $arrow = $('#arrow')
+  var $items = $('.items')  
+  $($heading).click(function() {
+    $arrow.toggleClass('clicked')
+    $items.toggleClass('clicked')
+  })
+})()

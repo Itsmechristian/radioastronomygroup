@@ -21,6 +21,7 @@ CKEDITOR.editorConfig = function( config ) {
 		{ name: 'styles' },
 		{ name: 'colors' },
 	];
+	config.filebrowserWindowFeatures  = 'location=no,toolbar=no,menubar=no,scrollbars=no,resizable=no',
 	config.contensCss = '/css/ckeditor.css'
 	config.height = 600;
 	// Remove some buttons provided by the standard plugins, which are
