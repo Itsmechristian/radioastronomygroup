@@ -15,7 +15,7 @@ module.exports = (article) => {
   const bagImages = bodySrc.filter(element => {
     // Change Regular expression before image deploy
     // /https?://domain/g
-    const regEx = /(192.168|localhost).*:8000/i
+    const regEx = /(192.168|localhost).*:8080/i
     let imageName = element.match(regEx)
     return imageName !== null
   });
