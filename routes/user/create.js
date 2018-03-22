@@ -43,7 +43,15 @@ router.post('/create/events', (req, res) => {
 })
 // Creating new request Article
 router.get("/create/article", (req, res) => {
-  res.render("user/create");
+  RequestArticle.find().then(docs => {
+    if(docs.length < 5) {
+      res.render("user/create")
+    }
+    else{
+      req.flash('error', 'Request Limit Exceeded')
+      res.redirect('/user')
+    }
+  })
 });
 
 router.post("/create/article", (req, res) => {

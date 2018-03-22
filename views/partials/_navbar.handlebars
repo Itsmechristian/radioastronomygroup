@@ -85,35 +85,43 @@
         </div>
         <div class="b-mobile-sidebar">
             <div class="mobile-categories">
-                <h1>Categories</h1>
+                <h1>Categories </h1>
+                <li><a href="/home">Home</a></li>
+                {{#if user}}
+                <li><a href="/user">Dashboard</a></li>
+                {{#if user.admin}}
+                <li><a href="/admin/requested">Requested</a></li>
+                {{/if}}
+                <li><a href="/user/logout">Log out</a></li>
+                {{else}}
                 <li>
-                    <a href="#">Log In</a>
+                    <a href="/home/login">Log In</a>
                 </li>
                 <li>
-                    <a href="#">Register</a>
+                    <a href="/home/register">Register</a>
                 </li>
-                <h2>Radio Astronomy</h2>
+                {{/if}}
+                <h2 id="heading">Radio Astronomy <i class="fa fa-angle-right" id="arrow"></i></h2>
+                <div class="items">
                 <li>
-                    <a href="#">Getting Started</a>
-                </li>
-                <li>
-                    <a href="#">Radio Spectrum</a>
-                </li>
-                <li>
-                    <a href="#">VLF Solar</a>
+                    <a href="/pages/radioastronomy/getting-started">Getting Started</a>
                 </li>
                 <li>
-                    <a href="#">Magnetometry</a>
+                    <a href="/pages/radioastronomy/radiospectrum">Radio Spectrum</a>
                 </li>
                 <li>
-                    <a href="#">Simple Radio Astronomy</a>
+                    <a href="/pages/radioastronomy/VLF Solar">VLF Solar</a>
                 </li>
                 <li>
-                    <a href="#">Radio Jove</a>
+                    <a href="/pages/radioastronomy/getting-started">Magnetometry</a>
                 </li>
                 <li>
-                    <a href="#">Radio Spectrum</a>
+                    <a href="/pages/radioastronomy/Simple%20radio%20astronomy">Simple Radio Astronomy</a>
                 </li>
+                <li>
+                    <a href="/pages/radioastronomy/Radio%20Jove">Radio Jove</a>
+                </li>
+                </div>
             </div>
         </div>
         <div class="overlay"></div>

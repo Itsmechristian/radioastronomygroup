@@ -114,6 +114,17 @@ h6 {
   margin: 0;
   font-family: OS-Regular;
 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 p{
   color: $grey;
 }
@@ -374,34 +385,39 @@ body.scrolldisable {
           }
         }
       }
-
-      .see-more-link {
-        margin: 20px 0px;
-        color: $blue;
-        font-size: 1.2rem;
-        text-decoration: none;
-        display: block;
-        bottom: 0;
-        left: 0;
+      .see-more-wrapper{
         position: relative;
-        text-align: center;
-        width: 100%;
-        font-weight: 600;
-        &:after {
-          content: "";
-          position: absolute;
-          width: 80px;
-          margin: 10px;
-          right: 37%;
-          border-bottom: 3px solid $blue;
-        }
-        &:before {
-          left: 37%;
-          content: "";
-          position: absolute;
-          width: 80px;
-          margin: 10px;
-          border-bottom: 3px solid $blue;
+        .see-more-link {
+          margin: 20px 0px;
+          color: $blue;
+          font-size: 1.2rem;
+          text-decoration: none;
+          display: block;
+          bottom: 0;
+          left: 0;
+          text-align: center;
+          width: 100%;
+          font-weight: 600;
+          &:before,
+          &:after {
+            background-color: $blue;
+            content: "";
+            display: inline-block;
+            height: 2px;
+            position: relative;
+            vertical-align: middle;
+            width: 50px;
+          }
+          
+          &:before {
+            right: 0.5em;
+            margin-left: -50%;
+          }
+          
+          &:after {
+            left: 0.5em;
+            margin-right: -50%;
+          }
         }
       }
     }
@@ -720,7 +736,8 @@ footer {
       display: block;
       margin: 15px 0px;
     }
-    a {
+    span{
+      font-family: OS-Regular;
       position: relative;
       bottom: 0;
       top: 20px;
@@ -729,6 +746,9 @@ footer {
       text-align: center;
       font-size: 1.2rem;
       color: #313131;
+    }
+    a {
+      color: $blue;
     }
   }
 }
@@ -763,6 +783,7 @@ footer {
         }
       }
     }
+
   }
   .b-post {
     width: 90%;
@@ -777,6 +798,15 @@ footer {
       color: $black;
       font-size: 1.2rem;
       font-family: OS-Regular;
+    }
+    button{
+      margin: 15px 0px;
+      position: absolute;
+      bottom: 0;
+      border: none;
+      padding: 10px 15px;
+      background: $blue;
+      color: $white;
     }
   }
 }
