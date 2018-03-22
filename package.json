@@ -9,6 +9,10 @@
     "serve": "nodemon server",
     "scss:compile": "node-sass --watch scss -o public/css"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Itsmechristian/radioastronomygroup.git"
+  },
   "keywords": [],
   "license": "MIT",
   "dependencies": {
