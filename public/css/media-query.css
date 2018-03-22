@@ -62,6 +62,9 @@
   .b-radioastronomy .page {
     width: 65%; }
   .b-radioastronomy img {
+    width: 100%; }
+  .b-articles .articles-wrapper {
+    max-width: 50%;
     width: 100%; } }
 
 @media screen and (max-width: 767px) {
@@ -153,7 +156,13 @@
     width: 100%; }
   .b-body .home-row .b-sub-sections .icon-body {
     width: 90%;
-    margin: 0 auto; } }
+    margin: 0 auto; }
+  .container.panel .req-wrapper, .container.panel .publish-wrapper {
+    width: 100%;
+    padding: 10px 20px; }
+  .b-articles .articles-wrapper {
+    max-width: 93%;
+    width: 100%; } }
 
 @media screen and (max-width: 480px) {
   .b-body {

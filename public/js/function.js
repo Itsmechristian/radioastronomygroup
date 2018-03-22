@@ -38,11 +38,11 @@ $(document).ready(function() {
             case '/user/article/'+id:
               window.location.href = '/user'
               break;
-            case '/admin/requests':
-              window.location.href = '/admin/requests'
+            case '/admin/requested':
+              window.location.href = '/admin/requested'
               break;
-            case '/admin/requests/article/'+id:
-              window.location.href = '/admin/requests'
+            case '/admin/requested/article/'+id:
+              window.location.href = '/admin/requested'
               break;
             default:
               break;     

@@ -187,7 +187,6 @@ app.use('/admin', (req, res, next) => {
 })
 
 app.use('/admin', publish)
-
 // Render to 404 pages if the page doesn't exist
 app.use(function (req, res, next){
   const error = new Error('Not Found')

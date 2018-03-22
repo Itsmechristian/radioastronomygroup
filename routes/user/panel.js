@@ -45,7 +45,6 @@ router.get(`/`,(req, res) => {
         })
       }
     }
-
     res.render("user/panel", {
       notpublishcount: userArticles.notpublish.requestCount,
       notpublishresult: userArticles.notpublish.results[0],

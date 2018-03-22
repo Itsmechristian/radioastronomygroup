@@ -92,9 +92,12 @@
       width: 100%;
     }
   }
+  .b-articles .articles-wrapper {
+    max-width: 50%;
+    width: 100%;
+  }
 }
 
-// Yesterday's work
 @media screen and (max-width: 767px) {
   .b-body{
     width: 60% !important;
@@ -217,7 +220,16 @@
     width: 90%;
     margin: 0 auto;
   }
+  .container.panel .req-wrapper, .container.panel .publish-wrapper{
+    width: 100%;
+    padding: 10px 20px;
+  }
+  .b-articles .articles-wrapper {
+    max-width: 93%;
+    width: 100%;
+  }
 }
+
 @media screen and (max-width: 480px) {
   .b-body{
     width: 90% !important;

@@ -640,6 +640,14 @@ footer {
       color: #333;
       font-size: 1.2rem;
       font-family: OS-Regular; }
+    .b-post-container .b-post button {
+      margin: 15px 0px;
+      position: absolute;
+      bottom: 0;
+      border: none;
+      padding: 10px 15px;
+      background: #2a5bb8;
+      color: #fff; }
 
 .items.clicked {
   display: block !important; }

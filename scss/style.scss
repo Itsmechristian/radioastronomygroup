@@ -783,6 +783,7 @@ footer {
         }
       }
     }
+
   }
   .b-post {
     width: 90%;
@@ -797,6 +798,15 @@ footer {
       color: $black;
       font-size: 1.2rem;
       font-family: OS-Regular;
+    }
+    button{
+      margin: 15px 0px;
+      position: absolute;
+      bottom: 0;
+      border: none;
+      padding: 10px 15px;
+      background: $blue;
+      color: $white;
     }
   }
 }

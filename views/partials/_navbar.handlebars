@@ -86,8 +86,9 @@
         <div class="b-mobile-sidebar">
             <div class="mobile-categories">
                 <h1>Categories </h1>
+                <li><a href="/home">Home</a></li>
                 {{#if user}}
-                <li><a href="#">Panel</a></li>
+                <li><a href="/user">Dashboard</a></li>
                 {{#if user.admin}}
                 <li><a href="/admin/requested">Requested</a></li>
                 {{/if}}

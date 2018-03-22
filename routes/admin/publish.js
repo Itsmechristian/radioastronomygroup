@@ -23,8 +23,9 @@ router.get("/requested", (req, res) => {
             };
           })
         };
-        res.render("admin/request", {
-          articles: response.articles
+        res.render("admin/requested", {
+          articles: response.articles,
+          success: req.flash('success')
         });
       })
   } else {
@@ -41,7 +42,7 @@ router.get("/requested/article/:id", (req, res) => {
     })
     .select("_id dateRequested title body createBy")
     .then(result => {
-      res.render("admin/reqpost", { docs: result });
+      res.render("admin/request", { docs: result });
     })
 });
 
@@ -64,24 +65,8 @@ router.post("/requested/article/:id", (req, res) => {
           if(err) throw err;
         })
         req.flash("success", "Article Published");
-        res.redirect("/user");
+        res.redirect("/admin/requested");
       })
-    })
-});
-
-// Get the administrator to access and edit user article manually
-router.get("/edit", (req, res) => {
-  Article.find()
-    .then(results => {
-      res.render("user/edit", { results: results });
-    })
-});
-
-router.get("/edit/:id", (req, res) => {
-  let id = req.params.id;
-  Post.findById(id)
-    .then(result => {
-      res.json(result);
     })
 });
 
