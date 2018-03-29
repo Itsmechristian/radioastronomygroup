@@ -755,7 +755,7 @@ footer {
 .b-post-container {
   margin: 15px auto;
   background: white;
-  height: 700px;
+  height: auto;
   position: relative;
   small{
     font-family: OS-Regular;
@@ -801,7 +801,6 @@ footer {
     }
     button{
       margin: 15px 0px;
-      position: absolute;
       bottom: 0;
       border: none;
       padding: 10px 15px;
@@ -1128,6 +1127,9 @@ footer {
             color: $blue;
           }
           &#delete-article{
+            color: $red;
+          }
+          &.delete-article{
             color: $red;
           }
         }

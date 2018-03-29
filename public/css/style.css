@@ -606,7 +606,7 @@ footer {
 .b-post-container {
   margin: 15px auto;
   background: white;
-  height: 700px;
+  height: auto;
   position: relative; }
   .b-post-container small {
     font-family: OS-Regular; }
@@ -642,7 +642,6 @@ footer {
       font-family: OS-Regular; }
     .b-post-container .b-post button {
       margin: 15px 0px;
-      position: absolute;
       bottom: 0;
       border: none;
       padding: 10px 15px;
@@ -906,7 +905,7 @@ footer {
           padding: 0px 10px; }
           .b-requests .requests-article-wrapper .box .settings > a:nth-child(1) {
             color: #2a5bb8; }
-          .b-requests .requests-article-wrapper .box .settings > a#delete-article {
+          .b-requests .requests-article-wrapper .box .settings > a.delete-article {
             color: #e33545; }
 
 .b-radioastronomy {

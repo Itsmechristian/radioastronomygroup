@@ -7,17 +7,15 @@ window.onload = function() {
   else{
   $('.sidebar').css('height', 'auto');
   }
-  // Article Container Height
-  const bPost = $('.b-post').height()
-  if(bPost > 700){
-    $('.b-post-container').css('height', bPost + 100);
-  }
 
   // Make image responsive
   $images = $('.b-post img');
   $images.each(function() {
     if($(this).width() > 1440) {
-      $(this).css('width', '100%')
+      $(this).css({
+        'width': '100%',
+        'height': 'auto'
+      })
     }
   })
 } 
@@ -27,6 +25,19 @@ $('.options > small').click(function() {
 })
 
 $(document).ready(function() {
+  $('.delete-article').on('click', function() {
+    const id = $(this).data('id')
+    if(confirm('Do you want to decline this article')) {
+      $.ajax({
+        type: 'DELETE',
+        url: '/user/article/delete/'+id,
+        success: function(response) {
+            window.location.href = '/admin/requested'
+        }
+      })
+    }
+  }) 
+
   $('#delete-article').on('click', function() {
     const id = $(this).data('id')
     if(confirm('Do you want to delete this article?')) {
@@ -38,9 +49,6 @@ $(document).ready(function() {
             case '/user/article/'+id:
               window.location.href = '/user'
               break;
-            case '/admin/requested':
-              window.location.href = '/admin/requested'
-              break;
             case '/admin/requested/article/'+id:
               window.location.href = '/admin/requested'
               break;
@@ -51,38 +59,38 @@ $(document).ready(function() {
       })
     }
   })
-    $('.event').each(function() {
-      const isodate = $(this).data('iso')
-      if(new Date(isodate).toISOString() > new Date().toISOString())
-      {
-      $(this).find('#delete-event').text('Cancel Event').css('color', '#e33545').on('click', function() {
-        const id = $(this).data('id')
-        if(confirm('Are you sure you want to cancel this event?')) {
-          $.ajax({
-            type: 'DELETE',
-            url: '/user/delete/event/'+id,
-            success: function(response) {
-              window.location.href = '/user/create/events'
-            }
-          })
-        }
-      })
-      }
-      else{
-      $(this).find('#delete-event').text('Event Finished').css('color', 'limegreen').on('click', function() {
-        const id = $(this).data('id')
-        if(confirm('Is event finish?'))  {
-          $.ajax({
-            type: 'DELETE',
-            url: '/user/finish/event/'+id,
-            success: function(response) {
-              window.location.href = '/user/create/events'
-            }
-          })
-        }
-      })
+  $('.event').each(function() {
+    const isodate = $(this).data('iso')
+    if(new Date(isodate).toISOString() > new Date().toISOString())
+    {
+    $(this).find('#delete-event').text('Cancel Event').css('color', '#e33545').on('click', function() {
+      const id = $(this).data('id')
+      if(confirm('Are you sure you want to cancel this event?')) {
+        $.ajax({
+          type: 'DELETE',
+          url: '/user/delete/event/'+id,
+          success: function(response) {
+            window.location.href = '/user/create/events'
+          }
+        })
       }
     })
+    }
+    else{
+    $(this).find('#delete-event').text('Event Finished').css('color', 'limegreen').on('click', function() {
+      const id = $(this).data('id')
+      if(confirm('Is event finish?'))  {
+        $.ajax({
+          type: 'DELETE',
+          url: '/user/finish/event/'+id,
+          success: function(response) {
+            window.location.href = '/user/create/events'
+          }
+        })
+      }
+    })
+    }
+  })
 })
 
 $('#description').on('keydown paste keyup delete', function() {

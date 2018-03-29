@@ -30,13 +30,7 @@ const express = require('express')
 
 // Mongoose Middleware help you to connect in mongodb
 
-mongoose.connect(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`, {
-  "auth": {
-    "authSource": "admin"
-  },
-  "user": `${process.env.DB_USERNAME}`,
-  "pass": `${process.env.DB_PASSWORD}`
-})
+mongoose.connect(`mongodb://${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`)
 .then((result => console.log('Connected to mongoDB')))
 .catch((error => console.log(error)))
 

@@ -23,27 +23,6 @@ $(".b-user-dropdown").click(function() {
   $("#drop-item-container").removeClass("clicked");
 });
 
-// Mobile Navbar
-// $(".b-mobile-hamburger").click(function() {
-//   $(".b-mobile-sidebar").addClass("clicked");
-//   $(".overlay").addClass("clicked");
-//   $("body").addClass("scrolldisable");
-//   setTimeout(function() {
-//     $(".mobile-categories").css("display", "block");
-//   }, 300);
-// });
-// $(".overlay").click(function() {
-//   $(".b-mobile-sidebar").addClass("hid");
-//   $(".mobile-categories").css("display", "none");
-//   setTimeout(function() {
-//     $("body").removeClass("scrolldisable");
-//     $(".b-mobile-sidebar").removeClass("hid");
-//     $(".b-mobile-sidebar").removeClass("clicked");
-//     $(".mobile-categories").css("display", "none");
-//   }, 300);
-//   $(".overlay").removeClass("clicked");
-// });
-
 (function() {
   var $sidebar = $('.b-mobile-sidebar')
   var $links = $('.mobile-categories') 
